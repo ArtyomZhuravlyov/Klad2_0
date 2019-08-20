@@ -1,6 +1,6 @@
 using System;
 
-namespace Klad2_0.Models
+namespace Klad.Models
 {
     public class ErrorViewModel
     {

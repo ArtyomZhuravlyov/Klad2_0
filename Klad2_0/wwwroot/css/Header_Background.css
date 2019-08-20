@@ -1,0 +1,152 @@
+﻿.ColorHeader {
+    background: #2D2B41;
+    padding-top: 12px;
+    /*margin: 0 auto;*/
+ 
+}
+
+
+/*html {
+    background: #f0f0f0;
+}*/
+
+
+.posHeader {
+    /*float: right;
+    width: 200px;*/
+    
+   /* margin-right: 20px;*/
+    /*padding-top: 30px;*/
+    
+    height: 46px;
+}
+
+.poseContact {
+    /*float: right;
+    position: center;*/
+    /*padding: 5px 20px;  задаем внутренние отступы */
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Exo 2', sans-serif;
+    /*margin-left:2px;*/
+}
+/**testcolor*/
+.test_color > a {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Exo 2', sans-serif;
+    margin-bottom: 1em;
+    /*padding: 10px;*/
+    text-decoration: none;
+    padding-bottom: 10px;
+    
+}
+
+.poseMain {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Exo 2', sans-serif;
+    margin-left: 390px;
+}
+
+/*подчеркивание текста*/
+.underline {
+    display: inline-block;
+    /*color:#ffeb3b;*/
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    /*font-size: 18px;*/
+}
+
+    .underline:after {
+        background-color: #FF7400 /*#ffeb3b*/; /*coral*/
+        display: block;
+        content: "";
+        height: 2px;
+        width: 0%;
+        left: 50%;
+        position: absolute;
+        -webkit-transition: width .3s ease-in-out;
+        -moz--transition: width .3s ease-in-out;
+        transition: width .3s ease-in-out;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+    .underline:hover {
+        font-size: 18px;
+        -webkit-transition: width .3s ease-in-out;
+        -moz--transition: width .3s ease-in-out;
+    }
+
+        .underline:hover:after,
+        .underline:focus:after {
+            width: 100%;
+        }
+
+/* полавное изменение цвета ссылки*/
+.ColourChange {
+    /*color: #ffffff;*/ /* Цвет текста */
+    color: #988D93;
+    /* background: #ffc;  Цвет фона */
+    padding: 2px; /* Поля вокруг текста */
+    transition: 0.1s linear;
+     /*/Время изменения  line-height: 1;
+    display: inline-block;
+    /*color:#ffeb3b;*/
+    text-decoration: none;
+    font-size: 18px;
+}
+
+    .ColourChange:hover {
+        color: #ffffff; /*#ebb926 */ /*#e6b010*/
+        ; /* Цвет текста */
+        /* background: #008;  Цвет фона */
+    }
+
+/**/
+.backgroundbody {
+    background: url(../images/ispr2.jpg) no-repeat;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+    /*height: 1920px;*/
+    height: 4500px;
+    background-attachment: fixed;
+    background-position: center;
+    /*background-attachment: initial;
+    background-position: center top;*/
+}
+
+.backgroundbody2 {
+    background: #ebb926;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+}
+
+/* приккрепление элемента к скролу*/
+.testposition {
+    position: sticky;
+    top: 0;
+    min-height: 2em;
+}
+
+.GeneralHeader {
+    /*padding: 50px 0;*/
+    /*font-size: 20px;*/
+    line-height: 24px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    min-height: 2em;
+    z-index:2;
+}

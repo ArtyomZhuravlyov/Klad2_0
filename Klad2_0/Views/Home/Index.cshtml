@@ -1,94 +1,162 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@using Klad.Models
+@model IndexViewModel
+@*подключаем все tag-хелперы*@
+@addTagHelper "*, Klad"
+
+@{
+    ViewData["Title"] = "Каталог товаров";
+    //   Layout = null;
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+<!DOCTYPE html>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" />
+    <link rel="stylesheet" href="~/css/Pages2.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,700" rel="stylesheet">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> пакость*@ 
+    <link rel="stylesheet" href="~/css/ModalWindow.css">
+    @*бутстрап*@
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+
+
+    @*<link rel="stylesheet" href="~/css/StyleSheet.css" />
+    <link rel="stylesheet" href="~/css/Header_Background.css" />
+    <link rel="stylesheet" href="~/css/Search.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/MegaMenu.css" />*@
+
+</head>
+<body>
+
+    @*каталог*@
+    <div class="parent">
+        @foreach (var product in Model.Products)
+        {
+            <div class="border">
+                <div class="wrap">
+                    <div class="product-wrap">
+                        @*<a href=""><img src="~/images/@product.Category/@product.Category2/@product.Address"></a> изменилась в корне вся система из-за ручного мега меню*@
+                        <a href=""><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
+                    </div>
+                    <div class="loop-action">
+                        @*<a href=" @Html.ActionLink(c.Name, "Details",
+                            new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
+                        @Html.ActionLink("Быстрый просмотр", "Details",
+                            new { id = product.Id }, new { @class = "compItem add-to-cart btn open-modal" } ) 
+                        <a href="" class="loop-add-to-cart">В корзину</a>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                        @*<div class="alert alert-success">Задача успешно завершена</div>*@
+                        <h3 class="product-title">@product.Name</h3>
+                        @*<div class="price">&#8381; @product.Price </div>*@
+                 </div>
+
+                @*<ul>
+                    @foreach (var c in Model.Products)
+                    {
+                        <li>
+                            @Html.ActionLink(c.Name, "Details",
+                            new { id = c.Id }, new { @class = "compItem" })
+                        </li>
+                    }
+                </ul>*@
+            </div>
+
+        }
+    </div>
+
+    @*<div class='modal' id='modal1'>
+            <div class='content'>
+                <h1 class='title'>This is a modal</h1>
+                <p>
+                    @product.Description
+                </p>
+                <a class='btn close-modal' data-modal="#modal1" href="#">K Bye</a>
+            </div>
+        </div>*@
+
+
+
+    @*постраничная навигация*@
+    <div>
+        <ul class="pagination modal-1">
+            <li> <a href="/@Model.CurrentCategory/1">Первая</a></li>
+            @if (Model.Pages.FirstArrow == true)
+            {
+                <li> <a href="/@Model.CurrentCategory/@(Model.Pages.CurrentPage-1)" class="prev">&laquo</a></li>
+            }
+            @for (int i = Model.Pages.FirstPage; i <= Model.Pages.LastPage; i++)
+            {
+                @if (Model.Pages.CurrentPage == i)
+                {
+                    <li> <a href="/@Model.CurrentCategory/@i" class="active">@i</a></li>
+                }
+                else
+                {
+                    <li> <a href="/@Model.CurrentCategory/@i">@i</a></li>
+                }
+            }
+
+            @if (Model.Pages.LastArrow == true)
+            {
+                <li> <a href="/@Model.CurrentCategory/@(Model.Pages.CurrentPage+1)" class="next">&raquo;</a></li>
+            }
         </ul>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
-    </div>
-</div>
+
+
+    @*//описание категорий внизу*@
+    @foreach (var DicCatalogKey in Model.DiscriptionCatalog.Keys)
+    {
+        if (DicCatalogKey == Model.CurrentCategory)
+        {
+            foreach (var Value in Model.DiscriptionCatalog[DicCatalogKey])
+            {
+                <table class="table-condensed">
+                    <tr>
+                        <td>@Value.Key</td>
+                    </tr>
+                    <tr>
+                        <td>@Value.Value</td>
+                    </tr>
+                </table>
+
+            }
+        }
+    }
+     <div id="modDialog" class="modal fade">
+                <div id="dialogContent" class="modal-dialog"></div>
+     </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+    @*для модального окна*@
+    @*@section scripts
+        {*@
+    <script type="text/javascript">
+
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".compItem").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+            });
+        })
+        
+    </script>
+    @*}*@
+</body>
+</html>
