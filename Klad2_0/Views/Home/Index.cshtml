@@ -19,9 +19,9 @@
     @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> пакость*@ 
     <link rel="stylesheet" href="~/css/ModalWindow.css">
     @*бутстрап*@
-    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    @*<link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <script src="lib/jquery/dist/jquery.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>*@
 
 
     @*<link rel="stylesheet" href="~/css/StyleSheet.css" />
@@ -48,7 +48,7 @@
                             new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
                         @Html.ActionLink("Быстрый просмотр", "Details",
                             new { id = product.Id }, new { @class = "compItem add-to-cart btn open-modal" } ) 
-                        <a href="" class="loop-add-to-cart">В корзину</a>
+                        <a  class="loop-add-to-cart">В корзину</a>
                     </div>
                 </div>
 
@@ -87,9 +87,10 @@
     @*постраничная навигация*@
     <div>
         <ul class="pagination modal-1">
-            <li> <a href="/@Model.CurrentCategory/1">Первая</a></li>
+
             @if (Model.Pages.FirstArrow == true)
             {
+                <li> <a href="/@Model.CurrentCategory/1">Первая</a></li>
                 <li> <a href="/@Model.CurrentCategory/@(Model.Pages.CurrentPage-1)" class="prev">&laquo</a></li>
             }
             @for (int i = Model.Pages.FirstPage; i <= Model.Pages.LastPage; i++)
@@ -137,7 +138,7 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 
-    <script src="js/index.js"></script>
+    <script src="~/lib/bootstrap/dist/js/index.js"></script>
 
     @*для модального окна*@
     @*@section scripts

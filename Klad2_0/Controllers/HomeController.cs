@@ -17,38 +17,86 @@ namespace Klad.Controllers
         {
             db = context;
         }
-
+        /// <summary>
+        /// Запрос в поисковике сбрасыватся в индексе если следующим действием было нажатие на категорию
+        /// </summary>
+        private string textSearch;
         /// <summary>
         /// Каталог товаров
         /// </summary>
         /// <param name="category"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public async Task<IActionResult> Index( string category = null,  int page = 1)
+        public async Task<IActionResult> Index( string category = null,  int page = 1, string search = null)
         {
             int pageSize;
             IQueryable<Product> source;
-     
+          //  IQueryable<Product> source2;
             pageSize = 18; 
-            // несколько категорий
-            source = db.Products.Where(x => x.Category == category || x.Category2 == category || x.Category3 == category || x.Category4 == category);
-
-            var count = await source.CountAsync();
-            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
-
-            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
-            PagesLink pagesLink = new PagesLink(pageViewModel);
-
-            IndexViewModel viewModel = new IndexViewModel
+            if(!string.IsNullOrEmpty(search)) //если нажали на поиск
             {
-                //PageViewModel = pageViewModel,
-                Products = items,
-                CurrentCategory = category,
-                Pages = pagesLink,
-                DiscriptionCatalog = DescriptionCatalog.DiscriptionCatalog
-            };
+                //source = db.Products.Where(x => x.Name.Contains(search)).Distinct().ToList();
+                //потом обязательно переделать
+                 source = db.Products.Where(x => x.Name.Contains(search));
+               
+                var source2 = source.Select(m => new { m.Name }).Distinct();
 
-            return View(viewModel); 
+                List<Product> products = new List<Product>();
+
+                foreach(var product2 in source2 )
+                {
+                    foreach(Product product in source)
+                    {
+                        if (product.Name == product2.Name)
+                        {
+                            products.Add(product);
+                            break;
+                        }
+                    }
+                }
+                
+
+                // source.Distinct(); //delete duplicate
+                //  var count = await source.CountAsync();
+                var count = products.Count();
+                //  var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+                var items = products.Skip((page - 1) * pageSize).Take(pageSize);
+                PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+                PagesLink pagesLink = new PagesLink(pageViewModel);
+
+                IndexViewModel viewModel = new IndexViewModel
+                {
+                    //PageViewModel = pageViewModel,
+                    Products = (IEnumerable<Product>)items,
+                    CurrentCategory = textSearch,
+                    Pages = pagesLink,
+                    DiscriptionCatalog = DescriptionCatalog.DiscriptionCatalog
+                };
+                return View(viewModel);
+
+            }
+            else
+            {
+                textSearch = ""; //сбрасываем результаты поиска
+                // несколько категорий
+                source = db.Products.Where(x => x.Category == category || x.Category2 == category /*|| x.Category3 == category || x.Category4 == category*/);
+
+                var count = await source.CountAsync();
+                var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+                PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+                PagesLink pagesLink = new PagesLink(pageViewModel);
+
+                IndexViewModel viewModel = new IndexViewModel
+                {
+                    //PageViewModel = pageViewModel,
+                    Products = items,
+                    CurrentCategory = category,
+                    Pages = pagesLink,
+                    DiscriptionCatalog = DescriptionCatalog.DiscriptionCatalog
+                };
+                return View(viewModel);
+            }//else
         }
 
         public ActionResult Details(int id, int l = 50)
