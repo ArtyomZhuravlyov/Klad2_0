@@ -78,6 +78,9 @@ body {
     
 }
 
+.imgHeight{
+    max-height:450px;
+}
 
 .minWidthModal {
     margin: 10% 20% 0 20%;

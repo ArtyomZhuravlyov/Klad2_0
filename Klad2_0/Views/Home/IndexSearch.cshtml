@@ -90,77 +90,80 @@
 
             @if (Model.Pages.FirstArrow == true)
             {
-                <li> <a href="/@Model.CurrentCategory/1">Первая</a></li>
-                <li> <a href="/@Model.CurrentCategory/@(Model.Pages.CurrentPage-1)" class="prev">&laquo</a></li>
+
+            <li>
+                @*@Html.ActionLink("Быстрый просмотр", "Details", 
+                           new { id = product.Id }, new { @class = "compItem add-to-cart btn open-modal" } )*@
+                <a href="/IndexSearch/@Model.CurrentCategory/1">Первая</a>
+            </li>
+            <li> <a href="/IndexSearch/@Model.CurrentCategory/@(Model.Pages.CurrentPage-1)" class="prev">&laquo</a></li>
             }
             @for (int i = Model.Pages.FirstPage; i <= Model.Pages.LastPage; i++)
             {
-                @if (Model.Pages.CurrentPage == i)
+            @if (Model.Pages.CurrentPage == i)
                 {
-                    <li> <a href="/@Model.CurrentCategory/@i" class="active">@i</a></li>
+            <li> <a href="/IndexSearch/@Model.CurrentCategory/@i" class="active">@i</a></li>
                 }
                 else
                 {
-                    <li> <a href="/@Model.CurrentCategory/@i">@i</a></li>
+            <li> <a href="/IndexSearch/@Model.CurrentCategory/@i">@i</a></li>
                 }
             }
 
             @if (Model.Pages.LastArrow == true)
             {
-                <li> <a href="/@Model.CurrentCategory/@(Model.Pages.CurrentPage+1)" class="next">&raquo;</a></li>
+            <li> <a href="/IndexSearch/@Model.CurrentCategory/@(Model.Pages.CurrentPage+1)" class="next">&raquo;</a></li>
             }
+
         </ul>
     </div>
 
 
     @*//описание категорий внизу*@
-    <div class="DescriptionParentCatalog">
-       
-            @foreach (var DicCatalogKey in Model.DiscriptionCatalog.Keys)
+    @foreach (var DicCatalogKey in Model.DiscriptionCatalog.Keys)
+    {
+        if (DicCatalogKey == Model.CurrentCategory)
+        {
+            foreach (var Value in Model.DiscriptionCatalog[DicCatalogKey])
             {
-                if (DicCatalogKey == Model.CurrentCategory)
-                {
-                    foreach (var Value in Model.DiscriptionCatalog[DicCatalogKey])
-                    {   
-                        <div class="DescriptionHeaderCatalog">
-                            <a>@Value.Key </a>
-                        </div>
-                        <div class="DescriptionTextCatalog">
-                            @Value.Value
-                        </div>
-                    }
-                }
+                <table class="table-condensed">
+                    <tr>
+                        <td>@Value.Key</td>
+                    </tr>
+                    <tr>
+                        <td>@Value.Value</td>
+                    </tr>
+                </table>
+
             }
-        
-    </div>
+        }
+    }
+     <div id="modDialog" class="modal fade">
+                <div id="dialogContent" class="modal-dialog"></div>
+     </div>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 
-        <div id="modDialog" class="modal fade">
-            <div id="dialogContent" class="modal-dialog"></div>
-        </div>
+    <script src="~/lib/bootstrap/dist/js/index.js"></script>
 
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-
-        <script src="~/lib/bootstrap/dist/js/index.js"></script>
-
-        @*для модального окна*@
-        @*@section scripts
+    @*для модального окна*@
+    @*@section scripts
         {*@
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            $(function () {
-                $.ajaxSetup({ cache: false });
-                $(".compItem").click(function (e) {
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".compItem").click(function (e) {
 
-                    e.preventDefault();
-                    $.get(this.href, function (data) {
-                        $('#dialogContent').html(data);
-                        $('#modDialog').modal('show');
-                    });
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
                 });
-            })
-
-        </script>
-        @*}*@
+            });
+        })
+        
+    </script>
+    @*}*@
 </body>
 </html>

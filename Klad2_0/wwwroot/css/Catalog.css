@@ -1,23 +1,59 @@
 ﻿/*div {
     box-sizing: border-box;
 }*/
+.DescriptionParentCatalog {
+    margin-top: 50px;
+    background-color: rgba(255, 255, 255, 0.9);
+    /*padding-top: 30px;
+    padding-bottom: 30px;*/
+}
+
+
+
+.DescriptionHeaderCatalog {
+    margin-right: 17%;
+    margin-left: 17%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    /*margin-left: 20px;*/
+    text-align: justify;
+    /*color: coral;*/
+    color:coral  /*#031907  #055713*/;
+    font-weight: 600;
+}
+
+.DescriptionTextCatalog {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 17%;
+    margin-left: 17%;
+    font-size: 20px;
+    text-align: justify;
+    /*color: coral;*/
+    /*color: #031907 #055713*/;
+    font-weight: 500;
+}
+
 .center {
     margin: 0 auto;
 }
 
 .MyTop{
-    margin-top:130px;
+    margin-top:90px;
 }
 
 .parent {
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
+    /*align-content: flex-start;*/
+    /*justify-content: space-between;*/
+    /*justify-content: space-around;*/
+    justify-content: flex-start;
     height: 100%;
-    width: 1100px;
+    width: 1028px;
     margin: 0 auto;
-    padding-left:60px;
-
+    /*padding-left:60px;*/
     /*justify-content:space-around;*/
 }
 

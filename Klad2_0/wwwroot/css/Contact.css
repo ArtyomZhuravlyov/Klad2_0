@@ -1,0 +1,50 @@
+﻿.generalParentContact {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.parentContact {
+
+    display: flex;
+    justify-content: space-around;
+    /*background: #ffffff;
+    opacity: 0.1;*/
+    
+}
+
+.addresContact {
+    font-size: 16px;
+    width: 50%;
+    text-align: justify;
+}
+
+
+
+.numberContact {
+    font-size: 20px;
+    width: 30%;
+    text-align: justify;
+    /*color: coral;*/
+    color: #031907 /*#055713*/;
+    font-weight: 600;
+    /*float: right;*/
+}
+
+.mapParentContact {
+    margin-top: 30px;
+    /*margin-left: 25%;
+    margin-right: 25%;*/
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    /*background: #ffffff;
+    opacity: 0.1;*/
+}
+
+.mapContact{
+    margin: 0 auto;
+}

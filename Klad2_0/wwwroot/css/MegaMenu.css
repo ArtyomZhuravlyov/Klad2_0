@@ -38,12 +38,14 @@ a {
     /*display: inline-block;*/
     float: left;
     font-weight: bold;
+    /*width: 130px;*/
 }
 
     .top-menu > li > a {
         display: block;
+        
         padding: 10px;
-        padding-left: 30px;
+        padding-left: 6px;
         padding-right: 30px;
         font-size: 14px;
         text-transform: uppercase;

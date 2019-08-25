@@ -20,7 +20,7 @@
     <script src="lib/bootstrap/dist/js/bootstrap.js"></script>*@
 
 </head>
-        <body>
+        <body scroll="yes">
             <div class="ColorHeader">
                 <!--меню-->
 
@@ -30,7 +30,7 @@
                             <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
                             <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
                             <div class="divSearch">
-                                <form asp-controller="Home" asp-action="Index" class="formSearch">
+                                <form asp-controller="Home" asp-action="IndexSearch" class="formSearch">
                                     
                                     <input type="text" placeholder="Искать здесь..." name="search">
                                     <button type="submit"></button>

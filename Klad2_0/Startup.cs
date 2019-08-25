@@ -109,12 +109,19 @@ namespace Klad
                //new { page = @"\d+" }
                );
 
+                routes.MapRoute(null,
+               "{IndexSearch}/{search}/{page}",
+               new { controller = "Home", action = "IndexSearch" }
+               //,
+               //new { page = @"\d+" }
+               );
 
-                // routes.MapRoute(null,
-                //  "{category}/{page}/{product}",
-                //  new { controller = "Home", action = "ViewProduct" },
-                //  new { page = @"\d+" }
-                //  );
+
+                //routes.MapRoute(null,
+                // "{category}/{page}/{product}",
+                // new { controller = "Home", action = "ViewProduct" },
+                // new { page = @"\d+" }
+                // );
 
                 //   routes.MapRoute(null,
                 //"{category}/{page}/{product}",

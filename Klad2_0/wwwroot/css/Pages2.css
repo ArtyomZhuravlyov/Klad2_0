@@ -11,12 +11,29 @@
     font-family: arial;
 }*/
 
+.paginationFlex {
+    display: flex;
+    justify-content: center;
+}
+
 .pagination {
     list-style: none;
     display: inline-block;
     padding: 0;
     margin-top: 10px;
-    margin-left: 500px;
+    /*margin-left: 500px;*/
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+
+    .paginationFlex {
+        display:block;
+    }
+
+    .pagination {
+        margin-left: 500px;
+    }
+    /* IE10 IE11 */
 }
 
     .pagination li {

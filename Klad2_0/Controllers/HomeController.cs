@@ -17,10 +17,7 @@ namespace Klad.Controllers
         {
             db = context;
         }
-        /// <summary>
-        /// Запрос в поисковике сбрасыватся в индексе если следующим действием было нажатие на категорию
-        /// </summary>
-        private string textSearch;
+
         /// <summary>
         /// Каталог товаров
         /// </summary>
@@ -32,52 +29,8 @@ namespace Klad.Controllers
             int pageSize;
             IQueryable<Product> source;
           //  IQueryable<Product> source2;
-            pageSize = 18; 
-            if(!string.IsNullOrEmpty(search)) //если нажали на поиск
-            {
-                //source = db.Products.Where(x => x.Name.Contains(search)).Distinct().ToList();
-                //потом обязательно переделать
-                 source = db.Products.Where(x => x.Name.Contains(search));
-               
-                var source2 = source.Select(m => new { m.Name }).Distinct();
+            pageSize = 24; 
 
-                List<Product> products = new List<Product>();
-
-                foreach(var product2 in source2 )
-                {
-                    foreach(Product product in source)
-                    {
-                        if (product.Name == product2.Name)
-                        {
-                            products.Add(product);
-                            break;
-                        }
-                    }
-                }
-                
-
-                // source.Distinct(); //delete duplicate
-                //  var count = await source.CountAsync();
-                var count = products.Count();
-                //  var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
-                var items = products.Skip((page - 1) * pageSize).Take(pageSize);
-                PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
-                PagesLink pagesLink = new PagesLink(pageViewModel);
-
-                IndexViewModel viewModel = new IndexViewModel
-                {
-                    //PageViewModel = pageViewModel,
-                    Products = (IEnumerable<Product>)items,
-                    CurrentCategory = textSearch,
-                    Pages = pagesLink,
-                    DiscriptionCatalog = DescriptionCatalog.DiscriptionCatalog
-                };
-                return View(viewModel);
-
-            }
-            else
-            {
-                textSearch = ""; //сбрасываем результаты поиска
                 // несколько категорий
                 source = db.Products.Where(x => x.Category == category || x.Category2 == category /*|| x.Category3 == category || x.Category4 == category*/);
 
@@ -96,7 +49,59 @@ namespace Klad.Controllers
                     DiscriptionCatalog = DescriptionCatalog.DiscriptionCatalog
                 };
                 return View(viewModel);
-            }//else
+            
+        }
+
+        /// <summary>
+        /// Каталог товаров по поиску
+        /// </summary>
+        /// <param name="category"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> IndexSearch(string search, int page = 1 )
+        {
+            int pageSize;
+            IQueryable<Product> source;
+            //  IQueryable<Product> source2;
+            pageSize = 24;
+            //source = db.Products.Where(x => x.Name.Contains(search)).Distinct().ToList();
+            //потом обязательно переделать
+            source = db.Products.Where(x => x.Name.Contains(search));
+
+            var source2 = source.Select(m => new { m.Name }).Distinct();
+
+            List<Product> productsSearch = new List<Product>();
+            var source22 = source2.ToArray();
+            var source11 = source.ToArray();
+            source.ToArray();
+            int count2 = source22.Count();
+            int count1 = source11.Count();
+            for (int i = 0; i < count2; i++)
+            {
+                for (int j = 0; j < count1; j++)
+                {
+                    if (source11[j].Name == source22[i].Name)
+                    {
+                        productsSearch.Add(source11[j]);
+                        break;
+                    }
+                }
+            }
+            var count = productsSearch.Count();
+            var items = productsSearch.Skip((page - 1) * pageSize).Take(pageSize);
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            PagesLink pagesLink = new PagesLink(pageViewModel);
+
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                //PageViewModel = pageViewModel,
+                Products = items,
+                CurrentCategory = search,
+                Pages = pagesLink,
+                DiscriptionCatalog = DescriptionCatalog.DiscriptionCatalog
+            };
+            return View(viewModel);
+
         }
 
         public ActionResult Details(int id, int l = 50)

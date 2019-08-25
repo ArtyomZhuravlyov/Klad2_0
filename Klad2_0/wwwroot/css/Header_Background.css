@@ -1,6 +1,6 @@
 ﻿.ColorHeader {
-    background: #2D2B41;
-    padding-top: 12px;
+    /*background: #2D2B41;*/
+    /*padding-top: 12px;*/
     /*margin: 0 auto;*/
  
 }
@@ -14,10 +14,10 @@
 .posHeader {
     /*float: right;
     width: 200px;*/
-    
-   /* margin-right: 20px;*/
-    /*padding-top: 30px;*/
-    
+    /* margin-right: 20px;*/
+    padding-top: 30px;
+    /*background: #ffffff;*/
+    background: #2D2B41;
     height: 46px;
 }
 
@@ -49,7 +49,7 @@
     font-weight: bold;
     letter-spacing: 1px;
     font-family: 'Exo 2', sans-serif;
-    margin-left: 390px;
+    margin-left: 344px;
 }
 
 /*подчеркивание текста*/
@@ -111,19 +111,19 @@
     }
 
 /**/
-.backgroundbody {
+/*.backgroundbody {
     background: url(../images/ispr2.jpg) no-repeat;
-    -moz-background-size: 100%; /* Firefox 3.6+ */
-    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
-    -o-background-size: 100%; /* Opera 9.6+ */
-    background-size: 100%; /* Современные браузеры */
-    /*height: 1920px;*/
-    height: 4500px;
+    -moz-background-size: 100%;  Firefox 3.6+ */
+   /* -webkit-background-size: 100%;  Safari 3.1+ и Chrome 4.0+ */
+   /* -o-background-size: 100%;  Opera 9.6+ */
+   /* background-size: 100%;  Современные браузеры */
+
+    /*height: 4500px;
     background-attachment: fixed;
-    background-position: center;
+    background-position: center;*/
     /*background-attachment: initial;
     background-position: center top;*/
-}
+/*}*/
 
 .backgroundbody2 {
     background: #ebb926;
