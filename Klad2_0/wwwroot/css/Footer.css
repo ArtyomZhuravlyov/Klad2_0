@@ -1,0 +1,25 @@
+﻿.foot {
+    
+    background: #2D2B41;
+    height: 84px;
+    height: 100%;
+}
+
+.footbox {
+    
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 27%;
+    margin-right: 27%;
+}
+
+.footImg {
+    margin-top: 15px;
+}
+
+.footText {
+    margin-top: 10px;
+    font-size: 20px;
+}

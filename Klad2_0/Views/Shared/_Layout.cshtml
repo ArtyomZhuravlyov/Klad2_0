@@ -11,13 +11,17 @@
     <link rel="stylesheet" href="~/css/StyleSheet.css" />
     <link rel="stylesheet" href="~/css/Header_Background.css" />
     <link rel="stylesheet" href="~/css/Search.css" />
+    <link rel="stylesheet" href="~/css/logotip.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/MegaMenu.css" />
 
     @*бутстрап*@
     @*<link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <script src="lib/jquery/dist/jquery.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>*@
+        <script src="lib/jquery/dist/jquery.js"></script>
+        <script src="lib/bootstrap/dist/js/bootstrap.js"></script>*@
+
+    <title>Кладовая Алтая</title>
+    <link rel="shortcut icon" href="~/images/leaf-nature-forest-brand-plant_icon-icons.com_59259.ico" type="image/x-icon">
 
 </head>
         <body scroll="yes">
@@ -27,6 +31,17 @@
                 <div class="GeneralHeader">
                     <div class="ColorHeader posHeader">
                         <div class="test_color">
+                            <div class="logotip">
+                                <img src="https://x-lines.ru/letters/i/cyrillicscript/0605/f78808/30/0/4nppbq6osdemjwf64n3pbcgtthopbrgozxeafwfo4g8o.png">
+                                @*< <img src="https://x-lines.ru/letters/i/cyrillicscript/0605/ef9848/30/0/4nppbq6osdemjwf64n3pbcgtthopbrgozxeafwfo4g8o.png">
+                                <img src="https://x-lines.ru/letters/i/cyrillicscript/0605/f58014/30/0/4nppbq6osdemjwf64n3pbcgtthopbrgozxeafwfo4g8o.png">
+                                <img src="https://x-lines.ru/letters/i/cyrillicscript/0605/f2a53a/30/0/4nppbq6osdemjwf64n3pbcgtthopbrgozxeafwfo4g8o.png">
+                                <img src="https://x-lines.ru/letters/i/cyrillicscript/0605/db6d0a/30/0/4nppbq6osdemjwf64n3pbcgtthopbrgozxeafwfo4g8o.png">
+                                img src="https://x-lines.ru/letters/i/cyrillicscript/0370/d66f0a/32/0/4nppbq6osdemjwf64n3pbcgtthopbrgozxeafwfo4g8o.png">
+        <img src="https://x-lines.ru/letters/i/cyrillicscript/0616/e38402/30/0/4nppbq6osdemjwf64n3pbcgtthopbrgozxeafwfo4g8o.png">
+
+            https://online-letters.ru/letters/cyrillic/script/create.html*@
+                            </div>
                             <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
                             <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
                             <div class="divSearch">
@@ -89,7 +104,7 @@
                                                 <li><a href="/ЗДОРОВЬЕОт паразитов">От паразитов</a></li>
                                                 <li><a href="/ЗДОРОВЬЕПокровная система">Покровная система</a></li>
                                                 <li><a href="/ЗДОРОВЬЕПри диабете">При диабете</a></li>
-                                                <li><a href="/ЗДОРОВЬЕЭндокринная систем">Эндокринная система</a></li>
+                                                <li><a href="/ЗДОРОВЬЕЭндокринная система">Эндокринная система</a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -103,7 +118,7 @@
 
 
                                 <li>
-                                    <a href="/Тело">Тело</a>
+                                    <a href="/ТЕЛО">ТЕЛО</a>
                                     <ul class="submenu">
                                         <li>
                                             <ul>
@@ -200,14 +215,15 @@
                                         </li>
                                         <li>
                                             <ul>
-                                                <li><a href="/ВОЛОСЫШампуни">Шампуни</a></li>
+                                                <li><a href="/ВОЛОСЫКондиционеры">Кондиционеры</a></li>
+                                                <li><a href="/ВОЛОСЫКапли и капсулы">Капли и капсулы</a></li>
                                                 <li><a href="/ВОЛОСЫМаски">Маски</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <ul>
                                                 <li><a href="/ВОЛОСЫОполаскиватели">Ополаскиватели</a></li>
-
+                                                <li><a href="/ВОЛОСЫШампуни">Шампуни</a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -221,6 +237,11 @@
                                             </ul>
                                         </li>
                                     </ul>
+                                </li>
+
+                                <li>
+                                    <a href="/ОНКОЛОГИЯ">ОНКОЛОГИЯ</a>
+
                                 </li>
 
                                 <li>
@@ -298,6 +319,10 @@
                                 <li>
                                     <a href="/ДЕТЯМ">ДЕТЯМ</a>
                                 </li>
+                                <li>
+                                    <a href="/ПОДАРОЧНЫЕ НАБОРЫ">ПОДАРОЧНЫЕ НАБОРЫ</a>
+
+                                </li>
 
                             </ul>
                         </nav>
@@ -331,9 +356,7 @@
             @RenderBody()
         </div>
     </main>
-    <div class="footer1">
-        © 2019 - Кладовая Алтая  @*<p>© 2019 - Кладовая Алтая</p>*@
-    </div>
+
     @*<footer class="footer1">
             <p>© 2019 - Кладовая Алтая</p>
         </footer>*@

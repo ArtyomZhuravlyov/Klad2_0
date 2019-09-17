@@ -80,12 +80,13 @@ body {
 
 .imgHeight{
     max-height:450px;
+    max-width: 450px;
 }
 
 .minWidthModal {
-    margin: 10% 20% 0 20%;
+    margin: 10% 10% 0 10%;
     /*margin-left: -14%;*/
-    width: 60%;
+    width: 80%;
     /*max-width: 800px;*/
 }
 
