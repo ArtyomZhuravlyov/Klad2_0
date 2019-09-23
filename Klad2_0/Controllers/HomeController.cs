@@ -121,8 +121,9 @@ namespace Klad.Controllers
         {
             IQueryable<Product> source;
 
-            source = db.Products.Where(x => x.Favourite == true);  //.Include(x => x.Company);
-            var items = await source.ToListAsync();
+            //source = db.Products.Where(x => x.Favourite == true);  //.Include(x => x.Company);
+            //var items = await source.ToListAsync();
+            List<Product> items = null;
 
             IndexViewModel viewModel = new IndexViewModel
             {

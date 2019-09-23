@@ -18,9 +18,9 @@ namespace Klad.Models
         public string Category2 { get; set; }
         public string Category3 { get; set; }
         public string Category4 { get; set; }
- 
+        public string Category5 { get; set; }
 
-        public string Company { get; set; }
+       // public string Company { get; set; }
         public int Price { get; set; }
         /// <summary>
         /// Адрес картинки (формируется по ID)
@@ -29,6 +29,6 @@ namespace Klad.Models
         /// <summary>
         /// Отображается ли в ТОП
         /// </summary>
-        public bool Favourite { get; set; }
+       // public bool Favourite { get; set; }
     }
 }
