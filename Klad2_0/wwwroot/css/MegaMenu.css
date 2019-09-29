@@ -195,6 +195,10 @@ a {
 
 /*addaptive*/
 @media(max-width:768px) {
+    .top-menu {
+        display:block; /*чтобы перевести в колонку*/
+    }
+
     .top-menu li {
         width: 100%;
         height: auto !important;
@@ -205,7 +209,8 @@ a {
     }
 
         .top-menu > li > a {
-            padding: 18px
+            font-size:8px;
+            padding: 2px;
         }
 
     .submenu,
@@ -243,4 +248,13 @@ a {
     .top-menu > li:hover .submenu-standart {
         display: block;
     }
+
+    .top-menu > li:hover .submenu,
+    .top-menu > li:hover .submenu-standart {
+        opacity: 0;
+        visibility: hidden;
+        transform: none;
+    }
 }
+
+

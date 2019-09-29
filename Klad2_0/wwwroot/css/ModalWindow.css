@@ -54,3 +54,33 @@
     border-bottom-color: #008a77;
     border-style: solid;
 }
+
+@media(max-width:768px) {
+    .textModal {
+        font-size: 12px;
+    }
+
+    .textHeadModal {
+        font-size: 8px;
+
+    }
+
+    .imgModal {
+        float: left;
+        max-width:30%;
+    }
+
+    .DescriptionModal {
+        margin-left: 2px;
+    }
+
+    .imgHeight {
+        max-height: 320px;
+        max-width: 320px;
+    }
+
+    .flexModal{
+        display:block;
+    }
+
+    }

@@ -150,3 +150,20 @@
     min-height: 2em;
     z-index:2;
 }
+
+
+@media(max-width:768px) {
+
+.posHeader{
+    height:100%;
+}
+
+.poseMain{
+    margin-left:0px;
+}
+
+.GeneralHeader{
+    position: relative;
+    line-height:12px;
+}
+}

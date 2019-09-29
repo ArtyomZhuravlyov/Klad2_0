@@ -28,7 +28,7 @@ body {
 
     body {
         position: relative;
-        overflow-y: scroll;
+        /*overflow-y: scroll;*/
     }
 
         body::before {
@@ -54,9 +54,18 @@ nav {
     padding: 0;
 }
 
+@media(max-width:768px) {
+    * {
+        text-align: center;
+    }
 
 
-/*nav ul {
+  
+}
+
+
+
+    /*nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -100,8 +109,8 @@ nav a {
         .topmenu > li > a {
             padding: 12px 26px;
             color: #767676;*/
-            /*text-transform: uppercase;*/
-            /*font-weight: bold;
+    /*text-transform: uppercase;*/
+    /*font-weight: bold;
             letter-spacing: 1px;
             font-family: 'Exo 2', sans-serif;
             font-size: 16px;
@@ -141,7 +150,7 @@ nav a {
     transform: scale(1);
 }
 */
-/*.footer1 {
+    /*.footer1 {
     background: #28282a;
     padding: 100px 0;
     padding: 50px 0;

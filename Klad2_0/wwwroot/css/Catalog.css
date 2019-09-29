@@ -203,3 +203,47 @@
     font-style: italic;
     font-weight: bold;
 }
+
+@media(max-width:768px) {
+    .parent {
+        width: 100%;
+        padding-top:15px;
+        padding-left:10px;
+    }
+
+    .imgCatalog {
+        /*height: auto;*/
+        /*width: 100%;*/
+        /* еще больше контроля с max-width */
+        max-width: 140px;
+        min-height: 160px;
+        max-height: 200px;
+    }
+
+    .border {
+        width: 42%;
+        padding: 10px;
+        border: 1px solid #F1E7E8;
+        margin: 1px;
+        max-height: 270px;
+        /*height: 500px;*/
+    }
+
+    .wrap {
+        height: 180px;
+        position: relative;
+    }
+    .product-title{
+        font-size:14px;
+    }
+
+    .loop-action a {
+
+        font-size: 7px;
+        line-height: 1.1;
+
+        min-width: 80px;
+        border-width: 1px;
+
+    }
+}

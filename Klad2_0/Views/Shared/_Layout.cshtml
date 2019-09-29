@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Кладовая Алтая"]</title>
+
 
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
@@ -21,9 +21,11 @@
         <script src="lib/jquery/dist/jquery.js"></script>
         <script src="lib/bootstrap/dist/js/bootstrap.js"></script>*@
 
-    <title>Кладовая Алтая</title>
+    <title>Кладовая Алтая - Всё самое натуральное</title>
+    <meta name="description" content="В нашем магазине «Кладовая Алтая» представлены натуральные препараты и косметика из Алтая. Целебная сила сибирской природы в каждом продукте для вашей красоты и здоровья.Кладовая Алтая Абакан, Кладовая Алтая Ачинск" />
+
     <link rel="shortcut icon" href="~/images/leaf-nature-forest-brand-plant_icon-icons.com_59259.ico" type="image/x-icon">
-    <script> </script>
+    <script></script>
 </head>
         <body scroll="yes">
             <div class="ColorHeader">
@@ -45,13 +47,13 @@
                             </div>
                             <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
                             <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
-                            <div class="divSearch">
+                            @*<div class="divSearch">
                                 <form asp-controller="Home" asp-action="IndexSearch" class="formSearch">
                                     
                                     <input type="text" placeholder="Искать здесь..." name="search">
                                     <button type="submit"></button>
                                 </form>
-                            </div>
+                            </div>*@
                         </div>
 
 

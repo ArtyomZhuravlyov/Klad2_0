@@ -5,3 +5,11 @@
     /*margin-bottom:20px;*/
     margin-top: -12px;
 }
+
+@media(max-width:768px) {
+.logotip{
+    float: none;
+    margin-left: 0px;
+    }
+}
+
