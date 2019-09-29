@@ -87,6 +87,8 @@
 .product-wrap {
     position: relative;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
     .product-wrap:after {
@@ -207,15 +209,16 @@
 @media(max-width:768px) {
     .parent {
         width: 100%;
-        padding-top:15px;
-        padding-left:10px;
+        padding-top: 15px;
+        padding-left: 0px;
+        justify-content: center;
     }
 
     .imgCatalog {
         /*height: auto;*/
-        /*width: 100%;*/
+        width: 100%;
         /* еще больше контроля с max-width */
-        max-width: 140px;
+        /*max-width: 140px;*/
         min-height: 160px;
         max-height: 200px;
     }
@@ -233,17 +236,24 @@
         height: 180px;
         position: relative;
     }
-    .product-title{
-        font-size:14px;
+
+    .product-title {
+        font-size: 14px;
     }
 
     .loop-action a {
-
         font-size: 7px;
         line-height: 1.1;
-
         min-width: 80px;
         border-width: 1px;
+        /*color: darkgray;
+        border-color: darkgrey;*/
+        color: #008a77;
+        border-color: #008a77;
+    }
 
+    .loop-action {
+        opacity: 1;
+        top:100%;
     }
 }

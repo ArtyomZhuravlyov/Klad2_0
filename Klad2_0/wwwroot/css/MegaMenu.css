@@ -88,6 +88,9 @@ a {
 }
 
 .submenu {
+    /*display:flex;
+    flex-direction:column;
+    justify-content:center;*/
     width: 100%;
     box-sizing: border-box;
 
@@ -215,11 +218,12 @@ a {
 
     .submenu,
     .submenu-standart {
-        position: relative;
+        /*position: relative;*/
         display: none;
         box-shadow: none;
-        padding: 0;
         background: rgba(0,0,0,.02);
+        border-top: 0px solid #e5e5e5;
+        position: absolute;
     }
 
     .submenu-standart {
@@ -255,6 +259,13 @@ a {
         visibility: hidden;
         transform: none;
     }
+
+    .HeightNull {
+        height: 0px;
+        line-height: 0px;
+        padding: 0px 0;
+    }
+   
 }
 
 
