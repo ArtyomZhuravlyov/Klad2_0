@@ -46,10 +46,19 @@
                     </div>
                     <div class="loop-action">
                         @*<a href=" @Html.ActionLink(c.Name, "Details",
-                            new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
+        new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
                         @Html.ActionLink("Просмотр", "Details",
                             new { id = product.Id }, new { @class = "compItem add-to-cart btn open-modal" } )
                         @*<a class="loop-add-to-cart">В корзину</a>*@
+
+                            @using (Html.BeginForm("AddToCart", "Cart"))
+                            {
+                                <div class="pull-right">
+                                    @Html.Hidden("productId", product.Id)
+                                    @Html.Hidden("returnUrl", ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}"))
+                                    <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+                                </div>
+                            }
                     </div>
                 </div>
 
