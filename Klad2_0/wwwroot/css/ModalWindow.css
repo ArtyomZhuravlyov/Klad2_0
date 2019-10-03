@@ -17,9 +17,6 @@
   
 }
 
-.buttonModal{
-
-}
 /*только чтобы переопределить*/
 .buttonModal:before {
     content: "";
@@ -76,11 +73,15 @@
 
     .imgHeight {
         max-height: 320px;
-        max-width: 320px;
+        max-width: 210px;
     }
 
     .flexModal{
         display:block;
     }
 
+    .photo{
+        display:flex;
+        justify-content:center;
+    }
     }

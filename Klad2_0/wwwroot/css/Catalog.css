@@ -31,7 +31,7 @@
     font-size: 20px;
     text-align: justify;
     /*color: coral;*/
-    /*color: #031907 #055713*/;
+    /*color: #031907 #055713*/
     font-weight: 500;
 }
 
@@ -248,8 +248,8 @@
         border-width: 1px;
         /*color: darkgray;
         border-color: darkgrey;*/
-        color: #008a77;
-        border-color: #008a77;
+        color: #8b4300;
+        border-color: #8b4300 /*#008a77*/;
     }
 
     .loop-action {

@@ -16,22 +16,24 @@
 }
 
 .addresContact {
-    font-size: 19px;
-    width: 50%;
-    text-align: center;
-}
-
-
-.numberContact{
     font-size: 22px;
-    width: 50%;
+    /*width: 50%;*/
     text-align: center;
-    /*color: coral;*/
-    color: #031907 /*#055713*/;
     font-weight: 600;
-    /*float: right;*/
+    white-space: pre-wrap;
 }
 
+
+/*.numberContact{
+    font-size: 23px;
+    width: 50%;
+    text-align: center;
+    
+    color: #031907 ;
+    font-weight: 600;
+  
+}
+*/
 .mapParentContact {
     margin-top: 30px;
     /*margin-left: 25%;
@@ -40,10 +42,39 @@
     align-items: center;
     margin-bottom: 30px;
     text-align: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
     /*background: #ffffff;
     opacity: 0.1;*/
 }
 
 .mapContact{
+    
     margin: 0 auto;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.photoContact{
+    max-height:400px;
+    max-width:600px;
+}
+.parentCaruselContact {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+@media(max-width:768px) {
+    .mapContact {
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .parentCaruselContact {
+        width: 100%;
+    }
 }
