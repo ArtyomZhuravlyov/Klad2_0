@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="~/css/Search.css" />
     <link rel="stylesheet" href="~/css/logotip.css" />
+    <link rel="stylesheet" href="~/css/ErrorStyles.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <link rel="shortcut icon" href="~/images/leaf-nature-forest-brand-plant_icon-icons.com_59259.ico" type="image/x-icon">
@@ -22,6 +23,7 @@
     <environment include="Development"></environment>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
 
 
 
@@ -50,10 +52,14 @@
                     <div class="logotip">
                         <img src="~/images/TitleKladovaya.png">
                         @*<
-                            https://online-letters.ru/letters/cyrillic/script/create.html*@
+            https://online-letters.ru/letters/cyrillic/script/create.html*@
                     </div>
                     <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
                     <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
+                    <div class="navbar navbar-inverse" role="navigation">
+                        <a class="navbar-brand" href="#">GameStore - магазин компьютерных игр</a>
+                        @Html.ActionLink("Summary", "Cart") @*подправить после скорее всего TODO*@
+                    </div>
                     <div class="divSearch">
                         <form asp-controller="Home" asp-action="IndexSearch" class="formSearch">
 

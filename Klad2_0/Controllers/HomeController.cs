@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Klad.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-using klad2_0.Domain.Entities;
+using Domain.Entities;
 
 namespace Klad.Controllers
 {

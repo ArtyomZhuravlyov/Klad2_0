@@ -11,22 +11,29 @@ using Microsoft.AspNetCore.Mvc;
 using Klad.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-using klad2_0.Domain.Entities;
+using Domain.Entities;
 using Klad.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-using klad2_0.Domain.Entities;
+using Domain.Entities;
 using Newtonsoft.Json;
 using Klad2_0.Models;
+using Domain.Concrete;
 
 namespace Klad2_0.Controllers
 {
     public class CartController : Controller
     {
         ProductContext db;
-        public CartController(ProductContext context)
+        private EmailOrderProcessor orderProcessor;
+
+        public CartController(ProductContext context, EmailOrderProcessor OrderProcessor)
         {
             db = context;
+            if (OrderProcessor == null)
+                orderProcessor = new EmailOrderProcessor(new EmailSettings()); //базовые настройки для админа
+            else
+                orderProcessor = OrderProcessor;
         }
 
         public ViewResult Index(string returnUrl)
@@ -68,6 +75,7 @@ namespace Klad2_0.Controllers
             //Cart cart = (Cart)HttpContext.Session.Get("Cart"); //["Cart"];
             if (HttpContext.Session.Keys.Contains("Cart"))
             {
+                
                 string value = HttpContext.Session.GetString("Cart");
                  cart = JsonConvert.DeserializeObject<Cart>(value);
             }
@@ -78,6 +86,36 @@ namespace Klad2_0.Controllers
                 // Session["Cart"] = cart;
             }
             return cart;
+        }
+
+        public PartialViewResult Summary(Cart cart)
+        {
+            return PartialView(cart);
+        }
+
+        public ViewResult Checkout()
+        {
+            return View(new ShippingDetails());
+        }
+
+        [HttpPost]
+        public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
+        {
+            if (cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Извините, ваша корзина пуста!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                orderProcessor.ProcessOrder(cart, shippingDetails);
+                cart.Clear();
+                return View("CompletedOrder");
+            }
+            else
+            {
+                return View(shippingDetails);
+            }
         }
     }
 }
