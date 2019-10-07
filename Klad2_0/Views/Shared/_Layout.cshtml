@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
+    @*@Scripts.Render("~/scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")*@
+
 
 
 
@@ -52,14 +55,11 @@
                     <div class="logotip">
                         <img src="~/images/TitleKladovaya.png">
                         @*<
-            https://online-letters.ru/letters/cyrillic/script/create.html*@
+                        https://online-letters.ru/letters/cyrillic/script/create.html*@
                     </div>
                     <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
                     <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
-                    <div class="navbar navbar-inverse" role="navigation">
-                        <a class="navbar-brand" href="#">GameStore - магазин компьютерных игр</a>
-                        @Html.ActionLink("Summary", "Cart") @*подправить после скорее всего TODO*@
-                    </div>
+
                     <div class="divSearch">
                         <form asp-controller="Home" asp-action="IndexSearch" class="formSearch">
 
@@ -343,24 +343,28 @@
                     </ul>
                 </nav>
                 @*<nav class="positionNav">
-                        <ul class="topmenu">
-                            @foreach (var _category in Category.category)
-                            {
-                                <li>
-                                    <a href="/@_category.Key">@_category.Key</a>
-                                    <ul class="submenu">
-                                        @foreach (var _category2 in _category.Value)
-                                        {
-                                            <li>  <a href="/@_category2 ">@_category2</a></li>
-                                        }
-                                    </ul>
-                                </li>
-                            }
-                        </ul>
-                    </nav>*@
+                    <ul class="topmenu">
+                        @foreach (var _category in Category.category)
+                        {
+                            <li>
+                                <a href="/@_category.Key">@_category.Key</a>
+                                <ul class="submenu">
+                                    @foreach (var _category2 in _category.Value)
+                                    {
+                                        <li>  <a href="/@_category2 ">@_category2</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </nav>*@
             </div>
         </div>
-
+        <div class="navbar navbar-inverse" role="navigation">
+            @*<a class="navbar-brand" href="#">GameStore - магазин компьютерных игр</a>
+        @Html.ActionLink("Summary", "Cart")*@
+            @Html.ActionLink("GameStore - магазин компьютерных игр", "Summary", "Cart")
+        </div>
 
         <main class="backgroundbody">
 
@@ -374,8 +378,8 @@
         </main>
 
         @*<footer class="footer1">
-                <p>© 2019 - Кладовая Алтая</p>
-            </footer>*@
+            <p>© 2019 - Кладовая Алтая</p>
+        </footer>*@
 
     </div>
 

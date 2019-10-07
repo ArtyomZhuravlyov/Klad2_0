@@ -18,55 +18,64 @@ using Microsoft.AspNetCore.Http;
 using Domain.Entities;
 using Newtonsoft.Json;
 using Klad2_0.Models;
+using Klad.Models;
 using Domain.Concrete;
 
-namespace Klad2_0.Controllers
+namespace Klad.Controllers
 {
     public class CartController : Controller
     {
         ProductContext db;
-        private EmailOrderProcessor orderProcessor;
+        
 
-        public CartController(ProductContext context, EmailOrderProcessor OrderProcessor)
+        public CartController(ProductContext context)
         {
             db = context;
-            if (OrderProcessor == null)
-                orderProcessor = new EmailOrderProcessor(new EmailSettings()); //базовые настройки для админа
-            else
-                orderProcessor = OrderProcessor;
+            //if (OrderProcessor == null)
+            //    orderProcessor = new EmailOrderProcessor(new EmailSettings()); //базовые настройки для админа
+            //else
+            //    orderProcessor = OrderProcessor;
         }
 
-        public ViewResult Index(string returnUrl)
+
+
+        public RedirectResult /*ViewResult*/ Index(string returnUrl)
         {
-            return View(new CartIndexViewModel
-            {
-                Cart = GetCart(),
-                ReturnUrl = returnUrl
-            });
+            //return View(new CartIndexViewModel
+            //{
+            //    Cart = GetCart(),
+            //    ReturnUrl = returnUrl
+            //});
+            return Redirect(returnUrl);
         }
 
-        public void /*RedirectToActionResult*/ AddToCart(int productId, string returnUrl)
+        //public/* void *//*RedirectToActionResult*/ RedirectResult AddToCart(int productId, string returnUrl)
+        //{
+        //    Product product = db.Products
+        //        .FirstOrDefault(g => g.Id == productId);
+
+        //    if (product != null)
+        //    {
+        //        Cart cart = GetCart();
+        //        cart.AddItem(product, 1);
+        //        HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+        //    }
+        //    return Redirect(returnUrl);
+        //    //return RedirectToAction("Index", new { returnUrl });
+        //}
+
+        public RedirectToActionResult RemoveFromCart(int productId, string returnUrl)
         {
             Product product = db.Products
                 .FirstOrDefault(g => g.Id == productId);
 
             if (product != null)
             {
-                GetCart().AddItem(product, 1);
+                Cart cart = GetCart();
+                cart.RemoveLine(product);
+                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
             }
-            //return RedirectToAction("Index", new { returnUrl });
-        }
-
-        public void/*RedirectToActionResult*/ RemoveFromCart(int productId, string returnUrl)
-        {
-            Product product = db.Products
-                .FirstOrDefault(g => g.Id == productId);
-
-            if (product != null)
-            {
-                GetCart().RemoveLine(product);
-            }
-            //return RedirectToAction("Index", new { returnUrl });
+            return RedirectToAction("Index", new { returnUrl });
         }
 
         public Cart GetCart()
@@ -75,9 +84,8 @@ namespace Klad2_0.Controllers
             //Cart cart = (Cart)HttpContext.Session.Get("Cart"); //["Cart"];
             if (HttpContext.Session.Keys.Contains("Cart"))
             {
-                
                 string value = HttpContext.Session.GetString("Cart");
-                 cart = JsonConvert.DeserializeObject<Cart>(value);
+                cart = JsonConvert.DeserializeObject<Cart>(value);
             }
             else
             {
@@ -88,10 +96,12 @@ namespace Klad2_0.Controllers
             return cart;
         }
 
-        public PartialViewResult Summary(Cart cart)
-        {
-            return PartialView(cart);
-        }
+        //public PartialViewResult Summary(Cart cart)
+        //{
+        //    string value = HttpContext.Session.GetString("Cart");
+        //    cart = JsonConvert.DeserializeObject<Cart>(value);
+        //    return PartialView(cart);
+        //}
 
         public ViewResult Checkout()
         {
@@ -108,7 +118,7 @@ namespace Klad2_0.Controllers
 
             if (ModelState.IsValid)
             {
-                orderProcessor.ProcessOrder(cart, shippingDetails);
+                //orderProcessor.ProcessOrder(cart, shippingDetails);
                 cart.Clear();
                 return View("CompletedOrder");
             }

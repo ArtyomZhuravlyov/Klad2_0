@@ -8,6 +8,7 @@ using Klad.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Domain.Entities;
+using Newtonsoft.Json;
 
 namespace Klad.Controllers
 {
@@ -172,6 +173,45 @@ namespace Klad.Controllers
             return "Спасибо, " + order.User + ", за покупку!";
         }
 
+        public  /*ActionResult*/ PartialViewResult Summary(Cart cart)
+        {
+            cart = GetCart();
+            //string value = HttpContext.Session.GetString("Cart");
+            //cart = JsonConvert.DeserializeObject<Cart>(value);
+            return PartialView(cart);
+        }
+
+        public/* void */RedirectToActionResult/* RedirectResult*/ AddToCart(int productId, string returnUrl)
+        {
+            Product product = db.Products
+                .FirstOrDefault(g => g.Id == productId);
+
+               Cart cart = GetCart();
+               cart.AddItem(product, 1);
+               HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+            
+            //return Redirect(returnUrl);
+            return RedirectToAction("Summary", cart);
+        }
+
+        public Cart GetCart()
+        {
+            Cart cart;
+            //Cart cart = (Cart)HttpContext.Session.Get("Cart"); //["Cart"];
+            if (HttpContext.Session.Keys.Contains("Cart"))
+            {
+                string value = HttpContext.Session.GetString("Cart");
+                cart = JsonConvert.DeserializeObject<Cart>(value);
+            }
+            else
+            {
+                cart = new Cart();
+                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+                // Session["Cart"] = cart;
+            }
+            return cart;
+        }
+
         //public IActionResult Index()
         //{
         //    // return View();
@@ -202,7 +242,6 @@ namespace Klad.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
 
 
     }

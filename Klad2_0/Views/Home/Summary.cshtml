@@ -1,4 +1,8 @@
-﻿@model Domain.Entities.Cart 
+﻿@model Domain.Entities.Cart
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
 <div class="navbar-right">
     @Html.ActionLink("Заказать", "Index", "Cart",
     new { returnUrl =  ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },

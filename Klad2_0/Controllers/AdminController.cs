@@ -8,7 +8,7 @@ using Klad.Models;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Klad2_0.Controllers
+namespace Klad.Controllers
 {
     [Authorize]
     public class AdminController : Controller

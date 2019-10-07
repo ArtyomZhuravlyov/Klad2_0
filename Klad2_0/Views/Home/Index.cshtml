@@ -49,16 +49,27 @@
         new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
                         @Html.ActionLink("Просмотр", "Details",
                             new { id = product.Id }, new { @class = "compItem add-to-cart btn open-modal" } )
+                        @*<input type='button' id="submit1" value='Поиск' />
+                        <div id="results"></div>
+
+                        $(document).ready(function () {
+                        $('#submit1').click(function (e) {
+                        e.preventDefault();
+                        $('#results').load('@Url.Action("AddToCart", "Home")')
+                        });
+                        });*@
+
                         @*<a class="loop-add-to-cart">В корзину</a>*@
 
-                            @using (Html.BeginForm("AddToCart", "Cart"))
-                            {
-                                <div class="pull-right">
-                                    @Html.Hidden("productId", product.Id)
-                                    @Html.Hidden("returnUrl", ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}"))
-                                    <input type="submit" class="btn btn-success" value="Добавить в корзину" />
-                                </div>
-                            }
+                        @*@using (Html.BeginForm("AddToCart", "HOME"))
+        {
+            <div class="pull-right">
+                @Html.Hidden("productId", product.Id)
+                @Html.Hidden("returnUrl", ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}"))
+                <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+            </div>
+        }*@
+
                     </div>
                 </div>
 
@@ -143,47 +154,59 @@
         }
 
     </div>
-    @if (Model.Products.Count()>3)
+    @if (Model.Products.Count() > 3)
     {
-     <div class="foot">
-        <div class="footbox">
-            <div class="footImg">
-                <img src="https://x-lines.ru/letters/i/cyrillicscript/0605/f78808/30/0/4nppbq6osdemjwf64n3pbcgtthopbrgozxeafwfo4g8o.png">
-            </div>
-            <div>
-                 @*<p>© 2019 - Кладовая Алтая</p>*@
-                <div class="footText"> 8–933–301–29–68 Ачинск</div>
-                <div class="footText"> 8–902–961–06–92 Абакан</div> 
+        <div class="foot">
+            <div class="footbox">
+                <div class="footImg">
+                    <img src="https://x-lines.ru/letters/i/cyrillicscript/0605/f78808/30/0/4nppbq6osdemjwf64n3pbcgtthopbrgozxeafwfo4g8o.png">
+                </div>
+                <div>
+                    @*<p>© 2019 - Кладовая Алтая</p>*@
+                    <div class="footText"> 8–933–301–29–68 Ачинск</div>
+                    <div class="footText"> 8–902–961–06–92 Абакан</div>
+                </div>
             </div>
         </div>
-     </div>
     }
-            <div id="modDialog" class="modal fade">
-                <div id="dialogContent" class="modal-dialog"></div>
-            </div>
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
 
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 
-            <script src="~/lib/bootstrap/dist/js/index.js"></script>
+    <script src="~/lib/bootstrap/dist/js/index.js"></script>
 
-            @*для модального окна*@
-            @*@section scripts
+    @*для модального окна*@
+    @*@section scripts
         {*@
-            <script type="text/javascript">
+    <script type="text/javascript">
 
-                $(function () {
-                    $.ajaxSetup({ cache: false });
-                    $(".compItem").click(function (e) {
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".compItem").click(function (e) {
 
-                        e.preventDefault();
-                        $.get(this.href, function (data) {
-                            $('#dialogContent').html(data);
-                            $('#modDialog').modal('show');
-                        });
-                    });
-                })
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+            });
+        })
 
-            </script>
-            }
+        
+    </script>
+
+    @*<script type="text/javascript">
+    $(document).ready(function () {
+        $('#addCart').click(function (e) {
+            e.preventDefault();
+            var name = $('#search').val();
+            name=encodeURIComponent(name);
+            $('#results').load('@Url.Action("BookSearch", "Home")?name='+name)
+        });
+    });
+    </script>*@
+
 </body>
 </html>

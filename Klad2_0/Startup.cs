@@ -39,6 +39,7 @@ namespace Klad
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ProductContext>(options => options.UseSqlServer(connection));
+            //services.AddScoped<IRepository, MemoryRepository>();
             services.AddMvc();
         }
 
@@ -119,6 +120,10 @@ namespace Klad
                //new { page = @"\d+" }
                );
 
+               // routes.MapRoute(null,
+               //"{AddToCart}",
+               //new { controller = "Cart", action = "AddToCart" }
+               //);
 
                 //routes.MapRoute(null,
                 // "{category}/{page}/{product}",
