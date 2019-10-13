@@ -96,12 +96,16 @@ namespace Klad.Controllers
             return cart;
         }
 
-        //public PartialViewResult Summary(Cart cart)
-        //{
-        //    string value = HttpContext.Session.GetString("Cart");
-        //    cart = JsonConvert.DeserializeObject<Cart>(value);
-        //    return PartialView(cart);
-        //}
+        public ViewResult/*PartialViewResult*/ Summary()
+        {
+            string value = HttpContext.Session.GetString("Cart");
+            if (!string.IsNullOrEmpty(value))
+            {
+                Cart cart = JsonConvert.DeserializeObject<Cart>(value);
+                return View(new CartIndexViewModel { Cart = cart, ReturnUrl = "" });
+            }
+            else return View(null);
+        }
 
         public ViewResult Checkout()
         {

@@ -47,17 +47,26 @@
                     <div class="loop-action">
                         @*<a href=" @Html.ActionLink(c.Name, "Details",
         new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
+
                         @Html.ActionLink("Просмотр", "Details",
                             new { id = product.Id }, new { @class = "compItem add-to-cart btn open-modal" } )
-                        @*<input type='button' id="submit1" value='Поиск' />
+                        @*@Html.ActionLink("Добавить в корзину", "AddToCart",
+        new { id = product.Id }, new { @class = "compItem2 add-to-cart btn open-modal" } )*@
+                        @*<input type="text" name="name" id="search" />
+                        <input type='button' id="submit" value=  />
                         <div id="results"></div>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('#submit').click(function (e) {
+                                    e.preventDefault();
+                                    var name = $('#search').val();
+                                    name = encodeURIComponent(name);
+                                    $('#results').load("http://localhost:51805/Home/BookSearch?name=" + name);
+                                });
+                            });
+                        </script>*@
 
-                        $(document).ready(function () {
-                        $('#submit1').click(function (e) {
-                        e.preventDefault();
-                        $('#results').load('@Url.Action("AddToCart", "Home")')
-                        });
-                        });*@
+
 
                         @*<a class="loop-add-to-cart">В корзину</a>*@
 
@@ -133,7 +142,7 @@
         </ul>
     </div>
 
-
+    <div id="results"></div>
     @*//описание категорий внизу*@
     <div class="DescriptionParentCatalog">
 
@@ -194,19 +203,38 @@
             });
         })
 
-        
-    </script>
 
+
+
+                        @*$(document).ready(function () {
+                        $('#submit1').click(function (e) {
+                        e.preventDefault();
+                        $('#results').load('@Url.Action("AddToCart", "Home")')
+                        });
+                        });*@
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".compItem2").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                   
+                });
+            });
+        })
+    </script>
     @*<script type="text/javascript">
-    $(document).ready(function () {
-        $('#addCart').click(function (e) {
-            e.preventDefault();
-            var name = $('#search').val();
-            name=encodeURIComponent(name);
-            $('#results').load('@Url.Action("BookSearch", "Home")?name='+name)
+        $(document).ready(function () {
+            $('#addCart').click(function (e) {
+                e.preventDefault();
+                var name = $('#search').val();
+                name=encodeURIComponent(name);
+                $('#results').load('@Url.Action("BookSearch", "Home")?name='+name)
+            });
         });
-    });
-    </script>*@
+        </script>*@
 
 </body>
 </html>

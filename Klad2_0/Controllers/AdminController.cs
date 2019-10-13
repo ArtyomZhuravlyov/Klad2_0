@@ -7,6 +7,8 @@ using Klad2_0.Models;
 using Klad.Models;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Klad.Controllers
 {
@@ -17,6 +19,7 @@ namespace Klad.Controllers
 
         public AdminController(ProductContext context)
         {
+
             db = context;
         }
 
@@ -25,20 +28,28 @@ namespace Klad.Controllers
             return View(db.Products);
         }
 
-        public ViewResult Edit(int productId)
+        public ViewResult Edit(int id)
         {
             Product product = db.Products
-                .FirstOrDefault(g => g.Id == productId);
+                .FirstOrDefault(g => g.Id == id);
             return View(product);
         }
 
         // Перегруженная версия Edit() для сохранения изменений
         [HttpPost]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Product product, IFormFile Image)
         {
             if (ModelState.IsValid)
             {
-                db.SaveGame(product);
+                if (Image != null)
+                {
+                    using (var binaryReader = new BinaryReader(Image.OpenReadStream()))
+                    {
+                        product.ImageData = binaryReader.ReadBytes((int)Image.Length);
+                        product.ImageMimeType = Image.ContentType;
+                    }
+                }
+                db.SaveProduct(product);
                 TempData["message"] = string.Format("Изменения в игре \"{0}\" были сохранены", product.Name);
                 return RedirectToAction("Index");
             }
@@ -48,6 +59,25 @@ namespace Klad.Controllers
                 return View(product);
             }
         }
+
+        // Перегруженная версия Edit() для сохранения изменений
+        [HttpPost]
+        public ActionResult SavePicture(Product product, IFormFile Image)
+        {
+            //if (pvm.Avatar != null)
+            //{
+            //    byte[] imageData = null;
+            //    // считываем переданный файл в массив байтов
+            //    using (var binaryReader = new BinaryReader(pvm.Avatar.OpenReadStream()))
+            //    {
+            //        imageData = binaryReader.ReadBytes((int)pvm.Avatar.Length);
+            //    }
+            //    // установка массива байтов
+            //    person.Avatar = imageData;
+            //}
+            return RedirectToAction("Edit", product);
+        }
+        //, IFormFile Image = null
 
         public ViewResult Create()
         {

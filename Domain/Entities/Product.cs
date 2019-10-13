@@ -43,9 +43,63 @@ namespace Domain.Entities
         /// Адрес картинки (формируется по ID)
         /// </summary>
         public string Address { get; set; }
-        /// <summary>
-        /// Отображается ли в ТОП
-        /// </summary>
+        ///// <summary>
+        ///// Отображается ли в ТОП
+        ///// </summary>
         //public bool Favourite { get; set; }
+        public byte[] ImageData { get; set; }
+        public string ImageMimeType { get; set; }
+
+        [Display(Name = "Основная категория 1")]
+        public string MainCategory1 { get; set; }
+
+        [Display(Name = "Основная категория 2")]
+        public string MainCategory2 { get; set; }
+
+        [Display(Name = "Основная категория 3")]
+        public string MainCategory3 { get; set; }
+
+        [Display(Name = "Под Категория 1")]
+        public string SubCategory1 { get; set; }
+
+        [Display(Name = "Под Категория 2")]
+        public string SubCategory2 { get; set; }
+
+        [Display(Name = "Под Категория 3")]
+        public string SubCategory3 { get; set; }
+
+        [Display(Name = "Под Категория 4")]
+        public string SubCategory4 { get; set; }
+
+        [Display(Name = "Под Категория 5")]
+        public string SubCategory5 { get; set; }
+
+        [Display(Name = "Под Категория 6")]
+        public string SubCategory6 { get; set; }
+
+        [Display(Name = "Состав")]
+        public string Composition { get; set; }
+
+        [Display(Name = "Способ применения")]
+        public string MethodOfUse { get; set; }
+
+        [Display(Name = "Противопоказания")]
+        public string Contraindications { get; set; }
+
+        [Display(Name = "Условия хранения")]
+        public string StorageConditions { get; set; }
+
+        [Display(Name = "Срок годности")]
+        public string ShelfLife { get; set; }
+
+        [Display(Name = "Форма выпуска")]
+        public string FormRelease { get; set; }
+
+        [Display(Name = "Показания к применению")]
+        public string IndicationsForUse { get; set; }
+
+        //[Display(Name = "Картинка")]
+        //public byte[] Picture { get; set; }
+
     }
 }

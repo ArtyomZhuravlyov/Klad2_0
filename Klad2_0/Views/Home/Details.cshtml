@@ -25,7 +25,7 @@
             <a ><img src="~/images/Каталог товаров/@Model.Address" class="imgHeight"></a>
         </div>
         <div class="DescriptionModal textModal">
-            <a  class="textModal">@Model.Description </a>
+            <a  class="textModal">@Html.Raw(Model.Description) </a>
         </div>
         @*<dl class="dl-horizontal">
             <dt>Название модели:</dt>

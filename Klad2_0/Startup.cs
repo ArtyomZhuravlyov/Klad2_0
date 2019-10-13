@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Klad.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,6 +40,13 @@ namespace Klad
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ProductContext>(options => options.UseSqlServer(connection));
+
+            // установка конфигурации подключения
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
             //services.AddScoped<IRepository, MemoryRepository>();
             services.AddMvc();
         }
@@ -61,6 +69,9 @@ namespace Klad
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
@@ -120,10 +131,17 @@ namespace Klad
                //new { page = @"\d+" }
                );
 
-               // routes.MapRoute(null,
-               //"{AddToCart}",
-               //new { controller = "Cart", action = "AddToCart" }
-               //);
+                routes.MapRoute(null,
+              "{productId}",
+              new { controller = "Admin", action = "Edit" }
+              //,
+              //new { page = @"\d+" }
+              );
+
+                // routes.MapRoute(null,
+                //"{AddToCart}",
+                //new { controller = "Cart", action = "AddToCart" }
+                //);
 
                 //routes.MapRoute(null,
                 // "{category}/{page}/{product}",

@@ -173,7 +173,7 @@ namespace Klad.Controllers
             return "Спасибо, " + order.User + ", за покупку!";
         }
 
-        public  /*ActionResult*/ PartialViewResult Summary(Cart cart)
+        public ActionResult /*PartialViewResult*/ Summary(Cart cart)
         {
             cart = GetCart();
             //string value = HttpContext.Session.GetString("Cart");
@@ -181,17 +181,32 @@ namespace Klad.Controllers
             return PartialView(cart);
         }
 
-        public/* void */RedirectToActionResult/* RedirectResult*/ AddToCart(int productId, string returnUrl)
-        {
-            Product product = db.Products
-                .FirstOrDefault(g => g.Id == productId);
+        //public/* void */RedirectToActionResult/* RedirectResult*/ AddToCart(int productId)
+        //{
+        //    Product product = db.Products
+        //        .FirstOrDefault(g => g.Id == productId);
 
-               Cart cart = GetCart();
-               cart.AddItem(product, 1);
-               HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+        //       Cart cart = GetCart();
+        //       cart.AddItem(product, 1);
+        //       HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
             
-            //return Redirect(returnUrl);
-            return RedirectToAction("Summary", cart);
+        //    //return Redirect(returnUrl);
+        //    return RedirectToAction("Summary", cart);
+        //}
+
+        public ActionResult AddToCart(int id, int l = 50)
+        {
+           // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
+            Product product = db.Products
+                .FirstOrDefault(g => g.Id == id);
+
+            Cart cart = GetCart();
+            cart.AddItem(product, 1);
+            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+            //Computer c = comps.FirstOrDefault(com => com.Id == id);
+            //if (c != null)
+            //    return PartialView(c);
+            return PartialView(product);
         }
 
         public Cart GetCart()
@@ -210,6 +225,21 @@ namespace Klad.Controllers
                 // Session["Cart"] = cart;
             }
             return cart;
+        }
+
+        public FileContentResult GetImage(int Id)
+        {
+            Product product = db.Products
+                .FirstOrDefault(g => g.Id == Id);
+
+            if (product != null)
+            {
+                return File(product.ImageData, product.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         //public IActionResult Index()
