@@ -42,7 +42,7 @@
 }
 
 .textHeadModal {
-    font-size: 22px;
+    font-size: 23px;
     color: black;
     font-weight: bold;
     text-align: center;
@@ -50,6 +50,17 @@
     border-bottom: 3px;
     border-bottom-color: #008a77;
     border-style: solid;
+}
+
+.textHeadInputModal {
+    font-size: 23px;
+    text-align:center;
+    color: #008a77;
+}
+
+.textHeadHeadModal {
+    font-weight: 100;
+    color: #2f241e;
 }
 
 @media(max-width:768px) {

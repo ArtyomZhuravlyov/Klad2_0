@@ -17,25 +17,76 @@
 </head>
 <div class="modal-content MyTop minWidthModal ">
     <div class="modal-header textHeadModal">
+   
         <button class="close buttonModal" data-dismiss="modal" area-hidden="true">X</button>
-        <h4>@Model.Name</h4>
+        <div class="textHeadInputModal textHeadHeadModal">@Model.Name</div>
     </div>
     <div class="modal-body flexModal">
+        @*@if (!string.IsNullOrEmpty(Model.Address))
+            {*@
         <div class="photo">
-            <a ><img src="~/images/Каталог товаров/@Model.Address" class="imgHeight"></a>
+            <a><img src="~/images/Каталог товаров/@Model.Address" class="imgHeight"></a>
         </div>
+        @*}
+            else
+            {
+                <div class="photo">
+                    <a>
+                        <img src="@Url.Action("GetImage", "Home",
+                    new { Model.Id })" class="imgHeight">
+                    </a>
+                </div>
+            }*@
         <div class="DescriptionModal textModal">
-            <a  class="textModal">@Html.Raw(Model.Description) </a>
+            <a>@Html.Raw(Model.Description) </a>
+            @if (!string.IsNullOrEmpty(Model.IndicationsForUse))
+            {
+                <div class="textHeadInputModal">Показания к применению</div>
+                <a>@Html.Raw(Model.IndicationsForUse) </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Composition))
+            {
+                <div class="textHeadInputModal">Состав</div>
+                <a>@Html.Raw(Model.Composition)</a>
+
+            }
+            @if (!string.IsNullOrEmpty(Model.MethodOfUse))
+            {
+                <div class="textHeadInputModal">Способ применения</div>
+                <a>@Html.Raw(Model.MethodOfUse) </a>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Contraindications))
+            {
+                <div class="textHeadInputModal">Противопоказания</div>
+                <a>@Html.Raw(Model.Contraindications) </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.FormRelease))
+            {
+                <div class="textHeadInputModal">Форма выпуска</div>
+                <a>@Html.Raw(Model.FormRelease) </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.ShelfLife))
+            {
+                <div class="textHeadInputModal">Срок годности</div>
+                <a>@Html.Raw(Model.ShelfLife) </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.StorageConditions))
+            {
+                <div class="textHeadInputModal">Условия хранения</div>
+                <a>@Html.Raw(Model.StorageConditions) </a>
+            }
         </div>
+
         @*<dl class="dl-horizontal">
-            <dt>Название модели:</dt>
-            <dd>@Html.DisplayFor(model => model.Name)</dd>
+                <dt>Название модели:</dt>
+                <dd>@Html.DisplayFor(model => model.Name)</dd>
 
-            <dt>Производитель</dt>
-            <dd>@Html.DisplayFor(model => model.Company)</dd>
+                <dt>Производитель</dt>
+                <dd>@Html.DisplayFor(model => model.Company)</dd>
 
-            <dt>Год выпуска</dt>
-            <dd>@Html.DisplayFor(model => model.Category)</dd>
-        </dl>*@
+                <dt>Год выпуска</dt>
+                <dd>@Html.DisplayFor(model => model.Category)</dd>
+            </dl>*@
     </div>
 </div>
