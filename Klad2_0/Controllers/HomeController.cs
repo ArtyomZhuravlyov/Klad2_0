@@ -26,8 +26,11 @@ namespace Klad.Controllers
         /// <param name="category"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public async Task<IActionResult> Index( string category = null,  int page = 1, string search = null)
+        public IActionResult Index( string category = null,  int page = 1, string search = null)
         {
+            if (category == "ЗДОРОВЬЕДля суставов")
+                category = "ЗДОРОВЬЕ Для суставов";
+
             int pageSize;
             IQueryable<Product> source;
           //  IQueryable<Product> source2;
@@ -36,10 +39,11 @@ namespace Klad.Controllers
                 // несколько категорий
                 source = db.Products.Where(x => x.Category == category || x.Category2 == category /*|| x.Category3 == category || x.Category4 == category*/);
 
-                var count = await source.CountAsync();
-                var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+                var count =  source.Count();
+            //var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            var items =  source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
-                PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
                 PagesLink pagesLink = new PagesLink(pageViewModel);
 
                 IndexViewModel viewModel = new IndexViewModel
@@ -136,23 +140,25 @@ namespace Klad.Controllers
         }
 
         /// <summary>
-        /// Подробный просмотр товара
+        /// Подробный просмотр товара //почти тот же метод Detail
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public IActionResult ViewProduct(int id)
         {
-            IQueryable<Product> source;
-            source = db.Products.Where(x => x.Id == id);
-            var items = source.ToList(); //возможно потом переделать в асинх как в примерах выше
 
-            IndexViewModel viewModel = new IndexViewModel
-            {
-                Products = items,
-            };
+          //  IQueryable<Product> source;
+            // source = db.Products.Where(x => x.Id == id);
+            Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
+          //  var items = source.ToList(); //возможно потом переделать в асинх как в примерах выше
+
+            //IndexViewModel viewModel = new IndexViewModel
+            //{
+            //    Products = items,
+            //};
 
            // ViewBag.ProductId = id;
-            return View(viewModel);
+            return View(product);
         }
 
         [HttpGet]
@@ -196,17 +202,24 @@ namespace Klad.Controllers
 
         public ActionResult AddToCart(int id, int l = 50)
         {
-           // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
-            Product product = db.Products
-                .FirstOrDefault(g => g.Id == id);
+            // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
+            if (id > 0)
+            {
+                Product product = db.Products
+                 .FirstOrDefault(g => g.Id == id);
 
-            Cart cart = GetCart();
-            cart.AddItem(product, 1);
-            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
-            //Computer c = comps.FirstOrDefault(com => com.Id == id);
-            //if (c != null)
-            //    return PartialView(c);
-            return PartialView(product);
+                Cart cart = GetCart();
+                cart.AddItem(product, 1);
+                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+                cart = GetCart();
+
+                return PartialView(cart);
+            }
+            else
+            {
+                Cart cart = GetCart();
+                return PartialView(cart);
+            }
         }
 
         public Cart GetCart()

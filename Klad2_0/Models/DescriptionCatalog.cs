@@ -30,7 +30,7 @@ namespace Klad.Models
         {
             DiscriptionCatalog = new Dictionary<string, Dictionary<string, string>>()
             {
-                { "ЗДОРОВЬЕБорьба с лишним весом", new Dictionary<string, string>
+                { "ЗДОРОВЬЕ Похудение", new Dictionary<string, string>
                     {
 
                          {"\t\tАлтайские препараты от лишнего веса",
@@ -54,7 +54,7 @@ namespace Klad.Models
                 },
 
                 {
-                    "ЗДОРОВЬЕДля горла и носа", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ Для горла и носа", new Dictionary<string, string>
                     {
 
                         { "Натуральные средства для лечения горла и носа",
@@ -76,7 +76,7 @@ namespace Klad.Models
                 },
 
                 {
-                     "ЗДОРОВЬЕДля зрения", new Dictionary<string, string>
+                     "ЗДОРОВЬЕ Для зрения", new Dictionary<string, string>
                      {
                          {"Лечение глаз натуральными препаратами",
 
@@ -98,7 +98,7 @@ namespace Klad.Models
                 },
 
                 {
-                    "ЗДОРОВЬЕДля мозговой активности", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ Для мозговой активности", new Dictionary<string, string>
                     {
                         {"Мозговая активность",
 
@@ -122,7 +122,7 @@ namespace Klad.Models
                 },
 
                 {
-                    "ЗДОРОВЬЕДля печени и почек", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ Для печени Для почек", new Dictionary<string, string>
                     {
                         { "Принимаем алтайские средства для почек – как распознать начинающийся недуг",
 
@@ -144,7 +144,7 @@ namespace Klad.Models
                 },
 
                  {
-                    "ЗДОРОВЬЕДля слуха", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ Для слуха", new Dictionary<string, string>
                     {
                         { "Алтайские препараты для слуха – когда прием оправдан",
 
@@ -174,7 +174,7 @@ namespace Klad.Models
                 },
 
                  {
-                    "ЗДОРОВЬЕДля суставов", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ Для суставов", new Dictionary<string, string>
                     {
                         { "Заболевания суставов",
 
@@ -208,7 +208,7 @@ namespace Klad.Models
 
 
                  {
-                    "ЗДОРОВЬЕЖенское здоровье", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ Женское здоровье", new Dictionary<string, string>
                     {
                         { "",
 
@@ -231,7 +231,7 @@ namespace Klad.Models
                 },
 
                  {
-                    "ЗДОРОВЬЕИммунитет", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ Укрепление иммунитета", new Dictionary<string, string>
                     {
                         { "Свойства алтайских препаратов на основе натуральных компонентов",
 
@@ -250,7 +250,7 @@ namespace Klad.Models
                 },
 
                 {
-                    "ЗДОРОВЬЕНервная система", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ Нервная система", new Dictionary<string, string>
                     {
                         { "Высокоэффективные алтайские средства для нервной системы",
 
@@ -279,7 +279,7 @@ namespace Klad.Models
                 },
 
                 {
-                    "ЗДОРОВЬЕОт паразитов", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ От паразитов", new Dictionary<string, string>
                     {
                         { "Свойства и эффекты от применения натуральных препаратов",
 
@@ -299,7 +299,7 @@ namespace Klad.Models
                 },
 
                 {
-                    "ЗДОРОВЬЕПищеварительная система", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ Пищеварительная система", new Dictionary<string, string>
                     {
                         { "Натуральный состав и комплексное действие лечебных препаратов",
 
@@ -329,7 +329,7 @@ namespace Klad.Models
                 },
 
                 {
-                    "ЗДОРОВЬЕПри аллергии", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ От аллергии", new Dictionary<string, string>
                     {
                         { "Как действуют лечебные алтайские средства",
 
@@ -360,7 +360,7 @@ namespace Klad.Models
                 },
 
                 {
-                    "ЗДОРОВЬЕПри варикозе и геморрое", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ От варикоза От геморроя", new Dictionary<string, string>
                     {
                         { "Варикоз и геморрой - две составляющие одного целого",
 
@@ -392,7 +392,7 @@ namespace Klad.Models
                 },
 
                  {
-                    "ЗДОРОВЬЕПри диабете", new Dictionary<string, string>
+                    "ЗДОРОВЬЕ При диабете", new Dictionary<string, string>
                     {
                         { "Современное лечение сахарного диабета",
 

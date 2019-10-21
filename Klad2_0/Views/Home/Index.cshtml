@@ -50,8 +50,8 @@
 
                         @Html.ActionLink("Просмотр", "Details",
                             new { id = product.Id }, new { @class = "compItem add-to-cart btn open-modal" } )
-                        @*@Html.ActionLink("Добавить в корзину", "AddToCart",
-        new { id = product.Id }, new { @class = "compItem2 add-to-cart btn open-modal" } )*@
+                        @Html.ActionLink("Добавить в корзину", "AddToCart",
+        new { id = product.Id }, new { @class = "compItem2 add-to-cart btn open-modal" } )
                         @*<input type="text" name="name" id="search" />
                         <input type='button' id="submit" value=  />
                         <div id="results"></div>
@@ -83,35 +83,16 @@
                 </div>
 
                 <div class="product-info">
-                    @*<div class="alert alert-success">Задача успешно завершена</div>*@
-                    <h3 class="product-title">@product.Name</h3>
+                    @Html.ActionLink(product.Name, "ViewProduct",
+                            new { id = product.Id }, new { @class = "product-title ColourChangeModal" } )
+                    @*<h3 class="product-title">@product.Name</h3>*@
                     @*<div class="price">&#8381; @product.Price </div>*@
                 </div>
 
-                @*<ul>
-                        @foreach (var c in Model.Products)
-                        {
-                            <li>
-                                @Html.ActionLink(c.Name, "Details",
-                                new { id = c.Id }, new { @class = "compItem" })
-                            </li>
-                        }
-                    </ul>*@
             </div>
 
         }
     </div>
-
-    @*<div class='modal' id='modal1'>
-            <div class='content'>
-                <h1 class='title'>This is a modal</h1>
-                <p>
-                    @product.Description
-                </p>
-                <a class='btn close-modal' data-modal="#modal1" href="#">K Bye</a>
-            </div>
-        </div>*@
-
 
 
     @*постраничная навигация*@
@@ -203,6 +184,8 @@
             });
         })
 
+        //preventDefault(): отменяет все действия, которые по умолчанию производит данное событие.
+        //    Например, при нажатии на ссылку мы можем с помощью данного метода запретить переход по этой ссылке.
 
 
 
@@ -220,7 +203,8 @@
 
                 e.preventDefault();
                 $.get(this.href, function (data) {
-                   
+                    $('#Cart').html(data);
+                    //$('#modDialog').modal('show');
                 });
             });
         })

@@ -14,7 +14,11 @@
     margin: 10% 10% 0 11%;
     /*margin-left: -14%;*/
     width: 80%;
-  
+}
+
+.minWidthModalViewProduct {
+    margin: 30px 10% 0 11%;
+    width: 80%;
 }
 
 /*только чтобы переопределить*/
@@ -35,7 +39,7 @@
 }
 
 .textModal {
-    font-size: 18px;
+    font-size: 20px;
     color: black;
     text-align: justify;
     white-space: pre-wrap;
@@ -62,6 +66,29 @@
     font-weight: 100;
     color: #2f241e;
 }
+
+.topBorderModal {
+    border-top-color: #008a77;
+    border-style: solid;
+    margin-left: 0px;
+    border-top-width: 3px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+}
+
+.ColourChangeModal {
+    
+    transition: 0.1s linear;
+}
+
+    .ColourChangeModal:hover {
+        /*color: brown;*/
+        color: #FF7400;
+        /*#ebb926 */ /*#e6b010*/
+        /* ÷вет текста */
+        /* background: #008;  ÷вет фона */
+    }
 
 @media(max-width:768px) {
     .textModal {

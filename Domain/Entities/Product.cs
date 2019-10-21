@@ -17,9 +17,15 @@ namespace Domain.Entities
         [Display(Name = "Название")]
         public string Name { get; set; }
 
+
+
         [Display(Name = "Описание")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        [Display(Name = "Полное писание")]
+        [DataType(DataType.MultilineText)]
+        public string FullDescription { get; set; }
 
         [Display(Name = "Категория1")]
         public string Category { get; set; }
@@ -43,6 +49,7 @@ namespace Domain.Entities
         /// Адрес картинки (формируется по ID)
         /// </summary>
         public string Address { get; set; }
+
         ///// <summary>
         ///// Отображается ли в ТОП
         ///// </summary>
@@ -76,6 +83,18 @@ namespace Domain.Entities
 
         //[Display(Name = "Под Категория 6")]
         //public string SubCategory6 { get; set; }
+
+
+        
+
+         [Display(Name = "Утрений Состав")]
+        public string CompositionMorning { get; set; }
+
+        /// <summary>
+        /// Вечерниый Состав
+        /// </summary>
+        [Display(Name = "Вечерний Состав")]
+        public string CompositionEvening { get; set; }
 
         /// <summary>
         /// Состав
@@ -120,7 +139,7 @@ namespace Domain.Entities
         public string FormRelease { get; set; }
 
 
-
+       
         //[Display(Name = "Картинка")]
         //public byte[] Picture { get; set; }
 

@@ -1,0 +1,29 @@
+﻿@model Domain.Entities.Cart
+
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" />
+    <link rel="stylesheet" href="~/css/Pages2.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,700" rel="stylesheet">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">*@
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @*бутстрап*@
+    @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    @*http://localhost:44338/ЗДОРОВЬЕ/lib/bootstrap/dist/js/bootstrap.js*@
+    @*<link rel="stylesheet" href="~/css/Catalog.css" />*@
+    @*<link rel="stylesheet" href="~/css/ModalWindow.css" />*@
+</head>
+
+<div>
+    @Html.ActionLink("Заказать", "Index", "Cart",
+    new { @class = "btn" })
+</div>
+
+<div>
+    <b>Ваша корзина:</b>
+    @Model.Lines.Sum(x => x.Quantity) Товаров,
+    @Model.ComputeTotalValue().ToString("# руб")
+</div>

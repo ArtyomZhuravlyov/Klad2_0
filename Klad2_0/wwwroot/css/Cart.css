@@ -1,0 +1,18 @@
+﻿.PositionCart {
+    margin-right: 30px;
+    max-width: 50px;
+    float: right;
+    /* margin-bottom: 20px; */
+    margin-top: -16px;
+}
+
+.imgCart {
+height:50px;
+width:50px;
+
+}
+    .imgCart:hover {
+        /*transition: .3s ease-out;*/
+        height: 52px;
+        width: 52px;
+    }

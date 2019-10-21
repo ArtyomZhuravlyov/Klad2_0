@@ -20,14 +20,25 @@
 </head>
 
 <div class="navbar-right">
+    @Html.ActionLink("Заказать", "Index", "Cart",
+    new { @class = "btn btn-default navbar-btn" })
+</div>
+
+<div class="navbar-text navbar-right">
+    <b>Ваша корзина:</b>
+    @Model.Lines.Sum(x => x.Quantity) Товаров,
+    @Model.ComputeTotalValue().ToString("# руб")
+</div>
+
+<div class="navbar-right">
     Заказать
     @*@Html.ActionLink("Заказать", "Index", "Cart",
-    new { returnUrl =  ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
-    new { @class = "btn btn-default navbar-btn" })*@
+        new { returnUrl =  ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
+        new { @class = "btn btn-default navbar-btn" })*@
 </div>
 
 <div class="navbar-text navbar-right">
     <b>Ваша корзина:</b>
     @*@Model.Lines.Sum(x => x.Quantity) игр,
-    @Model.ComputeTotalValue().ToString("# руб")*@
+        @Model.ComputeTotalValue().ToString("# руб")*@
 </div>

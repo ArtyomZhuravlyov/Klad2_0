@@ -53,11 +53,13 @@ namespace Klad.Models
                     //dbEntry.SubCategory5 = product.SubCategory5;
                     //dbEntry.SubCategory6 = product.SubCategory6;
                     dbEntry.StorageConditions = product.StorageConditions;
+                    dbEntry.FullDescription = product.FullDescription;
                     dbEntry.ShelfLife = product.ShelfLife;
                     dbEntry.MethodOfUse= product.MethodOfUse;
                     dbEntry.ImageData = product.ImageData;
                     dbEntry.ImageMimeType = product.ImageMimeType;
-
+                    dbEntry.CompositionEvening = product.CompositionEvening;
+                    dbEntry.CompositionMorning = product.CompositionMorning;
 
                     //todo
                     //dbEntry.ImageData = product.ImageData;

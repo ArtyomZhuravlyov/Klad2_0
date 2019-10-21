@@ -59,7 +59,7 @@
                 default:
                     <div class="form-group">
                         <label>@(property.DisplayName ?? property.PropertyName)</label>
-                        @if (property.PropertyName == "Description")
+                        @if (property.PropertyName == "Description" || property.PropertyName == "FullDescription")
                         {
                             @Html.TextArea(property.PropertyName, null,
                                 new { @class = "form-control", rows = 20 })

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/css/MegaMenu.css" />
     <link rel="stylesheet" href="~/css/StyleSheet.css" />
     <link rel="stylesheet" href="~/css/Header_Background.css" />
+    <link rel="stylesheet" href="~/css/Cart.css" />
 
     <link rel="stylesheet" href="~/css/Search.css" />
     <link rel="stylesheet" href="~/css/logotip.css" />
@@ -25,7 +26,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 
     @*@Scripts.Render("~/scripts/jquery-1.10.2.js")
-    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")*@
+        @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")*@
 
 
 
@@ -61,11 +62,16 @@
                     <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
 
                     <div class="divSearch">
-                        <form asp-controller="Home" asp-action="IndexSearch" class="formSearch">
+                        <form asp-controller="Home" asp-action="IndexSearch" class="formSearch" method="get">
 
                             <input type="text" placeholder="Искать здесь..." name="search">
                             <button type="submit"></button>
                         </form>
+                    </div>
+                    <div class="PositionCart">
+                            <a href="Cart/Summary/">
+                                <img src="~/images/cart.png" class="imgCart" alt="Пример">
+                            </a>
                     </div>
                 </div>
 
@@ -89,38 +95,38 @@
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ЗДОРОВЬЕБорьба с лишним весом">Борьба с лишним весом</a></li>
-                                        <li><a href="/ЗДОРОВЬЕДыхательная система">Дыхательная система</a></li>
-                                        <li><a href="/ЗДОРОВЬЕСердечно-сосудистая система">Сердечно-сосудистая система</a></li>
-                                        <li><a href="/ЗДОРОВЬЕИммунитет">Иммунитет</a></li>
-                                        <li><a href="/ЗДОРОВЬЕДля зубов">Для зубов</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Похудение">Борьба с лишним весом</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Дыхательная система">Дыхательная система</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Для сердца Для сосудов">Для сердца и сосудов</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Укрепление иммунитета">Укрепление иммунитета</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Для зубов">Для зубов</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ЗДОРОВЬЕДля мозговой активности">Для мозговой активности</a></li>
-                                        <li><a href="/ЗДОРОВЬЕДля горла и носа">Для горла и носа</a></li>
-                                        <li><a href="/ЗДОРОВЬЕПри варикозе и геморрое">При варикозе и геморрое</a></li>
-                                        <li><a href="/ЗДОРОВЬЕПищеварительная система">Пищеварительная система</a></li>
-                                        <li><a href="/ЗДОРОВЬЕДля слуха">Для слуха</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Для мозговой активности">Для мозговой активности</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Для горла и носа">Для горла и носа</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ От варикоза От геморроя">При варикозе и геморрое</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Пищеварительная система">Пищеварительная система</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Для слуха">Для слуха</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ЗДОРОВЬЕНервная система">Нервная система</a></li>
-                                        <li><a href="/ЗДОРОВЬЕДля печени и почек">Для печени и почек</a></li>
-                                        <li><a href="/ЗДОРОВЬЕДля суставов">Для суставов</a></li>
-                                        <li><a href="/ЗДОРОВЬЕПри возрастных изменениях">При возрастных изменениях</a></li>
-                                        <li><a href="/ЗДОРОВЬЕДля зрения">Для зрения</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Нервная система">Нервная система</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Для печени Для почек">Для печени и почек</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Для суставов">Для суставов</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ При возрастных изменениях">При возрастных изменениях</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Для зрения">Для зрения</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ЗДОРОВЬЕПри аллергии">При аллергии</a></li>
-                                        <li><a href="/ЗДОРОВЬЕОт паразитов">От паразитов</a></li>
-                                        <li><a href="/ЗДОРОВЬЕПокровная система">Покровная система</a></li>
-                                        <li><a href="/ЗДОРОВЬЕПри диабете">При диабете</a></li>
-                                        <li><a href="/ЗДОРОВЬЕЭндокринная система">Эндокринная система</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ От аллергии">От аллергии</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ От паразитов">От паразитов</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Покровная система">Покровная система</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ При диабете">При диабете</a></li>
+                                        <li><a href="/ЗДОРОВЬЕ Эндокринная система">Эндокринная система</a></li>
                                     </ul>
                                 </li>
                                 <li class="HeightNull">
@@ -148,16 +154,16 @@
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ТелоМолочко для тела">Молочко для тела</a></li>
-                                        <li><a href="/ТелоКремы">Кремы</a></li>
-                                        <li><a href="/ТелоНоги">Ноги</a></li>
+                                        <li><a href="/Для ТЕЛА Молочко для тела">Молочко для тела</a></li>
+                                        <li><a href="/Для ТЕЛА Кремы">Кремы</a></li>
+                                        <li><a href="/Для ТЕЛА Для Ног">Ноги</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
 
-                                        <li><a href="/ТелоСредства для ванн">Средства для ванн</a></li>
-                                        <li><a href="/ТелоРуки">Руки</a></li>
+                                        <li><a href="/Для ТЕЛА Средства для ванн">Средства для ванн</a></li>
+                                        <li><a href="/Для ТЕЛА Для Рук">Руки</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -188,17 +194,17 @@
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ЛИЦОДля ресниц">Для ресниц</a></li>
-                                        <li><a href="/ЛИЦООчищение">Очищение</a></li>
-                                        <li><a href="/ЛИЦОКремы">Кремы</a></li>
-                                        <li><a href="/ЛИЦОМаски">Маски</a></li>
+                                        <li><a href="/Для ЛИЦА Для ресниц">Для ресниц</a></li>
+                                        <li><a href="/Для ЛИЦА Очищение">Очищение</a></li>
+                                        <li><a href="/Для ЛИЦА Кремы">Кремы</a></li>
+                                        <li><a href="/Для ЛИЦА Маски">Маски</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ЛИЦОПодарочные наборы">Подарочные наборы</a></li>
-                                        <li><a href="/ЛИЦОТоники">Тоники</a></li>
-                                        <li><a href="/ЛИЦОСыворотки">Сыворотки</a></li>
+                                        <li><a href="/Для ЛИЦА Подарочные наборы">Подарочные наборы</a></li>
+                                        <li><a href="/Для ЛИЦА Тоники">Тоники</a></li>
+                                        <li><a href="/Для ЛИЦА Сыворотки">Сыворотки</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -231,15 +237,15 @@
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ВОЛОСЫКондиционеры">Кондиционеры</a></li>
-                                        <li><a href="/ВОЛОСЫКапли и капсулы">Капли и капсулы</a></li>
-                                        <li><a href="/ВОЛОСЫМаски">Маски</a></li>
+                                        <li><a href="/Для ВОЛОС Кондиционеры">Кондиционеры</a></li>
+                                        <li><a href="/Для ВОЛОС Капли и капсулы">Капли и капсулы</a></li>
+                                        <li><a href="/Для ВОЛОС Маски">Маски</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ВОЛОСЫОполаскиватели">Ополаскиватели</a></li>
-                                        <li><a href="/ВОЛОСЫШампуни">Шампуни</a></li>
+                                        <li><a href="/Для ВОЛОС Ополаскиватели">Ополаскиватели</a></li>
+                                        <li><a href="/Для ВОЛОС Шампуни">Шампуни</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -275,12 +281,12 @@
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ЖЕНЩИНАМЗдоровье">Здоровье </a> </li>
+                                        <li><a href="/ЖЕНЩИНАМ Здоровье">Здоровье </a> </li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/ЖЕНЩИНАМСредства для интимной гигиены">Средства для интимной гигиены</a></li>
+                                        <li><a href="/ЖЕНЩИНАМ Средства для интимной гигиены">Средства для интимной гигиены</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -311,12 +317,12 @@
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/МужчинамЗдоровье">Здоровье </a> </li>
+                                        <li><a href="/Мужчинам Здоровье">Здоровье </a> </li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
-                                        <li><a href="/МУЖЧИНАМСредства для интимной гигиены">Средства для интимной гигиены</a></li>
+                                        <li><a href="/МУЖЧИНАМ Средства для интимной гигиены">Средства для интимной гигиены</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -361,8 +367,12 @@
             </div>
         </div>
         @*<div class="navbar navbar-inverse" role="navigation">
-            @Html.ActionLink("GameStore - магазин компьютерных игр", "Summary", "Cart")
+            <a class="navbar-brand" href="#">Корзина</a>
+            @Url.Action("","Summary", "Home")
         </div>*@
+        @Html.ActionLink("Корзина", "AddToCart",
+     new { id = -1 }, new { @class = "Cart" } )
+        <div id="Cart"></div>
 
         <main class="backgroundbody">
 
@@ -381,11 +391,24 @@
 
     </div>
 
-    
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    
-   
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            //$(".compItem2").click(function (e) {
+
+            //    e.preventDefault();
+                $.get("Home/AddToCart/-1", function (data) {
+                    $('#Cart').html(data);
+                    //$('.Cart').modal('show');
+                });
+           
+        })
+    </script>
+
 </body>
 </html>
