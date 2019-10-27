@@ -65,11 +65,11 @@ namespace Domain.Concrete
                     .AppendLine("---")
                     .AppendLine("Доставка:")
                     .AppendLine(shippingInfo.Name)
-                    .AppendLine(shippingInfo.Line1)
+                    .AppendLine(shippingInfo.Adress)
                     .AppendLine(shippingInfo.City)
-                    .AppendLine("---")
-                    .AppendFormat("Подарочная упаковка: {0}",
-                        shippingInfo.GiftWrap ? "Да" : "Нет");
+                    .AppendLine("---");
+                    //.AppendFormat("Подарочная упаковка: {0}",
+                    //    shippingInfo.GiftWrap ? "Да" : "Нет");
 
                 MailMessage mailMessage = new MailMessage(
                                        emailSettings.MailFromAddress,	// От кого

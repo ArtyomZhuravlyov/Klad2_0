@@ -9,18 +9,33 @@ namespace Domain.Entities
     {
 
         [Required(ErrorMessage = "Укажите как вас зовут")]
+        [Display(Name = "Имя")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Вставьте первый адрес доставки")]
-        [Display(Name = "Первый адрес")]
-        public string Line1 { get; set; }
+        [Required(ErrorMessage = "Укажите вашу фамилию")]
+        [Display(Name = "Фамилия")]
+        public string Surname { get; set; }
 
+        [Required(ErrorMessage = "Укажите ваше отчество")]
+        [Display(Name = "Отчество")]
+        public string MiddleName { get; set; }
 
         [Required(ErrorMessage = "Укажите город")]
         [Display(Name = "Город")]
         public string City { get; set; }
 
-        public bool GiftWrap { get; set; }
+        [Required(ErrorMessage = "Укажите адрес доставки")]
+        [Display(Name = "Адрес")]
+        public string Adress { get; set; }
+
+        [Required(ErrorMessage = "Укажите телефон")]
+        [Display(Name = "Телефон")]
+        public string Phone { get; set; }
+
+        [Display(Name = "Электронная почта")]
+        public string Mail { get; set; }
+
+        //public bool GiftWrap { get; set; }
 
     }
 }

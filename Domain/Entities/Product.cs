@@ -40,9 +40,20 @@ namespace Domain.Entities
         [Display(Name = "Категория5")]
         public string Category5 { get; set; }
 
+
+        /// <summary>
+        /// Цена
+        /// </summary>
         [Display(Name = "Цена")]
         // public string Company { get; set; }
         public int Price { get; set; }
+
+
+        /// <summary>
+        /// Цена без Скидки
+        /// </summary>
+        [Display(Name = "Цена без Скидки")]
+        public int PriceWithoutSales { get; set; }
 
         [Display(Name = "Адрес картинки")]
         /// <summary>
@@ -138,8 +149,6 @@ namespace Domain.Entities
         [Display(Name = "Форма выпуска")]
         public string FormRelease { get; set; }
 
-
-       
         //[Display(Name = "Картинка")]
         //public byte[] Picture { get; set; }
 

@@ -50,7 +50,7 @@ namespace Klad.Controllers
                     }
                 }
                 db.SaveProduct(product);
-                TempData["message"] = string.Format("Изменения в игре \"{0}\" были сохранены", product.Name);
+                TempData["message"] = string.Format("Изменения \"{0}\" были сохранены", product.Name);
                 return RedirectToAction("Index");
             }
             else
@@ -90,7 +90,7 @@ namespace Klad.Controllers
             Product deletedProduct = db.DeleteGame(productId);
             if (deletedProduct != null)
             {
-                TempData["message"] = string.Format("Игра \"{0}\" была удалена",
+                TempData["message"] = string.Format("Продукт \"{0}\" был удалён",
                     deletedProduct.Name);
             }
             return RedirectToAction("Index");

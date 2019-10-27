@@ -25,10 +25,8 @@
 </div>
 
 <div class="navbar-text navbar-right">
-    <b>Ваша корзина:</b>
-    @Model.Lines.Sum(x => x.Quantity) Товаров,
-    @Model.ComputeTotalValue().ToString("# руб")
-</div>
+    <b>Ваша корзина:</b>@Model.Lines.Sum(x => x.Quantity) Товаров, @Model.ComputeTotalValue().ToString("# руб")</div>
+    
 
 <div class="navbar-right">
     Заказать

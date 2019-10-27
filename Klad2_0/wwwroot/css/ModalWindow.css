@@ -14,11 +14,13 @@
     margin: 10% 10% 0 11%;
     /*margin-left: -14%;*/
     width: 80%;
+    border-radius: 20px;
 }
 
 .minWidthModalViewProduct {
     margin: 30px 10% 0 11%;
     width: 80%;
+    border-radius: 10px;
 }
 
 /*только чтобы переопределить*/
@@ -39,21 +41,26 @@
 }
 
 .textModal {
-    font-size: 20px;
+    font-size: 18px;
     color: black;
     text-align: justify;
     white-space: pre-wrap;
 }
 
 .textHeadModal {
-    font-size: 23px;
+    font-size: 21px;
     color: black;
     font-weight: bold;
     text-align: center;
     border-color: #008a77;
     border-bottom: 3px;
     border-bottom-color: #008a77;
+    /*border-bottom-color: #2f241e;*/
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
     border-style: solid;
+    /*background-color: #bc8f8f;*/
 }
 
 .textHeadInputModal {
@@ -96,7 +103,7 @@
     }
 
     .textHeadModal {
-        font-size: 8px;
+        font-size: 12px;
 
     }
 

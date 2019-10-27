@@ -11,15 +11,15 @@
 
 
 .DescriptionHeaderCatalog {
-    margin-right: 17%;
-    margin-left: 17%;
+    margin: 10px,17%, 10px,0px;
+    /*margin-left: 17%;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px;*/
     font-size: 22px;
     /*margin-left: 20px;*/
     text-align: justify;
     /*color: coral;*/
-    color:coral  /*#031907  #055713*/;
+    color: coral /*#031907  #055713*/;
     font-weight: 600;
 }
 
@@ -147,7 +147,7 @@
     text-align: center;
     color: white;
     min-width: 160px;
-    margin: 5px auto;
+    margin-bottom: 10px;
     transition: .3s ease-in-out;
 }
 

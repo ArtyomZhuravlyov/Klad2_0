@@ -113,9 +113,10 @@ namespace Klad.Controllers
         }
 
         [HttpPost]
-        public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
+        public ViewResult Checkout( ShippingDetails shippingDetails)
         {
-            if (cart.Lines.Count() == 0)
+
+            if (GetCart().Lines.Count() == 0)
             {
                 ModelState.AddModelError("", "Извините, ваша корзина пуста!");
             }
@@ -123,13 +124,20 @@ namespace Klad.Controllers
             if (ModelState.IsValid)
             {
                 //orderProcessor.ProcessOrder(cart, shippingDetails);
-                cart.Clear();
+                //cart.Clear();
+                //to do wcf 
+
                 return View("CompletedOrder");
             }
             else
             {
                 return View(shippingDetails);
             }
+        }
+
+        public decimal GetTotalPrice()
+        {
+            return GetCart().ComputeTotalValue();
         }
     }
 }

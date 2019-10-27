@@ -37,7 +37,7 @@ namespace Klad.Controllers
             pageSize = 18; 
 
                 // несколько категорий
-                source = db.Products.Where(x => x.Category == category || x.Category2 == category /*|| x.Category3 == category || x.Category4 == category*/);
+            source = db.Products.Where(x => x.Category == category || x.Category2 == category /*|| x.Category3 == category || x.Category4 == category*/);
 
                 var count =  source.Count();
             //var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
@@ -215,14 +215,58 @@ namespace Klad.Controllers
 
                 return PartialView(cart);
             }
-            else
+            else //если отрицательное значение (-1), то нужно просто получить Корзину
             {
                 Cart cart = GetCart();
                 return PartialView(cart);
             }
         }
 
-        public Cart GetCart()
+
+        /// <summary>
+        /// Удаляет только одно кол-во выбранного товара (1 штуку)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="l"></param>
+        /// <returns></returns>
+        public RedirectResult RemoveOneProductToCart(int id, int l = 50)
+        {
+            // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
+            //if (id > 0)
+            //{
+                Product product = db.Products
+                 .FirstOrDefault(g => g.Id == id);
+
+                Cart cart = GetCart();
+                cart.RemoveItem(product, 1);
+                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+                cart = GetCart();
+
+                return Redirect("/Home/AddToCart/-1");
+            //}
+            //else //если отрицательное значение (-1), то нужно просто получить Корзину
+            //{
+            //    Cart cart = GetCart();
+            //    return Redirect("/Home/AddToCart/-1");
+            //}
+        }
+
+        public RedirectResult RemoveLine(int id, int l = 50)
+        {
+            
+            Product product = db.Products
+                .FirstOrDefault(g => g.Id == id);
+
+            Cart cart = GetCart();
+            cart.RemoveLine(product);
+            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+            cart = GetCart();
+
+            return Redirect("/Home/AddToCart/-1");
+            
+        }
+
+            public Cart GetCart()
         {
             Cart cart;
             //Cart cart = (Cart)HttpContext.Session.Get("Cart"); //["Cart"];

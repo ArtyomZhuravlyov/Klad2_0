@@ -38,30 +38,31 @@
     <div class="parent">
         @foreach (var product in Model.Products)
         {
-        <div class="border">
-            <div class="wrap">
-                <div class="product-wrap">
-                    @*<a href=""><img src="~/images/@product.Category/@product.Category2/@product.Address"></a> изменилась в корне вся система из-за ручного мега меню*@
-                    <a href=""><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
+            <div class="border">
+                <div class="wrap">
+                    <div class="product-wrap">
+                        @*<a href=""><img src="~/images/@product.Category/@product.Category2/@product.Address"></a> изменилась в корне вся система из-за ручного мега меню*@
+                        <a href=""><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
+                    </div>
+                    <div class="loop-action">
+                        @*<a href=" @Html.ActionLink(c.Name, "Details",
+                            new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
+                        @Html.ActionLink("Просмотр", "Details",
+                            new { id = product.Id }, new { @class = "compItem btn " } )
+                        @Html.ActionLink("Добавить в корзину", "AddToCart",
+            new { id = product.Id }, new { @class = "compItem2  btn" } )
+                    </div>
                 </div>
-                <div class="loop-action">
-                    @*<a href=" @Html.ActionLink(c.Name, "Details",
-                new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
-                    @Html.ActionLink("Просмотр", "Details",
-                        new { id = product.Id }, new { @class = "compItem add-to-cart btn open-modal" } )
-                    @*<a class="loop-add-to-cart">В корзину</a>*@
+
+                <div class="product-info">
+                    @Html.ActionLink(product.Name, "ViewProduct",
+                            new { id = product.Id }, new { @class = "product-title ColourChangeModal" } )
+                    @*<h3 class="product-title">@product.Name</h3>*@
+                    @*<div class="price">&#8381; @product.Price </div>*@
                 </div>
+
+
             </div>
-
-            <div class="product-info">
-                @Html.ActionLink(product.Name, "ViewProduct",
-                        new { id = product.Id }, new { @class = "product-title ColourChangeModal" } )
-                @*<h3 class="product-title">@product.Name</h3>*@
-                @*<div class="price">&#8381; @product.Price </div>*@
-            </div>
-
-
-        </div>
 
         }
     </div>
@@ -177,7 +178,7 @@
 
     </script>
 
-    </script>
+
     <script type="text/javascript">
         $(function () {
             $.ajaxSetup({ cache: false });
@@ -185,7 +186,8 @@
 
                 e.preventDefault();
                 $.get(this.href, function (data) {
-
+                    $('#Cart').html(data);
+                    //$('#modDialog').modal('show');
                 });
             });
         })

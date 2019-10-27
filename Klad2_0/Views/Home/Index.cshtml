@@ -49,9 +49,9 @@
         new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
 
                         @Html.ActionLink("Просмотр", "Details",
-                            new { id = product.Id }, new { @class = "compItem add-to-cart btn open-modal" } )
+                            new { id = product.Id }, new { @class = "compItem btn" } )
                         @Html.ActionLink("Добавить в корзину", "AddToCart",
-        new { id = product.Id }, new { @class = "compItem2 add-to-cart btn open-modal" } )
+        new { id = product.Id }, new { @class = "compItem2  btn" } )
                         @*<input type="text" name="name" id="search" />
                         <input type='button' id="submit" value=  />
                         <div id="results"></div>

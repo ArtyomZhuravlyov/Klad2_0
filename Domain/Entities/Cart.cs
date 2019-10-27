@@ -31,6 +31,32 @@ namespace Domain.Entities
             }
         }
 
+        /// <summary>
+        /// Удаляет только одну штуку выбранного товара
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="quantity"></param>
+        public void RemoveItem(Product product, int quantity)
+        {
+            CartLine line = lineCollection
+                .Where(g => g.productCart.Id == product.Id)
+                .FirstOrDefault();
+
+            if (line != null)
+            {
+                line.Quantity -= quantity; 
+
+            }
+            else
+            {
+                //такое не должно произойти
+            }
+        }
+
+        /// <summary>
+        /// Удаляет полностью товар из коризины (неважно какое количество этого товара было)
+        /// </summary>
+        /// <param name="product"></param>
         public void RemoveLine(Product product)
         {
             lineCollection.RemoveAll(l => l.productCart.Id == product.Id);

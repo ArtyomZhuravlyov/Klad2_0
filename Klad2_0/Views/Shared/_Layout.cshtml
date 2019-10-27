@@ -56,7 +56,7 @@
                     <div class="logotip">
                         <img src="~/images/TitleKladovaya.png">
                         @*<
-                        https://online-letters.ru/letters/cyrillic/script/create.html*@
+            https://online-letters.ru/letters/cyrillic/script/create.html*@
                     </div>
                     <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
                     <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
@@ -64,14 +64,18 @@
                     <div class="divSearch">
                         <form asp-controller="Home" asp-action="IndexSearch" class="formSearch" method="get">
 
-                            <input type="text" placeholder="Искать здесь..." name="search">
-                            <button type="submit"></button>
+                            <input id="inputSearch" type="text" placeholder="Искать здесь..." name="search">
+                            <button class="buttonSearch" type="submit"></button>
                         </form>
                     </div>
                     <div class="PositionCart">
-                            <a href="Cart/Summary/">
-                                <img src="~/images/cart.png" class="imgCart" alt="Пример">
-                            </a>
+                        <a href="/Cart/Summary/">
+                            <img src="~/images/cart.png" class="imgCart" alt="Пример">
+                        </a>
+                    </div>
+                    <div class="textSummaryCart" id="Cart">
+                        <p>Ваша корзина:</p>
+                        
                     </div>
                 </div>
 
@@ -370,9 +374,8 @@
             <a class="navbar-brand" href="#">Корзина</a>
             @Url.Action("","Summary", "Home")
         </div>*@
-        @Html.ActionLink("Корзина", "AddToCart",
-     new { id = -1 }, new { @class = "Cart" } )
-        <div id="Cart"></div>
+        
+
 
         <main class="backgroundbody">
 
@@ -383,6 +386,10 @@
             <div class="container body-content">
                 @RenderBody()
             </div>
+            @*<span style="position: relative; z-index: -2;">
+                @Html.ActionLink("Корзина", "AddToCart",
+            new { id = -1 }, new { @class = "Cart" } )
+            </span>*@
         </main>
 
         @*<footer class="footer1">
@@ -402,7 +409,8 @@
             //$(".compItem2").click(function (e) {
 
             //    e.preventDefault();
-                $.get("Home/AddToCart/-1", function (data) {
+            //если отрицательное значение (-1), то нужно просто получить Корзину
+                $.get("/Home/AddToCart/-1", function (data) {
                     $('#Cart').html(data);
                     //$('.Cart').modal('show');
                 });

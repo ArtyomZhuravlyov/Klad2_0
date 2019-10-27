@@ -33,6 +33,7 @@ namespace Klad.Models
                     dbEntry.Name = product.Name;
                     dbEntry.Description = product.Description;
                     dbEntry.Price = product.Price;
+                    dbEntry.PriceWithoutSales = product.PriceWithoutSales;
                     dbEntry.Category = product.Category;
                     dbEntry.Category2 = product.Category2;
                     dbEntry.Category3 = product.Category3;

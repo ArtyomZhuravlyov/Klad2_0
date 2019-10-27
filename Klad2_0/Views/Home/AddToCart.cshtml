@@ -17,13 +17,12 @@
     @*<link rel="stylesheet" href="~/css/ModalWindow.css" />*@
 </head>
 
-<div>
+@*<div>
     @Html.ActionLink("Заказать", "Index", "Cart",
     new { @class = "btn" })
-</div>
+</div>*@
 
 <div>
-    <b>Ваша корзина:</b>
-    @Model.Lines.Sum(x => x.Quantity) Товаров,
-    @Model.ComputeTotalValue().ToString("# руб")
+    <p>Ваша корзина:</p>
+    <p>@Model.Lines.Sum(x => x.Quantity) Товаров, @Model.ComputeTotalValue().ToString("# руб")</p>
 </div>
