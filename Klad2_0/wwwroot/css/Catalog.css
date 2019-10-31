@@ -11,7 +11,10 @@
 
 
 .DescriptionHeaderCatalog {
-    margin: 10px,17%, 10px,0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 17%;
+    margin-left: 17%;
     /*margin-left: 17%;
     margin-top: 10px;
     margin-bottom: 10px;*/

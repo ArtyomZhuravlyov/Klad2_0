@@ -68,6 +68,8 @@ namespace Domain.Entities
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
 
+        [Display(Name = "Вес товара")]
+        public int Weight { get; set; }
         //[Display(Name = "Основная категория 1")]
         //public string MainCategory1 { get; set; }
 
@@ -96,9 +98,9 @@ namespace Domain.Entities
         //public string SubCategory6 { get; set; }
 
 
-        
 
-         [Display(Name = "Утрений Состав")]
+
+        [Display(Name = "Утрений Состав")]
         public string CompositionMorning { get; set; }
 
         /// <summary>

@@ -1,5 +1,5 @@
 ﻿.shopping-cart {
-    width: 750px;
+    max-width: 1000px;
     margin: 80px auto;
     background: #FFFFFF;
     box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
@@ -110,14 +110,31 @@
     .description span:last-child {
         font-weight: 300;
         margin-top: 8px;
-        color: #86939E;
+        /*color: #86939E;*/
     }
 
+.textColumn{
+    float: left;
+}
 
+.textColumnName {
+    margin-left: 250px;
+}
+
+.textColumnQuantity {
+    margin-left: 102px;
+}
+
+.textColumnPrice {
+    margin-left: 95px;
+}
+.textColumnAmount {
+    margin-left: 127px;
+}
 
 .quantity {
     padding-top: 44px;
-    margin-right: 40px;
+    margin-right: 65px;
 }
 
     .quantity input {
@@ -139,9 +156,25 @@
     cursor: pointer;
     margin-top: 22px;
 }*/
+.buttonOrder {
+    float: right;
+    margin-right: 64px;
+    background-color: #fd8b2b;
+    border-color: #fd8b2b;
+    border-radius: 50px;
+    color: white;
+}
+    .buttonOrder:hover {
+        background-color: #ef7c0bc7;
+        border-color: #ef7c0bc7;
+        border-radius: 100px;
+        color: white;
+    }
 
-
-.buttonStyleCart {
+    .buttonOrder:active {
+        background-color: #ef7c0bc7;
+    }
+    .buttonStyleCart {
     background-color: #E1E8EE;
     border-radius: 6px;
     border: none;
@@ -164,23 +197,44 @@ input:focus {
 
 
 .total-price {
-    width: 50px;
+    width: 100px;
     padding-top: 48px;
     text-align: center;
     font-size: 16px;
     color: #43484D;
     font-weight: 300;
-    margin-left: 10px;
+    margin-left: 70px;
+}
+
+.total-total-price {
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+}
+
+.ContainerTotal-total-price {
+    float: right;
+    color: #5E6977;
+    font-size: 18px;
+    font-weight: 400;
+    margin-right: 60px;
+    margin-top: 5px;
+}
+
+.Total {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #E1E8EE;
 }
 
 .price {
-    width: 27px;
+    width: 100px;
     padding-top: 48px;
     text-align: center;
     font-size: 16px;
     color: #43484D;
     font-weight: 300;
-    font-style:initial;
+    font-style: initial;
 }
 
 @media (max-width: 800px) {

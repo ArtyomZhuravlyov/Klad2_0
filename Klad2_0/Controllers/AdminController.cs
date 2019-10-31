@@ -87,7 +87,7 @@ namespace Klad.Controllers
         [HttpPost]
         public ActionResult Delete(int productId)
         {
-            Product deletedProduct = db.DeleteGame(productId);
+            Product deletedProduct = db.DeleteProduct(productId);
             if (deletedProduct != null)
             {
                 TempData["message"] = string.Format("Продукт \"{0}\" был удалён",

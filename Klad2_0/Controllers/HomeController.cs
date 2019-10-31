@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Domain.Entities;
 using Newtonsoft.Json;
+using Klad2_0.Models;
 
 namespace Klad.Controllers
 {
@@ -123,10 +124,9 @@ namespace Klad.Controllers
         /// Главная страница
         /// </summary>
         /// <returns></returns>
-        public async Task<IActionResult> Main()
+        public  ActionResult Main()
         {
-            IQueryable<Product> source;
-
+            
             //source = db.Products.Where(x => x.Favourite == true);  //.Include(x => x.Company);
             //var items = await source.ToListAsync();
             List<Product> items = null;
@@ -187,6 +187,7 @@ namespace Klad.Controllers
             return PartialView(cart);
         }
 
+
         //public/* void */RedirectToActionResult/* RedirectResult*/ AddToCart(int productId)
         //{
         //    Product product = db.Products
@@ -195,7 +196,7 @@ namespace Klad.Controllers
         //       Cart cart = GetCart();
         //       cart.AddItem(product, 1);
         //       HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
-            
+
         //    //return Redirect(returnUrl);
         //    return RedirectToAction("Summary", cart);
         //}
@@ -262,7 +263,7 @@ namespace Klad.Controllers
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
             cart = GetCart();
 
-            return Redirect("/Home/AddToCart/-1");
+            return Redirect("/Cart/Summary/");
             
         }
 
@@ -319,9 +320,18 @@ namespace Klad.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public ViewResult Feedback()
         {
-            return View();
+            List<Feedback> list = db.Feedback.ToList();
+            return View(new FeedBackModel() { ListFeedBacks = list, feedback = new Feedback() });
+        }
+
+        [HttpPost]
+        public ActionResult AddFeedback(Feedback feedback)
+        {
+            db.SaveFeedback(feedback);
+            TempData["message"] = string.Format("Ваш отзыв успешно доставлен!");
+            return View("CompleteFeedBack");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

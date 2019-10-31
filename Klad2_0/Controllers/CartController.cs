@@ -135,9 +135,5 @@ namespace Klad.Controllers
             }
         }
 
-        public decimal GetTotalPrice()
-        {
-            return GetCart().ComputeTotalValue();
-        }
     }
 }

@@ -13,50 +13,75 @@
 </head>
 <body>
     <div class="shopping-cart">
-        <!-- Title -->
+        @if (Model.Cart.Lines.Count() != 0)
+        {<!-- Title -->
         <div class="title">
-            Ваша корзина
+            <p>Ваша корзина</p>
+            
+                <div class="textColumn textColumnName">
+                    Наименование
+                </div>
+                <div class="textColumn textColumnQuantity">
+                    Количество
+                </div>
+                <div class="textColumn textColumnPrice">
+                    Цена
+                </div>
+                <div class="textColumn textColumnAmount">
+                    Сумма
+                </div>
         </div>
-        @foreach (CartLine cartLine in Model.Cart.Lines)
+            @foreach (CartLine cartLine in Model.Cart.Lines)
+            {
+                <!-- Товар #1 -->
+                <div class="item">
+                    <div class="buttonsCart">
+                        <a class="delete-btn" href="/Home/RemoveLine/@cartLine.productCart.Id"></a> @*href="/Home/RemoveLine/@cartLine.productCart.Id"*@
+                        <span class="like-btn"></span>
+                    </div>
+
+                    <div class="image">
+                        <img src="~/images/Каталог товаров/@cartLine.productCart.Address" class="imageShoping-cart" width="100" height="110" alt="" />
+                    </div>
+
+                    <div class="description">
+                        <span>@cartLine.productCart.Name</span>
+                        @*<span>Bball High</span>
+                        <span>White</span>*@
+                    </div>
+
+                    <div class="quantity">
+                        <a class="plus-btn buttonStyleCart btn button" href="/Home/AddToCart/@cartLine.productCart.Id"><img src="~/images/plus.svg" /></a>
+                        @*<button class="plus-btn buttonStyleCart" type="button" name="button">
+                            <img src="~/images/plus.svg" alt="" />
+                        </button>*@
+                        <input type="text" name="name" value="@cartLine.Quantity">
+                        @*@Html.Raw(@Html.ActionLink("Добавить в корзину", "AddToCart",
+                        new { id = cartLine.productCart.Id }, new { @class = "compItem2  btn  buttonStyleCart" }, "<img src=\"~/ images / minus.svg\" />"))*@
+                        <a class="minus-btn buttonStyleCart btn button" href="/Home/RemoveOneProductToCart/@cartLine.productCart.Id"><img src="~/images/minus.svg" /></a>
+                        @*<button class="minus-btn buttonStyleCart" type="button" name="button">
+                            <img src="~/images/minus.svg" alt="" />
+                        </button>*@
+                    </div>
+                    <div class="price"> @cartLine.productCart.Price руб</div>
+                    <div class="total-price">@(cartLine.productCart.Price * cartLine.Quantity) руб</div>
+                </div>
+            }
+                <div class="Total">
+                    @Html.ActionLink("Оформить заказ", "Checkout", "Cart", null, new { @class = "btn buttonOrder" })
+                    <div class="ContainerTotal-total-price">
+                        Итого к оплате:
+                        <a class="total-total-price">@Model.Cart.ComputeTotalValue() руб</a>
+                    </div>
+
+                </div>
+        }
+        else
         {
-            <!-- Товар #1 -->
-            <div class="item">
-                <div class="buttonsCart">
-                    <a class="delete-btn" href="/Home/RemoveLine/@cartLine.productCart.Id"></a> @*href="/Home/RemoveLine/@cartLine.productCart.Id"*@
-                    <span class="like-btn"></span>
-                </div>
-
-                <div class="image">
-                    <img src="~/images/Каталог товаров/@cartLine.productCart.Address" class="imageShoping-cart" width="100" height="110" alt="" />
-                </div>
-
-                <div class="description">
-                    <span>@cartLine.productCart.Name</span>
-                    @*<span>Bball High</span>
-                    <span>White</span>*@
-                </div>
-
-                <div class="quantity">
-                    <a class="plus-btn buttonStyleCart btn button" href="/Home/AddToCart/@cartLine.productCart.Id"><img src="~/images/plus.svg" /></a>
-                    @*<button class="plus-btn buttonStyleCart" type="button" name="button">
-                        <img src="~/images/plus.svg" alt="" />
-                    </button>*@
-                    <input type="text" name="name" value="@cartLine.Quantity">
-                    @*@Html.Raw(@Html.ActionLink("Добавить в корзину", "AddToCart",
-                    new { id = cartLine.productCart.Id }, new { @class = "compItem2  btn  buttonStyleCart" }, "<img src=\"~/ images / minus.svg\" />"))*@
-                    <a class="minus-btn buttonStyleCart btn button" href="/Home/RemoveOneProductToCart/@cartLine.productCart.Id"><img src="~/images/minus.svg" /></a>
-                    @*<button class="minus-btn buttonStyleCart" type="button" name="button">
-                        <img src="~/images/minus.svg" alt="" />
-                    </button>*@
-                </div>
-                <div class="price"> @cartLine.productCart.Price</div>
-                <div class="total-price">@(cartLine.productCart.Price * cartLine.Quantity)</div>
+            <div class="title">
+                Ваша корзина пуста
             </div>
         }
-        <div>
-            <a class="total-total-price">@Model.Cart.ComputeTotalValue()</a>
-            @Html.ActionLink("Оформить заказ", "Checkout", "Cart", null, new { @class = "btn btn-primary" })
-        </div>
     </div>
 
     <script type="text/javascript">
@@ -65,19 +90,27 @@
         });
     </script>
 
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $('.delete-btn').on('click', function (e) {
             e.preventDefault();
             $.get(this.href, function (data) { $('#Cart').html(data); });
 
-            $(".total-price").each(function () {
+            
 
-                value += parseInt($(this).text());
-                console.log(value);
-            });
-            $('.total-total-price').text(value);        
+           // $.get("/Cart/Summary/");
+            //$(location).attr('href', "/Cart/Summary/");
+            //$(location).attr('href', "/Cart/Summary/");
+            //$(location).attr('href', "/Cart/Summary/");
+            //$(location).attr('href', "/Cart/Summary/");
+            //var value = 0;
+            //$(".total-price").each(function () {
+
+            //    value += parseInt($(this).text());
+            //    console.log(value);
+            //});
+            //$('.total-total-price').text(value);        
         });
-    </script>
+    </script>*@
 
     <script type="text/javascript">
         $('.minus-btn').on('click', function (e) {
@@ -94,17 +127,19 @@
                 value = 0;
             }
 
+            
             $input.val(value);
             value = parseInt($this.closest('div').next().text()) * value;
-            $this.closest('div').next().next().text(value); //общий счёт для одного товара
+            $this.closest('div').next().next().text(value + " руб"); //общий счёт для одного товара
             //Скидка для одного товара
             //value = 
+            value = 0;
             $(".total-price").each(function () {
 
                 value += parseInt($(this).text());
                 console.log(value);
             });
-            $('.total-total-price').text(value);
+            $('.total-total-price').text(value+" руб");
                    //$.get("/Cart/GetTotalPrice/", function (data) { $('.total-total-price').text(data); });                //Общий счёт для всех товаров
             //$this.closest('div').next().text(4);
 
@@ -130,7 +165,7 @@
 
             $input.val(value);
             value = parseInt($this.closest('div').next().text()) * value;
-            $this.closest('div').next().next().text(value); //общий счёт для одного товара
+            $this.closest('div').next().next().text(value + " руб"); //общий счёт для одного товара
 
             value = 0;
             //$('.total-price').each(function () {
@@ -141,9 +176,9 @@
                 value += parseInt($(this).text());
                 console.log(value);
             });
-            $('.total-total-price').text(value);
-                 //Общий счёт для всех товаров                                              //Скидка для одного товара
-        });                                                 //Общий счёт для всех товаров
+            $('.total-total-price').text(value+" руб");//Общий счёт для всех товаров
+                                                               //Скидка для одного товара
+        });                                             
 
     </script>
 

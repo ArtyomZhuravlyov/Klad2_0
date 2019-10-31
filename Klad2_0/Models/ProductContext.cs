@@ -15,6 +15,8 @@ namespace Klad.Models
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Feedback> Feedback { get; set; }
+
         public ProductContext(DbContextOptions<ProductContext> options)
             : base(options)
         {
@@ -40,6 +42,7 @@ namespace Klad.Models
                     dbEntry.Category4 = product.Category4;
                     dbEntry.Category5 = product.Category5;
                     dbEntry.Address = product.Address;
+                    dbEntry.Weight = product.Weight;
                     dbEntry.Composition = product.Composition;
                     dbEntry.Contraindications = product.Contraindications;
                     dbEntry.FormRelease = product.FormRelease;
@@ -71,7 +74,14 @@ namespace Klad.Models
         }
 
 
-        public Product DeleteGame(int productId)
+        public void SaveFeedback(Feedback feedback)
+        {
+            if (feedback.Id == 0)
+                this.Feedback.Add(feedback);
+            this.SaveChanges();
+        }
+
+        public Product DeleteProduct(int productId)
         {
             Product dbEntry = this.Products.Find(productId);
             if (dbEntry != null)

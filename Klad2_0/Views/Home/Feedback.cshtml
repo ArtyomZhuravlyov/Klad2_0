@@ -1,0 +1,51 @@
+﻿@using Domain.Entities
+@model Klad2_0.Models.FeedBackModel
+<head>
+    <link rel="stylesheet" href="~/css/Feedback.css" />
+</head>
+<body>
+    <div class="containerFeedback">
+       
+            @*<div class="inner-testimonial itemFeedback">
+                <img src="~/images/Feedback/client2.png">
+                <h3 class="city-name">Иван, Москва</h3>
+                <p class="text-testimonial">Текст отзыва.</p>
+            </div>*@
+      
+       
+          
+    
+     
+            <div class="inner-testimonial itemFeedback">
+                <img src="~/images/Feedback/client2.png" alt="Клиент 3">
+                <h3 class="city-name">Лариса, Ачинск</h3>
+                <p class="text-testimonial">Здравствуйте. Брала Репростанол отцу.В силу возраста начались проблемы со здоровьем. Отличный препарат,
+                    который помог буквально через неделю. Пропил курс. Проблем как не бывало.</div>
+       
+    </div>
+    @*@using (Html.BeginForm("AddFeedback", "Home", FormMethod.Post))
+        {*@
+    <form class="decor" asp-controller="Home" asp-action="AddFeedback" method="post">
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+            <h3>Оставьте отзыв о сайте, магазине или товаре</h3>
+            <input type="text" placeholder="Ваше имя" name="Name">
+            <input type="text" placeholder="Ваш город" name="City">
+            <textarea placeholder="Отзыв..." rows="3" name="Text"></textarea>
+            <input type="submit" value="Отправить">
+        </div>
+    </form>
+    @*<label>Ваше имя</label>  type="email"!!!!!!!!!
+        @Html.TextBox("Name", null,
+                           new { @class = "form-control" })
+        <label>Ваш город</label>
+        @Html.TextBox("City", null,
+                              new { @class = "form-control" })
+        <label>Отзыв</label>
+        @Html.TextArea("Text", null,
+                     new { @class = "form-control", rows = 4 })
+        <input type="submit" value="Сохранить" class="btn btn-primary" />*@
+    @*}*@
+</body>
