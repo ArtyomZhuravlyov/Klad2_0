@@ -38,7 +38,7 @@ namespace Klad.Controllers
             pageSize = 18; 
 
                 // несколько категорий
-            source = db.Products.Where(x => x.Category == category || x.Category2 == category /*|| x.Category3 == category || x.Category4 == category*/);
+            source = db.Products.Where(x => x.Category == category || x.Category2 == category || x.Category3 == category || x.Category4 == category);
 
                 var count =  source.Count();
             //var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();

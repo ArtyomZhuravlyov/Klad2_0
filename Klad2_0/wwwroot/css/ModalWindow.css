@@ -31,6 +31,9 @@
     color: #F9F0DA;
 }
 
+.textMarginModal {
+    margin: 22px 0;
+}
 
 .imgModal {
     float: left;
@@ -38,6 +41,7 @@
 
 .DescriptionModal {
     margin-left: 12px;
+    padding: 0 20px;
 }
 
 .textModal {
@@ -47,14 +51,30 @@
     white-space: pre-wrap;
 }
 
-.textHeadModal {
+.list6a {
+    padding: 0;
+    list-style: none;
+}
+
+.textModal li {
+    list-style: none;
+}
+
+    .textModal li:before {
+        padding-right: 10px;
+        font-weight: bold;
+        color: #f69a73;
+        content: "\2606";
+    }
+
+        .textHeadModal {
     font-size: 21px;
     color: black;
     font-weight: bold;
     text-align: center;
     border-color: #008a77;
-    border-bottom: 3px;
-    border-bottom-color: #008a77;
+    border-bottom: 2px;
+    border-bottom-color: #eac9ae/*#008a77*/;
     /*border-bottom-color: #2f241e;*/
     border-top: 0px;
     border-left: 0px;
@@ -64,9 +84,10 @@
 }
 
 .textHeadInputModal {
-    font-size: 23px;
-    text-align:center;
-    color: #008a77;
+    /*font-size: 23px;*/
+    font-size: 21px;
+    text-align: center;
+    color: #803a00 /*#008a77*/;
 }
 
 .textHeadHeadModal {
@@ -75,10 +96,10 @@
 }
 
 .topBorderModal {
-    border-top-color: #008a77;
+    border-top-color: #eac9ae /*#008a77*/;
     border-style: solid;
     margin-left: 0px;
-    border-top-width: 3px;
+    border-top-width: 2px;
     border-right-width: 0px;
     border-bottom-width: 0px;
     border-left-width: 0px;
@@ -96,6 +117,28 @@
         /* Цвет текста */
         /* background: #008;  Цвет фона */
     }
+
+.list6a {
+    padding: 0;
+    list-style: none;
+}
+
+.list6a li {
+    padding: 6px;
+}
+
+    .list6a li:before {
+        padding-right: 10px;
+        font-weight: bold;
+        color: #f69a73;
+        content: "\2606";
+        transition-duration: 0.5s;
+    }
+
+    /*.list6a li:hover:before {
+        color: #337AB7;
+        content: "\2605";
+    }*/
 
 @media(max-width:768px) {
     .textModal {

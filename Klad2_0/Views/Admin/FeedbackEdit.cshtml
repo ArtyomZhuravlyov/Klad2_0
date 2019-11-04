@@ -1,0 +1,28 @@
+﻿@model Domain.Entities.Feedback
+@{
+    ViewData["Title"] = "FeedbackEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Редактирование отзыва</h2>
+@using (Html.BeginForm("FeedbackEdit", "Admin",
+FormMethod.Post))
+{
+    @foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        <div class="form-group">
+            <label>@(property.DisplayName ?? property.PropertyName)</label>
+            @Html.TextBox(property.PropertyName, null,
+                      new { @class = "form-control" })
+            @Html.ValidationMessage(property.PropertyName)
+        </div>
+
+    }
+    <div class="panel-footer">
+        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        @Html.ActionLink("Отменить изменения и вернуться к списку", "FeedbackAdmin", null, new
+        {
+            @class = "btn btn-default"
+        })
+    </div>
+}

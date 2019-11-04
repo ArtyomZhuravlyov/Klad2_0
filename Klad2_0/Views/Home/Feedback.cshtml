@@ -5,23 +5,48 @@
 </head>
 <body>
     <div class="containerFeedback">
-       
-            @*<div class="inner-testimonial itemFeedback">
-                <img src="~/images/Feedback/client2.png">
-                <h3 class="city-name">Иван, Москва</h3>
-                <p class="text-testimonial">Текст отзыва.</p>
-            </div>*@
-      
-       
-          
-    
-     
-            <div class="inner-testimonial itemFeedback">
-                <img src="~/images/Feedback/client2.png" alt="Клиент 3">
-                <h3 class="city-name">Лариса, Ачинск</h3>
-                <p class="text-testimonial">Здравствуйте. Брала Репростанол отцу.В силу возраста начались проблемы со здоровьем. Отличный препарат,
-                    который помог буквально через неделю. Пропил курс. Проблем как не бывало.</div>
-       
+
+        @*<div class="inner-testimonial itemFeedback">
+            <img src="~/images/Feedback/client2.png">
+            <h3 class="city-name">Иван, Москва</h3>
+            <p class="text-testimonial">Текст отзыва.</p>
+        </div>*@
+
+
+        <div class="inner-testimonial itemFeedback">
+            <img src="~/images/Feedback/client2.png" alt="Клиент 2">
+            <h3 class="city-name">Галина, Ачинск</h3>
+            <p class="text-testimonial">
+                Купила попробовать крем Добродея пантовый, результат превзошёл все ожидания,
+                кожа супер,подтянутая,упругая,выравнивает цвет лица,только если кто-то любит парфюмированные крема,
+                то этот крем не для вас,он полностью натуральный,безо всяких добавок,запах травяной,при нанесении на лицо
+                крем не сразу впитывается,нужно чуть подождать,зато потом кожа просто чудо,так же можно наносить на руки,ножки,
+                кожа просто бархатная,так что рекомендую,при небольшой цене суперский результат.
+            </p>
+        </div>
+
+
+        <div class="inner-testimonial itemFeedback">
+            <img src="~/images/Feedback/client2.png" alt="Клиент 3">
+            <h3 class="city-name">Лариса, Ачинск</h3>
+            <p class="text-testimonial">
+                Здравствуйте. Брала Репростанол отцу.В силу возраста начались проблемы со здоровьем. Отличный препарат,
+                который помог буквально через неделю. Пропил курс. Проблем как не бывало.
+            </p>
+        </div>
+        @foreach (Feedback feedback in Model.ListFeedBacks)
+        {
+            if (feedback.Show)
+            {
+                <div class="inner-testimonial itemFeedback">
+                    <img src=@feedback.AdressPicture>
+                    <h3 class="city-name">@feedback.Name, @feedback.City</h3>
+                    <p class="text-testimonial">
+                        @feedback.Text
+                    </p>
+                </div>
+            }
+        }
     </div>
     @*@using (Html.BeginForm("AddFeedback", "Home", FormMethod.Post))
         {*@

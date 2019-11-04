@@ -18,10 +18,33 @@
     @foreach (var property in ViewData.ModelMetadata.Properties)
     {
 
-        <div class="form-group">
-            <label>@(property.DisplayName ?? property.PropertyName)</label>
-            @Html.TextBox(property.PropertyName, null, new { @class = "form-control MyForm-control" })
-        </div>
+    <div class="form-group">
+        <label>@(property.DisplayName ?? property.PropertyName)</label>
+        @if (property.DisplayName == "Комментарий к заказу")
+        {
+            @Html.TextArea(property.PropertyName, null, new { @class = "form-control MyForm-control", rows = 2 })
+        }
+        else
+        {
+            @if (property.DisplayName == "Доставка")
+            {
+                @*<label>Доставка</label>*@
+                <select id="Delivery" name="Delivery" class="">
+                    <option value="DPD">DPD</option>
+                    <option value="Самовывоз">Самовывоз</option>
+                </select>
+                @*<select name="Доставка">
+                    <option value="12">1</option>
+                    <option value="22">2</option>
+                    <option value="33">3</option>
+                </select>*@
+            }
+            else
+            {
+                @Html.TextBox(property.PropertyName, null, new { @class = "form-control MyForm-control" })
+            }
+        }
+    </div>
 
     }
     @*<div class="form-group">
@@ -47,7 +70,18 @@
         </div>*@
 
     <div class="text-center">
-        <input class="btn btn-primary" type="submit" value="Обработать заказ" />
+        <input class="btn btn-primary" style="   
+    background: #f69a73;
+    border-bottom: 4px solid #d87d56;
+    color: white;
+    font-size: 14px;
+        padding: 0 20px;
+    margin-bottom: 10px;
+         outline: none; 
+    line-height: 40px;
+    border-width: 0;
+    border-radius: 20px;
+    box-sizing: border-box;" type="submit" value="Обработать заказ" />
     </div>
 </div>
 }

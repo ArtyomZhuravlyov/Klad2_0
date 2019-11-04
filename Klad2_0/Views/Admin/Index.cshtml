@@ -6,6 +6,14 @@
 }
 
 <div class="panel panel-default">
+    <div class="panel-footer">
+        @Html.ActionLink("Просмотр отзывов", "FeedbackAdmin", null,
+            new { @class = "btn btn-default" })
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Добавить товар", "Create", null,
+            new { @class = "btn btn-default" })
+    </div>
     <div class="panel-heading">
         <h3>Список товаров</h3>
     </div>

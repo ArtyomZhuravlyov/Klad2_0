@@ -35,6 +35,12 @@ namespace Domain.Entities
         [Display(Name = "Электронная почта")]
         public string Mail { get; set; }
 
+        [Display(Name = "Комментарий к заказу")]
+        public string Comment { get; set; }
+
+        [Display(Name = "Доставка")]
+        public string Delivery { get; set; }
+
         //public bool GiftWrap { get; set; }
 
     }

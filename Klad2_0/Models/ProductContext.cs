@@ -78,6 +78,18 @@ namespace Klad.Models
         {
             if (feedback.Id == 0)
                 this.Feedback.Add(feedback);
+            else
+            {
+                Feedback dbEntry = this.Feedback.Find(feedback.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = feedback.Name;
+                    dbEntry.AdressPicture = feedback.AdressPicture;
+                    dbEntry.City = feedback.City;
+                    dbEntry.Text = feedback.Text;
+                    dbEntry.Show = feedback.Show;
+                }
+            }
             this.SaveChanges();
         }
 

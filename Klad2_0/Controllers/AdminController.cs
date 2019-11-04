@@ -19,8 +19,29 @@ namespace Klad.Controllers
 
         public AdminController(ProductContext context)
         {
-
             db = context;
+        }
+
+        public IActionResult FeedbackAdmin()
+        {
+            return View(db.Feedback);
+        }
+
+        public ViewResult FeedbackEdit(int id)
+        {
+            Feedback feedback  = db.Feedback
+                .FirstOrDefault(g => g.Id == id);
+            return View(feedback);
+        }
+
+        // Перегруженная версия Edit() для сохранения изменений
+        [HttpPost]
+        public ActionResult FeedbackEdit(Feedback feedback)
+        {
+ 
+                db.SaveFeedback(feedback);
+                TempData["message"] = string.Format("Изменения были сохранены");
+                return RedirectToAction("FeedbackAdmin");
         }
 
         public IActionResult Index()

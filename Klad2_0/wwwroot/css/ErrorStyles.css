@@ -1,5 +1,5 @@
 ﻿.field-validation-error {
-    color: #f00;
+    color: #f69a73 /*#f00*/;
 }
 
 .field-validation-valid {
@@ -8,12 +8,12 @@
 
 .input-validation-error {
     border: 1px solid #f00;
-    background-color: #fee;
+    background-color: #f3dbd1a6 /*#fee*/;
 }
 
 .validation-summary-errors {
     font-weight: bold;
-    color: #f00;
+    color: #f69a73 /*#f00*/;
 }
 
 .validation-summary-valid {
