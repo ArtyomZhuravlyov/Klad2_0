@@ -7,10 +7,10 @@
     <div class="containerFeedback">
 
         @*<div class="inner-testimonial itemFeedback">
-            <img src="~/images/Feedback/client2.png">
-            <h3 class="city-name">Иван, Москва</h3>
-            <p class="text-testimonial">Текст отзыва.</p>
-        </div>*@
+                <img src="~/images/Feedback/client2.png">
+                <h3 class="city-name">Иван, Москва</h3>
+                <p class="text-testimonial">Текст отзыва.</p>
+            </div>*@
 
 
         <div class="inner-testimonial itemFeedback">
@@ -44,7 +44,17 @@
                     <p class="text-testimonial">
                         @feedback.Text
                     </p>
+                    @if (!string.IsNullOrEmpty(feedback.Answer))
+                    {
+                    <div class="inner-testimonial itemAnswerFeedback">
+                        <label>Ответ</label>
+                        <p class="text-testimonial">
+                            @Html.Raw(feedback.Answer)
+                        </p>
+                    </div>
+                    }
                 </div>
+
             }
         }
     </div>

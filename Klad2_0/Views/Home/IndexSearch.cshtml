@@ -45,12 +45,11 @@
                         <a href=""><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
                     </div>
                     <div class="loop-action">
-                        @*<a href=" @Html.ActionLink(c.Name, "Details",
-                            new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
+                      
                         @Html.ActionLink("Просмотр", "Details",
                             new { id = product.Id }, new { @class = "compItem btn " } )
-                        @Html.ActionLink("Добавить в корзину", "AddToCart",
-            new { id = product.Id }, new { @class = "compItem2  btn" } )
+                        @*@Html.ActionLink("Добавить в корзину", "AddToCart",
+            new { id = product.Id }, new { @class = "compItem2  btn" } )*@
                     </div>
                 </div>
 
@@ -66,17 +65,6 @@
 
         }
     </div>
-
-    @*<div class='modal' id='modal1'>
-            <div class='content'>
-                <h1 class='title'>This is a modal</h1>
-                <p>
-                    @product.Description
-                </p>
-                <a class='btn close-modal' data-modal="#modal1" href="#">K Bye</a>
-            </div>
-        </div>*@
-
 
 
     @*постраничная навигация*@

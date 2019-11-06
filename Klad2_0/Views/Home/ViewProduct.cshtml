@@ -37,60 +37,52 @@
             <a>@Html.Raw(Model.Description) </a>
         </div>
     </div>
-    @if (Model.IndicationsForUse != null)
+    @if (Model.IndicationsForUse != null || Model.Composition != null)
     {
-    <div class="modal-body DescriptionModal textModal topBorderModal">
-        @if (!string.IsNullOrEmpty(Model.FullDescription))
-        {
-            @*<div class="textHeadInputModal">Показания к применению</div>*@
-            <a>@Html.Raw(Model.FullDescription) </a>
-        }
-        @if (!string.IsNullOrEmpty(Model.IndicationsForUse))
-        {
-            <div class="textHeadInputModal">Показания к применению</div>
-            <a>@Html.Raw(Model.IndicationsForUse) </a>
-        }
-        @if (!string.IsNullOrEmpty(Model.Composition))
-        {
-            <div class="textHeadInputModal">Состав</div>
-            <a>@Html.Raw(Model.Composition)</a>
+        <div class="modal-body DescriptionModal topBorderModal ">
+            @if (!string.IsNullOrEmpty(Model.FullDescription))
+            {
+                <div class="textMarginModal textModal">
+                    @Html.Raw(Model.FullDescription)
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(Model.IndicationsForUse))
+            {
+                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Показания к применению: </span>@Html.Raw(Model.IndicationsForUse)</div>
 
-        }
-        else if (!string.IsNullOrEmpty(Model.CompositionMorning))
-        {
-            <div class="textHeadInputModal">Утренный состав</div>
-            <a>@Html.Raw(Model.CompositionMorning)</a>
-            <div class="textHeadInputModal">Вечерний состав</div>
-            <a>@Html.Raw(Model.CompositionEvening)</a>
-        }
+            }
+            @if (!string.IsNullOrEmpty(Model.Composition))
+            {
+                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Состав: </span>@Html.Raw(Model.Composition)</div>
 
+            }
+            else if (!string.IsNullOrEmpty(Model.CompositionMorning))
+            {
+                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Утренный состав: </span>@Html.Raw(Model.CompositionMorning)</div>
+                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Вечерний состав: </span>@Html.Raw(Model.CompositionEvening)</div>
+            }
+            @if (!string.IsNullOrEmpty(Model.MethodOfUse))
+            {
+                <div class="textMarginModal textModal"> <span class="textHeadInputModal">Способ применения: </span>@Html.Raw(Model.MethodOfUse) </div>
+            }
 
-        @if (!string.IsNullOrEmpty(Model.MethodOfUse))
-        {
-            <div class="textHeadInputModal">Способ применения</div>
-            <a>@Html.Raw(Model.MethodOfUse) </a>
-        }
-
-        @if (!string.IsNullOrEmpty(Model.Contraindications))
-        {
-            <div class="textHeadInputModal">Противопоказания</div>
-            <a>@Html.Raw(Model.Contraindications) </a>
-        }
-        @if (!string.IsNullOrEmpty(Model.FormRelease))
-        {
-            <div class="textHeadInputModal">Форма выпуска</div>
-            <a>@Html.Raw(Model.FormRelease) </a>
-        }
-        @if (!string.IsNullOrEmpty(Model.ShelfLife))
-        {
-            <div class="textHeadInputModal">Срок годности</div>
-            <a>@Html.Raw(Model.ShelfLife) </a>
-        }
-        @if (!string.IsNullOrEmpty(Model.StorageConditions))
-        {
-            <div class="textHeadInputModal">Условия хранения</div>
-            <a>@Html.Raw(Model.StorageConditions) </a>
-        }
-    </div>
+            @if (!string.IsNullOrEmpty(Model.Contraindications))
+            {
+                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Противопоказания: </span>@Html.Raw(Model.Contraindications)</div>
+            }
+            @if (!string.IsNullOrEmpty(Model.FormRelease))
+            {
+                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Форма выпуска: </span>@Html.Raw(Model.FormRelease)</div>
+            }
+            @if (!string.IsNullOrEmpty(Model.ShelfLife))
+            {
+                <div class="textMarginModal   textModal"> <span class="textHeadInputModal ">Срок годности: </span>@Html.Raw(Model.ShelfLife) </div>
+            }
+            @if (!string.IsNullOrEmpty(Model.StorageConditions))
+            {
+                <div class="textMarginModal   textModal"> <span class="textHeadInputModal">Условия хранения: </span>@Html.Raw(Model.StorageConditions) </div>
+            }
+            
+        </div>
     }
 </div>

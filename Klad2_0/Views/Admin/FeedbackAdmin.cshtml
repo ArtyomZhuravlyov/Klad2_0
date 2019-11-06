@@ -16,17 +16,27 @@
                 <th>Имя</th>
                 <th class="text-right">Город</th>
                 <th class="text-center">Текст</th>
+                <th class="text-center">Ответ</th>
                 <th class="text-center">Показывать</th>
             </tr>
             @foreach (var item in Model)
             {
+                
             <tr>
                 <td class="text-right">@item.Id</td>
-                <td>@Html.ActionLink(item.Name, "FeedbackEdit", new { item.Id })</td>
+                @if (item.Name != null)
+                {
+                    <td>@Html.ActionLink(item.Name, "FeedbackEdit", new { item.Id })</td>
+                }
+                else
+                {
+                    <td class="text-right">@item.Name</td>
+                }
                 @*<td class="text-right">@item.Name</td>*@
                 <td class="text-right">@item.City</td>
                 @*<td class="text-right"> <textarea width="100%" rows="3">@item.Text </textarea></td>*@
                 <td class="text-center">@item.Text </td>
+                <td class="text-center">@item.Answer </td>
                 <td class="text-center">@item.Show </td>
             </tr>
             }

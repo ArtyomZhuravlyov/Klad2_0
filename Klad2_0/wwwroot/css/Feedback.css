@@ -17,6 +17,15 @@
     border-radius: 30px;
 }
 
+.itemAnswerFeedback {
+    text-align: center;
+    width: 100%;
+    color: #525050;
+    background-color: #fffdfc6e;
+    border-radius: 30px;
+    padding-top: 12px;
+}
+
 .text-testimonial {
     padding: 15px;
 }

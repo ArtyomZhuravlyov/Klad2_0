@@ -25,5 +25,8 @@ namespace Domain.Entities
 
         [Display(Name = "Показывать")]
         public bool Show { get; set; }
+
+        [Display(Name = "Ответ")]
+        public string Answer { get; set; }
     }
 }

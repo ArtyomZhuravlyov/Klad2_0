@@ -85,6 +85,7 @@ namespace Klad.Models
                 {
                     dbEntry.Name = feedback.Name;
                     dbEntry.AdressPicture = feedback.AdressPicture;
+                    dbEntry.Answer = feedback.Answer;
                     dbEntry.City = feedback.City;
                     dbEntry.Text = feedback.Text;
                     dbEntry.Show = feedback.Show;
