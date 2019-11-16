@@ -17,6 +17,8 @@ namespace Klad.Models
 
         public DbSet<Feedback> Feedback { get; set; }
 
+        public DbSet<WordsSearch> WordsSearch { get; set; }
+
         public ProductContext(DbContextOptions<ProductContext> options)
             : base(options)
         {
@@ -73,6 +75,12 @@ namespace Klad.Models
             this.SaveChanges();
         }
 
+
+        public void AddWordsSearch(string word)
+        {
+            this.WordsSearch.Add(new WordsSearch {Word=word });
+            this.SaveChanges();
+        }
 
         public void SaveFeedback(Feedback feedback)
         {

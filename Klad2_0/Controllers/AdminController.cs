@@ -48,6 +48,11 @@ namespace Klad.Controllers
         {
             return View(db.Products);
         }
+        public IActionResult WordsAdmin()
+        {
+            return View(db.WordsSearch);
+        }
+        
 
         public ViewResult Edit(int id)
         {
@@ -58,7 +63,7 @@ namespace Klad.Controllers
 
         // Перегруженная версия Edit() для сохранения изменений
         [HttpPost]
-        public ActionResult Edit(Product product, IFormFile Image)
+        public ActionResult Edit(Product product, IFormFile Image, string action)
         {
             if (ModelState.IsValid)
             {
@@ -72,6 +77,8 @@ namespace Klad.Controllers
                 }
                 db.SaveProduct(product);
                 TempData["message"] = string.Format("Изменения \"{0}\" были сохранены", product.Name);
+                if (action== "SaveAndNextProduct")
+                    return RedirectToAction("Edit", new { id=++product.Id});
                 return RedirectToAction("Index");
             }
             else

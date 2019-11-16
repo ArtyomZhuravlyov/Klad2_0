@@ -67,6 +67,8 @@ namespace Klad.Controllers
         /// <returns></returns>
         public async Task<IActionResult> IndexSearch(string search, int page = 1 )
         {
+            // Task task = new Task(()=>)
+            db.AddWordsSearch(search);
             int pageSize;
             IQueryable<Product> source;
             //  IQueryable<Product> source2;
@@ -95,6 +97,10 @@ namespace Klad.Controllers
                 }
             }
             var count = productsSearch.Count();
+
+            if (count == 0)
+                return View("Message", "К сожалению, по вышему запросы ничего не было найдено");
+
             var items = productsSearch.Skip((page - 1) * pageSize).Take(pageSize);
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
             PagesLink pagesLink = new PagesLink(pageViewModel);
