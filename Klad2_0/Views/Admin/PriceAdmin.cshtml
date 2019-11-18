@@ -1,0 +1,100 @@
+﻿@*@model Lisi<Domain.Entities.Product>*@
+@model List<Domain.Entities.Product>
+@using Domain.Entities
+@{
+    ViewData["Title"] = "PriceAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/css/Feedback.css" />
+</head>
+<h2>PriceAdmin</h2>
+@using (Html.BeginForm("PriceAdmin", "Admin",
+FormMethod.Post))
+{
+    <input type="submit" value="Изменить" class="btn btn-primary" />
+    <table class="table table-striped table-condensed table-bordered">
+        <tr>
+            <th class="text-right">ID</th>
+            <th width="50%">Название</th>
+            <th class="text-center">Picture</th>
+            <th class="text-center">Цена</th>
+            <th class="text-center">Вес</th>
+            @*<th class="text-center">Действие</th>*@
+        </tr>
+
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+        <tr class="form-group">
+            <th class="text-right"> @Html.EditorFor(m => m[i].Id, "Id")</th>
+            <th>@Html.EditorFor(m => m[i].Name, new { @class = "with100" })</th>
+            <th class="text-right">
+                 <img src="~/images/Каталог товаров/@Html.DisplayFor(m => m[i].Address) " width="70" height="70" />
+            </th>
+            <th class="text-right">
+                @Html.EditorFor(m => m[i].Price)
+            </th>
+            <th class="text-right">
+                @Html.EditorFor(m => m[i].Weight)
+            </th>
+            @*<th class="text-center">
+        </th>*@
+            @*почему- то не работает передача всего product!!!!*@
+            @*@Html.Hidden("id", product_.Id)
+        @Html.Hidden("product2", product_)*@
+            @*@Html.Hidden("id", product.Id)*@
+
+
+
+        </tr>
+
+        }
+        }
+    </table>
+    <input type="submit" />
+}
+
+
+@*<table class="table table-striped table-condensed table-bordered">
+        <tr>
+            <th class="text-right">ID</th>
+            <th>Название</th>
+            <th class="text-right">Цена</th>
+            <th class="text-center">Вес</th>
+            <th class="text-center">Действие</th>
+        </tr>
+
+        @foreach (var product_ in Model)
+        {
+            @using (Html.BeginForm("PriceAdmin", "Admin",
+    FormMethod.Post))
+            {
+
+                <tr class="form-group">
+                    <th class="text-right">@(product_.Id)</th>
+                    <th>@(product_.Name)</th>
+                    <th class="text-right">
+                        @Html.TextBox("Price", product_.Price,
+                         new { @class = "form-control" })
+                    </th>
+                    <th class="text-right">
+                        @Html.TextBox("Weight", product_.Weight,
+                         new { @class = "form-control" })
+                    </th>
+                    <th class="text-center">*@
+
+@*почему- то не работает передача всего product!!!!*@
+@*@Html.Hidden("id", product_.Id)
+                        @Html.Hidden("product2", product_)
+
+                        <input type="submit" value="Изменить" class="btn btn-primary" />
+
+                    </th>
+                </tr>
+
+            }
+        }
+    </table>*@
+
+
+

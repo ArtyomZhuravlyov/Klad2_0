@@ -45,7 +45,13 @@
     font-size:20px;
 }
 
+.with100{
+    width:100%;
+}
 
+.text-box{
+    width:100%;
+}
 
 .decor {
     position: relative;

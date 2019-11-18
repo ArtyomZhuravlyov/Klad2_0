@@ -159,12 +159,13 @@
     height:100%;
 }
 
-.poseMain{
-    margin-left:0px;
-}
 
-.GeneralHeader{
-    position: relative;
-    line-height:12px;
-}
+        .poseMain {
+        margin-left: 0px;
+    }
+
+    .GeneralHeader {
+        position: relative;
+        line-height: 13px;
+    }
 }

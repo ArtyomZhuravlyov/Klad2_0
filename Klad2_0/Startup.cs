@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,11 @@ namespace Klad
             //});
             services.AddDistributedMemoryCache();
             services.AddSession();
+
+            services.Configure<FormOptions>(options =>
+            {
+                options.ValueCountLimit = int.MaxValue;
+            });
 
             services.AddCors(options =>
             {

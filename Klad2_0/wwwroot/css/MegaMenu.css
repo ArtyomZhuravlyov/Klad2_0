@@ -197,6 +197,8 @@ a {
         display:block; /*чтобы перевести в колонку*/
     }
 
+        
+
     .top-menu li {
         width: 100%;
         height: auto !important;
@@ -207,19 +209,19 @@ a {
     }
 
         .top-menu > li > a {
-            font-size:8px;
+            font-size: 10px;
             padding: 2px;
         }
 
     .submenu,
     .submenu-standart {
 
-        /*position: relative;*/
+        position: relative;
         display: none;
         box-shadow: none;
         background: rgba(0,0,0,.02);
         border-top: 0px solid #e5e5e5;
-        position: absolute;
+        /*position: absolute;*/
     }
 
     .submenu-standart {
@@ -230,9 +232,14 @@ a {
         border-right: none;
         border-bottom: 1px solid #e5e5e5;
         padding: 18px;
+        
     }
 
-    .submenu h3 {
+    /*.submenu li a, .submenu-standart li a {
+        font-size: 17px;
+    }*/
+
+        .submenu h3 {
         margin: 0 0 10px
     }
 
@@ -246,20 +253,28 @@ a {
 
     .top-menu > li:hover .submenu,
     .top-menu > li:hover .submenu-standart {
-        display: block;
+        /*display: block;*/
     }
 
     .top-menu > li:hover .submenu,
     .top-menu > li:hover .submenu-standart {
-        opacity: 0;
-        visibility: hidden;
-        transform: none;
+     
+    /* visibility: hidden; */
+        opacity: 1;
+        visibility: visible;
+        /*transform: none;*/
     }
 
     .HeightNull {
         height: 0px;
         line-height: 0px;
         padding: 0px 0;
+    }
+
+    .TogleShow {
+        opacity: 1;
+        visibility: visible;
+         transform: initial /*translate3d(0,0px,0)*/; 
     }
    
 }

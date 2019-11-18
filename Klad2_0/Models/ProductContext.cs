@@ -43,6 +43,7 @@ namespace Klad.Models
                     dbEntry.Category3 = product.Category3;
                     dbEntry.Category4 = product.Category4;
                     dbEntry.Category5 = product.Category5;
+                    dbEntry.Category6 = product.Category6;
                     dbEntry.Address = product.Address;
                     dbEntry.Weight = product.Weight;
                     dbEntry.Composition = product.Composition;

@@ -40,6 +40,9 @@ namespace Domain.Entities
         [Display(Name = "Категория5")]
         public string Category5 { get; set; }
 
+        [Display(Name = "Категория6")]
+        public string Category6 { get; set; }
+
 
         /// <summary>
         /// Цена

@@ -52,7 +52,47 @@ namespace Klad.Controllers
         {
             return View(db.WordsSearch);
         }
-        
+
+        public IActionResult PriceAdmin()
+        {
+            //return View(db.Products);
+            return View(db.Products.ToList());
+        }
+
+        //[HttpPost]
+        //public/* PartialViewResult*/IActionResult PriceAdmin(/*Product product*/int id, int Price, int Weight) /*Так и не удалось передать product2*/
+        //{
+        //    Product product = db.Products.Where(x=>x.Id==id).FirstOrDefault();
+        //    product.Price = Price;
+        //    product.Weight = Weight;
+        //    db.SaveProduct(product);
+        //    return View();
+        //   // return PartialView("Message", $" {product.Name} Изменён");
+
+        //  }
+
+
+
+        [HttpPost]
+        public/* PartialViewResult*/IActionResult PriceAdmin(List<Product> products) /*Так и не удалось передать product2*/
+        {
+            foreach(var product in products)
+            {
+                Product productNew = db.Products.Where(x => x.Id == product.Id).FirstOrDefault();
+                productNew.Price = product.Price;
+                productNew.Weight = product.Weight;
+                db.SaveProduct(productNew);
+            }
+            //Product product = db.Products.Where(x => x.Id == id).FirstOrDefault();
+            //product.Price = Price;
+            //product.Weight = Weight;
+            //db.SaveProduct(product);
+            TempData["message"] = string.Format("Изменения  были сохранены");
+            return View(db.Products.ToList());
+            // return PartialView("Message", $" {product.Name} Изменён");
+
+        }
+
 
         public ViewResult Edit(int id)
         {
@@ -61,7 +101,14 @@ namespace Klad.Controllers
             return View(product);
         }
 
-        // Перегруженная версия Edit() для сохранения изменений
+        
+        /// <summary>
+        /// Перегруженная версия Edit() для сохранения изменений
+        /// </summary>
+        /// <param name="product">Продукт который отредактировали</param>
+        /// <param name="Image"></param>
+        /// <param name="action">Определяет нужно ли перейти к редактированию следующего продукта</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(Product product, IFormFile Image, string action)
         {

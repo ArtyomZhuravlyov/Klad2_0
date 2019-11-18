@@ -38,7 +38,7 @@ namespace Klad.Controllers
             pageSize = 18; 
 
                 // несколько категорий
-            source = db.Products.Where(x => x.Category == category || x.Category2 == category || x.Category3 == category || x.Category4 == category);
+            source = db.Products.Where(x => x.Category == category || x.Category2 == category || x.Category3 == category || x.Category4 == category || x.Category5 == category || x.Category6 == category);
 
                 var count =  source.Count();
             //var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
@@ -117,12 +117,19 @@ namespace Klad.Controllers
 
         }
 
+        [HttpGet("search")]
+        public ActionResult AutocompleteSearch(string term)
+        {
+            var models = db.Products.Where(a => a.Name.Contains(term))
+                            .Select(a => new { value = a.Name })
+                            .Distinct().Take(6);
+
+            return Json(models);
+        }
+
         public ActionResult Details(int id, int l = 50)
         {
-            Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
-            //Computer c = comps.FirstOrDefault(com => com.Id == id);
-            //if (c != null)
-            //    return PartialView(c);
+            Product product = db.Products.FirstOrDefault(x => x.Id == id);
             return PartialView(product);
         }
 
