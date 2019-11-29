@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -38,6 +39,7 @@ namespace Domain.Entities
         [Display(Name = "Комментарий к заказу")]
         public string Comment { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [Display(Name = "Доставка")]
         public string Delivery { get; set; }
 

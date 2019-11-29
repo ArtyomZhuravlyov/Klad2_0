@@ -5,14 +5,6 @@
 </head>
 <body>
     <div class="containerFeedback">
-
-        @*<div class="inner-testimonial itemFeedback">
-                <img src="~/images/Feedback/client2.png">
-                <h3 class="city-name">Иван, Москва</h3>
-                <p class="text-testimonial">Текст отзыва.</p>
-            </div>*@
-
-
         <div class="inner-testimonial itemFeedback">
             <img src="~/images/Feedback/client2.png" alt="Клиент 2">
             <h3 class="city-name">Галина, Ачинск</h3>
@@ -26,7 +18,7 @@
         </div>
 
 
-        <div class="inner-testimonial itemFeedback">
+        @*<div class="inner-testimonial itemFeedback">
             <img src="~/images/Feedback/client2.png" alt="Клиент 3">
             <h3 class="city-name">Лариса, Ачинск</h3>
             <p class="text-testimonial">
@@ -56,10 +48,9 @@
                 </div>
 
             }
-        }
+        }*@
     </div>
-    @*@using (Html.BeginForm("AddFeedback", "Home", FormMethod.Post))
-        {*@
+
     <form class="decor" asp-controller="Home" asp-action="AddFeedback" method="post">
         <div class="form-left-decoration"></div>
         <div class="form-right-decoration"></div>

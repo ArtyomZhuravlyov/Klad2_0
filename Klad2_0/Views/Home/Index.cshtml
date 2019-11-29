@@ -33,7 +33,6 @@
 
 </head>
 <body>
-
     @*каталог*@
     <div class="parent">
         @foreach (var product in Model.Products)
@@ -50,23 +49,9 @@
 
                         @Html.ActionLink("Просмотр", "Details",
                             new { id = product.Id }, new { @class = "compItem btn" } )
-                        @*@Html.ActionLink("Добавить в корзину", "AddToCart",
-        new { id = product.Id }, new { @class = "compItem2  btn" } )*@
-                        @*<input type="text" name="name" id="search" />
-                        <input type='button' id="submit" value=  />
-                        <div id="results"></div>
-                        <script type="text/javascript">
-                            $(document).ready(function () {
-                                $('#submit').click(function (e) {
-                                    e.preventDefault();
-                                    var name = $('#search').val();
-                                    name = encodeURIComponent(name);
-                                    $('#results').load("http://localhost:51805/Home/BookSearch?name=" + name);
-                                });
-                            });
-                        </script>*@
-
-
+                        @Html.ActionLink("Добавить в корзину", "AddToCart",
+        new { id = product.Id }, new { @class = "compItem2  btn" } )
+                       
 
                         @*<a class="loop-add-to-cart">В корзину</a>*@
 
@@ -79,8 +64,8 @@
             </div>
         }*@
 
-                    </div>
                 </div>
+            </div>
 
                 <div class="product-info">
                     @Html.ActionLink(product.Name, "ViewProduct",
@@ -168,10 +153,7 @@
     <script src="~/lib/bootstrap/dist/js/index.js"></script>
 
     @*для модального окна*@
-    @*@section scripts
-        {*@
     <script type="text/javascript">
-
         $(function () {
             $.ajaxSetup({ cache: false });
             $(".compItem").click(function (e) {
@@ -186,21 +168,17 @@
 
         //preventDefault(): отменяет все действия, которые по умолчанию производит данное событие.
         //    Например, при нажатии на ссылку мы можем с помощью данного метода запретить переход по этой ссылке.
-
-
-
-                        @*$(document).ready(function () {
-                        $('#submit1').click(function (e) {
-                        e.preventDefault();
-                        $('#results').load('@Url.Action("AddToCart", "Home")')
-                        });
-                        });*@
+        @*$(document).ready(function () {
+        $('#submit1').click(function (e) {
+        e.preventDefault();
+        $('#results').load('@Url.Action("AddToCart", "Home")')
+        });
+        });*@
     </script>
     <script type="text/javascript">
         $(function () {
             $.ajaxSetup({ cache: false });
             $(".compItem2").click(function (e) {
-
                 e.preventDefault();
                 $.get(this.href, function (data) {
                     $('#Cart').html(data);
@@ -209,16 +187,5 @@
             });
         })
     </script>
-    @*<script type="text/javascript">
-        $(document).ready(function () {
-            $('#addCart').click(function (e) {
-                e.preventDefault();
-                var name = $('#search').val();
-                name=encodeURIComponent(name);
-                $('#results').load('@Url.Action("BookSearch", "Home")?name='+name)
-            });
-        });
-        </script>*@
-
 </body>
 </html>

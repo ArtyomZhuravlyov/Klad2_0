@@ -14,6 +14,9 @@ namespace Domain.Entities
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
+        [Display(Name = "Хиты")]
+        public bool Favourite { get; set; }
+
         [Display(Name = "Название")]
         public string Name { get; set; }
 

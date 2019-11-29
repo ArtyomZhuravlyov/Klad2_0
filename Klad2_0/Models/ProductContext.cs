@@ -25,6 +25,7 @@ namespace Klad.Models
             Database.EnsureCreated();
         }
 
+        #region save
         public void SaveProduct(Product product)
         {
             if (product.Id == 0)
@@ -32,57 +33,126 @@ namespace Klad.Models
             else
             {
                 Product dbEntry = this.Products.Find(product.Id);
-                if (dbEntry != null)
+                if (CheckChange(dbEntry, product))
                 {
-                    dbEntry.Name = product.Name;
-                    dbEntry.Description = product.Description;
-                    dbEntry.Price = product.Price;
-                    dbEntry.PriceWithoutSales = product.PriceWithoutSales;
-                    dbEntry.Category = product.Category;
-                    dbEntry.Category2 = product.Category2;
-                    dbEntry.Category3 = product.Category3;
-                    dbEntry.Category4 = product.Category4;
-                    dbEntry.Category5 = product.Category5;
-                    dbEntry.Category6 = product.Category6;
-                    dbEntry.Address = product.Address;
-                    dbEntry.Weight = product.Weight;
-                    dbEntry.Composition = product.Composition;
-                    dbEntry.Contraindications = product.Contraindications;
-                    dbEntry.FormRelease = product.FormRelease;
-                    dbEntry.IndicationsForUse = product.IndicationsForUse;
-                    //dbEntry.MainCategory1 = product.MainCategory1;
-                    //dbEntry.MainCategory2 = product.MainCategory2;
-                    //dbEntry.MainCategory3 = product.MainCategory3;
-                    //dbEntry.SubCategory1 = product.SubCategory1;
-                    //dbEntry.SubCategory2 = product.SubCategory2;
-                    //dbEntry.SubCategory3 = product.SubCategory3;
-                    //dbEntry.SubCategory4 = product.SubCategory4;
-                    //dbEntry.SubCategory5 = product.SubCategory5;
-                    //dbEntry.SubCategory6 = product.SubCategory6;
-                    dbEntry.StorageConditions = product.StorageConditions;
-                    dbEntry.FullDescription = product.FullDescription;
-                    dbEntry.ShelfLife = product.ShelfLife;
-                    dbEntry.MethodOfUse= product.MethodOfUse;
-                    dbEntry.ImageData = product.ImageData;
-                    dbEntry.ImageMimeType = product.ImageMimeType;
-                    dbEntry.CompositionEvening = product.CompositionEvening;
-                    dbEntry.CompositionMorning = product.CompositionMorning;
-
-                    //todo
-                    //dbEntry.ImageData = product.ImageData;
-                    //dbEntry.ImageMimeType = product.ImageMimeType;
+                    #region сохранение свойств
+                    if (dbEntry != null)
+                    {
+                        dbEntry.Name = product.Name;
+                        dbEntry.Favourite = product.Favourite;
+                        dbEntry.Description = product.Description;
+                        dbEntry.Price = product.Price;
+                        dbEntry.PriceWithoutSales = product.PriceWithoutSales;
+                        dbEntry.Category = product.Category;
+                        dbEntry.Category2 = product.Category2;
+                        dbEntry.Category3 = product.Category3;
+                        dbEntry.Category4 = product.Category4;
+                        dbEntry.Category5 = product.Category5;
+                        dbEntry.Category6 = product.Category6;
+                        dbEntry.Address = product.Address;
+                        dbEntry.Weight = product.Weight;
+                        dbEntry.Composition = product.Composition;
+                        dbEntry.Contraindications = product.Contraindications;
+                        dbEntry.FormRelease = product.FormRelease;
+                        dbEntry.IndicationsForUse = product.IndicationsForUse;
+                        dbEntry.StorageConditions = product.StorageConditions;
+                        dbEntry.FullDescription = product.FullDescription;
+                        dbEntry.ShelfLife = product.ShelfLife;
+                        dbEntry.MethodOfUse = product.MethodOfUse;
+                        dbEntry.ImageData = product.ImageData;
+                        dbEntry.ImageMimeType = product.ImageMimeType;
+                        dbEntry.CompositionEvening = product.CompositionEvening;
+                        dbEntry.CompositionMorning = product.CompositionMorning;
+                        //dbEntry.MainCategory1 = product.MainCategory1;
+                        //dbEntry.MainCategory2 = product.MainCategory2;
+                        //dbEntry.MainCategory3 = product.MainCategory3;
+                        //dbEntry.SubCategory1 = product.SubCategory1;
+                        //dbEntry.SubCategory2 = product.SubCategory2;
+                        //dbEntry.SubCategory3 = product.SubCategory3;
+                        //dbEntry.SubCategory4 = product.SubCategory4;
+                        //dbEntry.SubCategory5 = product.SubCategory5;
+                        //dbEntry.SubCategory6 = product.SubCategory6;
+                    }
+                    #endregion
+                    IterativProductSave(dbEntry);
                 }
             }
             this.SaveChanges();
         }
 
-
-        public void AddWordsSearch(string word)
+        /// <summary>
+        /// проверяет изменён ли продукт(сделано только из-за IterativProductSave) не проверяется ид и имя
+        /// </summary>
+        /// <param name=""></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        private bool CheckChange(Product DBproduct, Product changeProduct)
         {
-            this.WordsSearch.Add(new WordsSearch {Word=word });
-            this.SaveChanges();
-        }
+            if (
+            DBproduct.Favourite != changeProduct.Favourite ||
+            DBproduct.Description != changeProduct.Description ||
+            DBproduct.Price != changeProduct.Price ||
+            DBproduct.PriceWithoutSales != changeProduct.PriceWithoutSales ||
+            DBproduct.Category  != changeProduct.Category  ||
+            DBproduct.Category2 != changeProduct.Category2 ||
+            DBproduct.Category3 != changeProduct.Category3 ||
+            DBproduct.Category4 != changeProduct.Category4 ||
+            DBproduct.Category5 != changeProduct.Category5 ||
+            DBproduct.Category6 != changeProduct.Category6 ||
+            DBproduct.Address != changeProduct.Address     ||
+            DBproduct.Weight != changeProduct.Weight       ||
+            DBproduct.Composition != changeProduct.Composition ||
+            DBproduct.Contraindications != changeProduct.Contraindications ||
+            DBproduct.FormRelease != changeProduct.FormRelease ||
+            DBproduct.IndicationsForUse != changeProduct.IndicationsForUse ||
+            DBproduct.StorageConditions != changeProduct.StorageConditions ||
+            DBproduct.FullDescription != changeProduct.FullDescription ||
+            DBproduct.ShelfLife != changeProduct.ShelfLife ||
+            DBproduct.MethodOfUse != changeProduct.MethodOfUse ||
+            DBproduct.ImageData != changeProduct.ImageData ||
+            DBproduct.ImageMimeType != changeProduct.ImageMimeType ||
+            DBproduct.CompositionEvening != changeProduct.CompositionEvening ||
+            DBproduct.CompositionMorning != changeProduct.CompositionMorning
+               )
+                return true;
 
+            else return false;
+        }
+        /// <summary>
+        /// Сохраняем продукты с таким же названием дав им свойства переданного продукта(для повторяющихся продуктов)
+        /// </summary>
+        /// <param name="product"></param>
+        private void IterativProductSave(Product product)
+        {
+            /*IQueryable<Product>*/
+            List<Product> listProducts = this.Products.Where(t => t.Name == product.Name).ToList();
+            listProducts.Remove(listProducts.FirstOrDefault(t => t.Id == product.Id));
+            if (listProducts.Count > 0)
+            {
+                foreach (var prodBD in listProducts)
+                {
+                   // Product prodBD = this.Products.Find(prod.Id);
+                    prodBD.Description = product.Description;
+                    prodBD.Price = product.Price;
+                    prodBD.PriceWithoutSales = product.PriceWithoutSales;
+                    prodBD.Address = product.Address;
+                    prodBD.Weight = product.Weight;
+                    prodBD.Composition = product.Composition;
+                    prodBD.Contraindications = product.Contraindications;
+                    prodBD.FormRelease = product.FormRelease;
+                    prodBD.IndicationsForUse = product.IndicationsForUse;
+                    prodBD.StorageConditions = product.StorageConditions;
+                    prodBD.FullDescription = product.FullDescription;
+                    prodBD.ShelfLife = product.ShelfLife;
+                    prodBD.MethodOfUse = product.MethodOfUse;
+                    prodBD.ImageData = product.ImageData;
+                    prodBD.ImageMimeType = product.ImageMimeType;
+                    prodBD.CompositionEvening = product.CompositionEvening;
+                    prodBD.CompositionMorning = product.CompositionMorning;
+                    
+                }
+            }
+        }
         public void SaveFeedback(Feedback feedback)
         {
             if (feedback.Id == 0)
@@ -102,6 +172,14 @@ namespace Klad.Models
             }
             this.SaveChanges();
         }
+        #endregion
+        public void AddWordsSearch(string word)
+        {
+            this.WordsSearch.Add(new WordsSearch {Word=word });
+            this.SaveChanges();
+        }
+
+
 
         public Product DeleteProduct(int productId)
         {

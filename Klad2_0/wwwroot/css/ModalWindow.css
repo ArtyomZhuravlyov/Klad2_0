@@ -11,15 +11,15 @@
 }
 
 .minWidthModal {
-    margin: 10% 10% 0 11%;
-    /*margin-left: -14%;*/
-    width: 80%;
+    margin: 10% 13% 0 13%;
+    /* margin-left: -14%; */
+    width: 76%;
     border-radius: 20px;
 }
 
 .minWidthModalViewProduct {
-    margin: 30px 10% 0 11%;
-    width: 80%;
+    margin: 30px 13% 0 13%;
+    width: 76%;
     border-radius: 10px;
 }
 
@@ -172,4 +172,15 @@
         display:flex;
         justify-content:center;
     }
+
+    .minWidthModal {
+        margin: 10% 5% 0 5%;
+        width: 90%;
+    }
+
+    .minWidthModalViewProduct {
+        margin: 20px 5% 0 5%;
+        width: 90%;
+    }
+
     }

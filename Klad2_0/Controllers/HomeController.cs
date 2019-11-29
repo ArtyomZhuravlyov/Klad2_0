@@ -139,10 +139,10 @@ namespace Klad.Controllers
         /// <returns></returns>
         public  ActionResult Main()
         {
-            
-            //source = db.Products.Where(x => x.Favourite == true);  //.Include(x => x.Company);
-            //var items = await source.ToListAsync();
-            List<Product> items = null;
+
+           var source = db.Products.Where(x => x.Favourite == true);  //.Include(x => x.Company);
+            var items = source.ToList();
+           // List<Product> items = null;
 
             IndexViewModel viewModel = new IndexViewModel
             {

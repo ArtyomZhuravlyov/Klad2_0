@@ -35,4 +35,26 @@ width:50px;
         margin: 0 0 0px;
     }
 
+.CartOnLayout {
+    display: contents;
+}
 
+@media(max-width:768px) {
+    .positionICart{
+width: 52px;
+    height: 52px;
+    margin: 0 auto;
+     float: initial; 
+     margin-bottom: 2se0px; 
+     margin-top: 0px; 
+    }
+    .CartOnLayout {
+        margin-top: 20px;
+        /* padding-top: 300px; */
+        margin-bottom: 70px;
+        display: inherit;
+        margin-right: 14%;
+        margin-left: 10%;
+    }
+    
+}
