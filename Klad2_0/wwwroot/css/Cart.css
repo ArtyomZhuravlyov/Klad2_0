@@ -7,6 +7,7 @@
     float: right;
     /* margin-bottom: 20px; */
     margin-top: -16px;
+    position: relative;
 }
 
 .imgCart {
@@ -39,6 +40,24 @@ width:50px;
     display: contents;
 }
 
+.count {
+    position: absolute;
+    top: 30px;
+    right: -10px;
+    height: 22px;
+    width: 22px;
+    background: #e0995e;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    text-indent: 0;
+}
+
+.countDigit{
+    margin-top:-1px;
+}
+
 @media(max-width:768px) {
     .positionICart{
 width: 52px;
@@ -51,10 +70,18 @@ width: 52px;
     .CartOnLayout {
         margin-top: 20px;
         /* padding-top: 300px; */
-        margin-bottom: 70px;
-        display: inherit;
+        margin-bottom: 10px;
+        display: inline-block;
         margin-right: 14%;
-        margin-left: 10%;
+        margin-left: 14%;
+    }
+
+    .textSummaryCart p {
+        margin: 0 0 10px;
+    }
+
+    .countDigit {
+        margin-top: 3px;
     }
     
 }

@@ -33,14 +33,15 @@ namespace Domain.Entities
         [Display(Name = "Телефон")]
         public string Phone { get; set; }
 
+        [Required(ErrorMessage = "Укажите электронную почту")]
         [Display(Name = "Электронная почта")]
         public string Mail { get; set; }
 
         [Display(Name = "Комментарий к заказу")]
         public string Comment { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
         [Display(Name = "Доставка")]
+        [HiddenInput(DisplayValue = false)]
         public string Delivery { get; set; }
 
         //public bool GiftWrap { get; set; }

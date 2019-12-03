@@ -56,8 +56,9 @@
                     <div class="logotip">
                         <img src="~/images/TitleKladovaya.png">
                         @*<
-                https://online-letters.ru/letters/cyrillic/script/create.html*@
+                            https://online-letters.ru/letters/cyrillic/script/create.html*@
                     </div>
+
                     <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
                     <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
                     <a href="~/Home/Feedback" class="ColourChange poseContact underline">ОТЗЫВЫ</a>
@@ -83,10 +84,16 @@
                             <a href="/Cart/Summary/">
                                 <img src="~/images/cart.png" class="imgCart" alt="Пример">
                             </a>
+                            <div class="count">
+                                <div class="countDigit"></div>
+                            </div>
+                            @*<ul class="count">
+                                    <li>0</li>
+                                </ul*@>
                         </div>
-                        <div class="textSummaryCart" id="Cart">
-                            <p>Ваша корзина:</p>
-                        </div>
+                        @*<div class="textSummaryCart" id="Cart">
+                                <p>Ваша корзина:</p>
+                            </div>*@
                     </div>
                 </div>
 
@@ -101,10 +108,10 @@
                 <nav class="container">
                     <ul class="top-menu">
                         <li>
-                            <a  class="Togle" href="/ЗДОРОВЬЕ">ЗДОРОВЬЕ</a>
+                            <a class="Togle" href="/ЗДОРОВЬЕ">ЗДОРОВЬЕ</a>
                             <ul id="TogleSub" class="submenu">
-                                <li >
-                                    <ul >
+                                <li>
+                                    <ul>
                                         <li><a href="/ЗДОРОВЬЕ Похудение">Борьба с лишним весом</a></li>
                                         <li><a href="/ЗДОРОВЬЕ Дыхательная система">Дыхательная система</a></li>
                                         <li><a href="/ЗДОРОВЬЕ Для сердца Для сосудов">Для сердца и сосудов</a></li>
@@ -186,7 +193,7 @@
 
 
                         <li>
-                            <a  class="Togle" href="/ВОЛОСЫ">ВОЛОСЫ</a>
+                            <a class="Togle" href="/ВОЛОСЫ">ВОЛОСЫ</a>
                             <ul class="submenu">
                                 <li>
                                     <ul>
@@ -205,7 +212,7 @@
                         </li>
 
                         <li>
-                            <a  href="/ОНКОЛОГИЯ">ОНКОЛОГИЯ</a>
+                            <a href="/ОНКОЛОГИЯ">ОНКОЛОГИЯ</a>
 
                         </li>
 
@@ -305,7 +312,7 @@
         $(function () {
             if (innerWidth < 768) {
                 $('.Togle').on('click', function (e) {
-                    e.preventDefault(); 
+                    e.preventDefault();
                     $(this).next().toggleClass("TogleShow").slideToggle(300);
                     //$(this).next().slideToggle(300, function () {
                     //    if ($(this).css('display') === 'none') {
@@ -317,15 +324,28 @@
             }
         });
     </script>
-    <script type="text/javascript">
+    @*<script type="text/javascript">
             $(function () {
                 $.ajaxSetup({ cache: false });
                 //если отрицательное значение (-1), то нужно просто получить Корзину
                     $.get("/Home/AddToCart/-1", function (data) {
                         $('#Cart').html(data);
+                        //$('#Cart').addClass("textSummaryCart");
                     });
             })
+        </script>*@
+    <script type="text/javascript">
+            $(function () {
+                $.ajaxSetup({ cache: false });
+                //если отрицательное значение (-1), то нужно просто получить Корзину
+                //console.log(parseInt($('.countDigit').text()));
+                //if (parseInt($('.countDigit').text()) > 0) {
+                    $.get("/Home/GetQuantity", function (data) {
+                        $('.countDigit').text(data);
+                        //$('#Cart').addClass("textSummaryCart");
+                    });
+                //}
+            })
         </script>
-
 </body>
 </html>

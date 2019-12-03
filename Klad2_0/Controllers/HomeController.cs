@@ -141,7 +141,7 @@ namespace Klad.Controllers
         {
 
            var source = db.Products.Where(x => x.Favourite == true);  //.Include(x => x.Company);
-            var items = source.ToList();
+           var items = source.ToList();
            // List<Product> items = null;
 
             IndexViewModel viewModel = new IndexViewModel
@@ -172,6 +172,11 @@ namespace Klad.Controllers
 
            // ViewBag.ProductId = id;
             return View(product);
+        }
+
+        public int GetQuantity()
+        {
+            return GetCart().Lines.Sum(x => x.Quantity);
         }
 
         [HttpGet]

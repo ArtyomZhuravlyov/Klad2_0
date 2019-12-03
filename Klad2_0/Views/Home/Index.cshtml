@@ -64,7 +64,7 @@
             </div>
         }*@
 
-                </div>
+                    </div>
             </div>
 
                 <div class="product-info">
@@ -181,7 +181,10 @@
             $(".compItem2").click(function (e) {
                 e.preventDefault();
                 $.get(this.href, function (data) {
-                    $('#Cart').html(data);
+                    $.get("/Home/GetQuantity", function (data) {
+                        $('.countDigit').text(data);
+                    })
+                    //  $('#Cart').html(data);
                     //$('#modDialog').modal('show');
                 });
             });

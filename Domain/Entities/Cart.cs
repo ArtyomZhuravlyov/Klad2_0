@@ -11,6 +11,22 @@ namespace Domain.Entities
     {
         private List<CartLine> lineCollection = new List<CartLine>();
 
+        public int TotalQuantity { get { return lineCollection.Count(); } }
+
+        public const int SUMM_FOR_SALE = 3;//000;
+
+        public const int DELIVERY = 350;//000;
+
+        public int Delivery
+        {
+            get
+            {
+                if (ComputeTotalValue() > SUMM_FOR_SALE)
+                    return 0;
+                else return DELIVERY;
+            }
+        }
+
         public void AddItem(Product product, int quantity)
         {
             CartLine line = lineCollection
@@ -65,6 +81,12 @@ namespace Domain.Entities
         public decimal ComputeTotalValue()
         {
             return lineCollection.Sum(e => e.productCart.Price * e.Quantity);
+
+        }
+
+        public decimal ComputeTotalValueWithDelivery()
+        {
+            return lineCollection.Sum(e => e.productCart.Price * e.Quantity) + Delivery;
 
         }
         public void Clear()

@@ -125,7 +125,7 @@ namespace Klad.Controllers
                 db.SaveProduct(product);
                 TempData["message"] = string.Format("Изменения \"{0}\" были сохранены", product.Name);
                 if (action== "SaveAndNextProduct")
-                    return RedirectToAction("Edit", new { id=++product.Id});
+                    return RedirectToAction("Edit", new { id = db.FindNextId(product.Id) });
                 return RedirectToAction("Index");
             }
             else

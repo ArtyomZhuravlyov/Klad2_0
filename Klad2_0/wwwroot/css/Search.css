@@ -97,7 +97,7 @@
     }
 
     .ui-menu .ui-menu-item-wrapper {
-        max-width: initial;
+        max-width: 170px;
     }
 
     .formSearch {
