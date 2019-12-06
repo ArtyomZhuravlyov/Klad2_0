@@ -56,11 +56,11 @@ namespace Klad.Controllers
             return GetCart().Lines.Sum(x => x.Quantity);
         }
 
-        public void/*ActionResult*/ AddToCart(int id, int l = 50)
+        public RedirectToActionResult/*ActionResult*/ AddToCart(int id, int l = 50)
         {
             // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
-            if (id > 0)
-            {
+            //if (id > 0)
+            //{
                 Product product = db.Products
                  .FirstOrDefault(g => g.Id == id);
 
@@ -68,14 +68,9 @@ namespace Klad.Controllers
                 cart.AddItem(product, 1);
                 HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
                 cart = GetCart();
-
-                //return PartialView(cart);
-            }
-            else //если отрицательное значение (-1), то нужно просто получить Корзину
-            {
-                Cart cart = GetCart();
-                //return PartialView(cart);
-            }
+ 
+                return RedirectToAction("Summary","Cart");
+          
         }
 
 
@@ -85,7 +80,7 @@ namespace Klad.Controllers
         /// <param name="id"></param>
         /// <param name="l"></param>
         /// <returns></returns>
-        public RedirectResult RemoveOneProductToCart(int id, int l = 50)
+        public RedirectToActionResult RemoveOneProductToCart(int id, int l = 50)
         {
             // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
             //if (id > 0)
@@ -98,7 +93,7 @@ namespace Klad.Controllers
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
             cart = GetCart();
 
-            return Redirect("/Cart/AddToCart/-1");
+            return RedirectToAction("Summary", "Cart");
             //}
             //else //если отрицательное значение (-1), то нужно просто получить Корзину
             //{
@@ -115,6 +110,12 @@ namespace Klad.Controllers
             return PartialView(cart);
         }
 
+        /// <summary>
+        /// Удаляет полностью товар из корзины (неважно какое количество этого товара было)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public RedirectToActionResult RemoveLine(int id, string returnUrl="")
         {
 
@@ -186,9 +187,27 @@ namespace Klad.Controllers
             {
                 Cart cart = JsonConvert.DeserializeObject<Cart>(value);
                 if (cart.Lines.Count() == 0)
-                    return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetFavoutiteProducts()}); 
+                    return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetFavoutiteProducts() });
                 else
-                    return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl });
+                {
+                  
+                    if (string.IsNullOrEmpty(returnUrl)) //если мы добавили товар находясь в корзине то забываем где находились ранее и берём категорию последнего товара (только добавленгго из корзины)
+                        returnUrl = HttpContext.Session.GetString("ReturnUrl");
+                    else
+                        HttpContext.Session.SetString("ReturnUrl", returnUrl);
+
+                    string Category = cart.Lines.Last().productCart.Category2;
+                    
+                    //{
+                    //    returnUrl = $"https://kladovayaltay.ru/{cartLine.productCart.Category2}";
+                    //}
+                    if (string.IsNullOrEmpty(Category)) //если товар по категории Дети, онкология
+                    {
+                        Category = cart.GetCartLine(0).productCart.Category;
+                        return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetCategory1Products(Category) });
+                    }
+                    return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetCategory2Products(Category) }); 
+                }
             }
             else return View(null);
         }

@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick-1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick-1.8.1/slick/slick-theme.css" />
     <script type="text/javascript" src="~/lib/slick-1.8.1/slick-1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="~/css/ModalWindow.css">
 
 </head>
 <body>
@@ -128,15 +129,15 @@
                                     <a href=""><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
                                 </div>
                                 <div class="loop-action">
-                                    @Html.ActionLink("Просмотр", "Details",
+                                    @Html.ActionLink("Просмотр", "Details","Home",
                                         new { id = product.Id }, new { @class = "compItem btn" } )
                                     @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
         new { id = product.Id }, new { @class = "compItem2  btn" } )
-                                    <div class="DisplayHide goToCart">
+                                    @*<div class="DisplayHide goToCart">
                                         <div>Товар добавлен в корзину</div>
                                         @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
                           new { @class = "btn btnOrange"} )
-                                    </div>
+                                    </div>*@
 
                                 </div>
                             </div>
@@ -201,7 +202,7 @@
             });
         })
     </script>
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $(function () {
             $.ajaxSetup({ cache: false });
             $(".compItem2").click(function (e) {
@@ -217,7 +218,7 @@
                 });
             });
         })
-    </script>
+    </script>*@
 
 
     <script type="text/javascript">
@@ -245,19 +246,6 @@
                         else {
                             value = 0;
                         }
-
-                            //$input.val(value);
-                            //value = parseInt($this.closest('div').next().text()) * value;
-                            //$this.closest('div').next().next().text(value + " руб"); //общий счёт для одного товара
-
-                            //value = 0;
-                            //$(".total-price").each(function () {
-
-                            //    value += parseInt($(this).text());
-                            //    console.log(value);
-                            //});
-                            //$('.total-total-price').text(value + " руб");
-
 
                             $input.val(value);
                             value = parseInt(($this.closest('div').next().children('.price')).text()) * value;
@@ -323,25 +311,6 @@
                             $('.total-total-price').text(value + @Cart.DELIVERY + " руб");
                             $('.delivery-price').text(@Cart.DELIVERY + " руб");
                         }
-
-                        //$input.val(value);
-                        //value = parseInt($this.closest('div').next().text()) * value;
-                        //$this.closest('div').next().next().text(value + " руб"); //общий счёт для одного товара
-
-                        //value = 0;
-                        ////$('.total-price').each(function () {
-                        ////    value += data;
-                        ////});
-                        //$(".total-price").each(function () {
-
-                        //    value += parseInt($(this).text());
-                        //    console.log(value);
-                        //});
-                        //$('.total-total-price').text(value + " руб");//Общий счёт для всех товаров
-                        ////Скидка для одного товара
                     });
-
     </script>
-
-
 </body>

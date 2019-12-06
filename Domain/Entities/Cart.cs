@@ -70,7 +70,7 @@ namespace Domain.Entities
         }
 
         /// <summary>
-        /// Удаляет полностью товар из коризины (неважно какое количество этого товара было)
+        /// Удаляет полностью товар из корзины (неважно какое количество этого товара было)
         /// </summary>
         /// <param name="product"></param>
         public void RemoveLine(Product product)
@@ -97,6 +97,11 @@ namespace Domain.Entities
         public IEnumerable<CartLine> Lines
         {
             get { return lineCollection; }
+        }
+
+        public CartLine GetCartLine(int number)
+        {
+            return lineCollection[number];
         }
     }
 

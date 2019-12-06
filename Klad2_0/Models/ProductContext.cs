@@ -25,6 +25,34 @@ namespace Klad.Models
             Database.EnsureCreated();
         }
 
+        /// <summary>
+        /// Отдаёт товары по второй категории(первые 10), если нет ни одного, то отдаёт товары по первой категории
+        /// </summary>
+        /// <param name="category2"></param>
+        /// <returns></returns>
+        public List<Product> GetCategory2Products(string category2)
+        {
+            List<Product> items = Products.Where(x => x.Category2 == category2).Take(10).ToList();
+            if (items.Count == 0)
+                return GetCategory1Products(category2);
+            return items;
+        }
+
+        /// <summary>
+        /// Отдаёт товары по первой категории (первые 10)
+        /// </summary>
+        /// <param name="category1"></param>
+        /// <returns></returns>
+        public List<Product> GetCategory1Products(string category1)
+        {
+            List<Product> items = Products.Where(x => x.Category == category1).Take(10).ToList();
+            return items;
+        }
+
+        /// <summary>
+        /// Отдаёт самые популярые товары
+        /// </summary>
+        /// <returns></returns>
         public List<Product> GetFavoutiteProducts()
         {
             List<Product> items = Products.Where(x => x.Favourite == true).ToList();
