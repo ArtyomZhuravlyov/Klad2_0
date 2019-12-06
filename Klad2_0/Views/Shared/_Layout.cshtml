@@ -340,7 +340,7 @@
                 //если отрицательное значение (-1), то нужно просто получить Корзину
                 //console.log(parseInt($('.countDigit').text()));
                 //if (parseInt($('.countDigit').text()) > 0) {
-                    $.get("/Home/GetQuantity", function (data) {
+                    $.get("/Cart/GetQuantity", function (data) {
                         $('.countDigit').text(data);
                         //$('#Cart').addClass("textSummaryCart");
                     });

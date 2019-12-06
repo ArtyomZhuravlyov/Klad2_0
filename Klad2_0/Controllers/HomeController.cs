@@ -139,10 +139,7 @@ namespace Klad.Controllers
         /// <returns></returns>
         public  ActionResult Main()
         {
-
-           var source = db.Products.Where(x => x.Favourite == true);  //.Include(x => x.Company);
-           var items = source.ToList();
-           // List<Product> items = null;
+            var items = db.GetFavoutiteProducts(); 
 
             IndexViewModel viewModel = new IndexViewModel
             {
@@ -174,10 +171,7 @@ namespace Klad.Controllers
             return View(product);
         }
 
-        public int GetQuantity()
-        {
-            return GetCart().Lines.Sum(x => x.Quantity);
-        }
+
 
         [HttpGet]
         public IActionResult Buy(int id)
@@ -197,110 +191,14 @@ namespace Klad.Controllers
             return "Спасибо, " + order.User + ", за покупку!";
         }
 
-        public ActionResult /*PartialViewResult*/ Summary(Cart cart)
+
+
+
+
+
+        public void GoToUrl(string Url)
         {
-            cart = GetCart();
-            //string value = HttpContext.Session.GetString("Cart");
-            //cart = JsonConvert.DeserializeObject<Cart>(value);
-            return PartialView(cart);
-        }
 
-
-        //public/* void */RedirectToActionResult/* RedirectResult*/ AddToCart(int productId)
-        //{
-        //    Product product = db.Products
-        //        .FirstOrDefault(g => g.Id == productId);
-
-        //       Cart cart = GetCart();
-        //       cart.AddItem(product, 1);
-        //       HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
-
-        //    //return Redirect(returnUrl);
-        //    return RedirectToAction("Summary", cart);
-        //}
-
-        public ActionResult AddToCart(int id, int l = 50)
-        {
-            // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
-            if (id > 0)
-            {
-                Product product = db.Products
-                 .FirstOrDefault(g => g.Id == id);
-
-                Cart cart = GetCart();
-                cart.AddItem(product, 1);
-                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
-                cart = GetCart();
-
-                return PartialView(cart);
-            }
-            else //если отрицательное значение (-1), то нужно просто получить Корзину
-            {
-                Cart cart = GetCart();
-                return PartialView(cart);
-            }
-        }
-
-
-        /// <summary>
-        /// Удаляет только одно кол-во выбранного товара (1 штуку)
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="l"></param>
-        /// <returns></returns>
-        public RedirectResult RemoveOneProductToCart(int id, int l = 50)
-        {
-            // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
-            //if (id > 0)
-            //{
-                Product product = db.Products
-                 .FirstOrDefault(g => g.Id == id);
-
-                Cart cart = GetCart();
-                cart.RemoveItem(product, 1);
-                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
-                cart = GetCart();
-
-                return Redirect("/Home/AddToCart/-1");
-            //}
-            //else //если отрицательное значение (-1), то нужно просто получить Корзину
-            //{
-            //    Cart cart = GetCart();
-            //    return Redirect("/Home/AddToCart/-1");
-            //}
-        }
-
-        public RedirectResult RemoveLine(int id, int l = 50)
-        {
-            
-            Product product = db.Products
-                .FirstOrDefault(g => g.Id == id);
-
-            Cart cart = GetCart();
-            cart.RemoveLine(product);
-            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
-            cart = GetCart();
-
-            return Redirect("/Cart/Summary/");
-            
-        }
-
-            public Cart GetCart()
-        {
-            Cart cart;
-            //Cart cart = (Cart)HttpContext.Session.Get("Cart"); //["Cart"];
-            if (HttpContext.Session.Keys.Contains("Cart"))
-            {
-                string value = HttpContext.Session.GetString("Cart");
-                cart = JsonConvert.DeserializeObject<Cart>(value);
-            }
-            else
-            {
-                cart = new Cart();
-                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
-                // Session["Cart"] = cart;
-            }
-            return cart;
         }
 
         public FileContentResult GetImage(int Id)

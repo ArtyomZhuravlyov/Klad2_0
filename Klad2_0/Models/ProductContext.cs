@@ -25,6 +25,12 @@ namespace Klad.Models
             Database.EnsureCreated();
         }
 
+        public List<Product> GetFavoutiteProducts()
+        {
+            List<Product> items = Products.Where(x => x.Favourite == true).ToList();
+            return items;
+        }
+
         #region save
         public void SaveProduct(Product product)
         {

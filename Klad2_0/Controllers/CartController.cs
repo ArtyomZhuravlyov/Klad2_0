@@ -49,6 +49,88 @@ namespace Klad.Controllers
             return Redirect(returnUrl);
         }
 
+
+
+        public int GetQuantity()
+        {
+            return GetCart().Lines.Sum(x => x.Quantity);
+        }
+
+        public void/*ActionResult*/ AddToCart(int id, int l = 50)
+        {
+            // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
+            if (id > 0)
+            {
+                Product product = db.Products
+                 .FirstOrDefault(g => g.Id == id);
+
+                Cart cart = GetCart();
+                cart.AddItem(product, 1);
+                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+                cart = GetCart();
+
+                //return PartialView(cart);
+            }
+            else //если отрицательное значение (-1), то нужно просто получить Корзину
+            {
+                Cart cart = GetCart();
+                //return PartialView(cart);
+            }
+        }
+
+
+        /// <summary>
+        /// Удаляет только одно кол-во выбранного товара (1 штуку)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="l"></param>
+        /// <returns></returns>
+        public RedirectResult RemoveOneProductToCart(int id, int l = 50)
+        {
+            // Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
+            //if (id > 0)
+            //{
+            Product product = db.Products
+             .FirstOrDefault(g => g.Id == id);
+
+            Cart cart = GetCart();
+            cart.RemoveItem(product, 1);
+            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+            cart = GetCart();
+
+            return Redirect("/Cart/AddToCart/-1");
+            //}
+            //else //если отрицательное значение (-1), то нужно просто получить Корзину
+            //{
+            //    Cart cart = GetCart();
+            //    return Redirect("/Home/AddToCart/-1");
+            //}
+        }
+
+        public ActionResult /*PartialViewResult*/ SummaryPart(Cart cart)
+        {
+            cart = GetCart();
+            //string value = HttpContext.Session.GetString("Cart");
+            //cart = JsonConvert.DeserializeObject<Cart>(value);
+            return PartialView(cart);
+        }
+
+        public RedirectToActionResult RemoveLine(int id, string returnUrl="")
+        {
+
+            Product product = db.Products
+                .FirstOrDefault(g => g.Id == id);
+
+            Cart cart = GetCart();
+            cart.RemoveLine(product);
+            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+            cart = GetCart();
+
+            //  return Redirect($"/Cart/Summary/{returnUrl}/");
+            return RedirectToAction("Summary","Cart", new { returnUrl});
+        }
+
+
         //public/* void *//*RedirectToActionResult*/ RedirectResult AddToCart(int productId, string returnUrl)
         //{
         //    Product product = db.Products
@@ -96,13 +178,17 @@ namespace Klad.Controllers
             return cart;
         }
 
-        public ViewResult/*PartialViewResult*/ Summary()
+        public ViewResult/*PartialViewResult*/ Summary(string returnUrl="")
         {
+            
             string value = HttpContext.Session.GetString("Cart");
             if (!string.IsNullOrEmpty(value))
             {
                 Cart cart = JsonConvert.DeserializeObject<Cart>(value);
-                return View(new CartIndexViewModel { Cart = cart, ReturnUrl = "" });
+                if (cart.Lines.Count() == 0)
+                    return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetFavoutiteProducts()}); 
+                else
+                    return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl });
             }
             else return View(null);
         }

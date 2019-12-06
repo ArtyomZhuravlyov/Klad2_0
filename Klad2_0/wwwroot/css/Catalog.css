@@ -155,18 +155,31 @@
     transition: .3s ease-in-out;
 }
 
-    .loop-action a:after {
-        content: '';
-        position: absolute;
-        left: -220%;
-        top: -500%;
-        width: 140%;
-        height: 1000%;
-        transform: rotate(45deg);
-        background: white;
-        z-index: -1;
-        transition: .3s ease-in-out;
-    }
+.goToCart{
+    color:white;
+}
+
+.btnOrange {
+    background-color: #FF7400;
+    color: white !important;
+}
+
+/*.btnOrange a:after {
+    background-color: #FF7400;
+}*/
+
+.loop-action a:after {
+    content: '';
+    position: absolute;
+    left: -220%;
+    top: -500%;
+    width: 140%;
+    height: 1000%;
+    transform: rotate(45deg);
+    background: white;
+    z-index: -1;
+    transition: .3s ease-in-out;
+}
 
     .loop-action a:hover {
         color: black;

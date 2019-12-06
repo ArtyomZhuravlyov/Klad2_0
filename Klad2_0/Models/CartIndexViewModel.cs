@@ -10,5 +10,7 @@ namespace Klad2_0.Models
     {
         public Cart Cart { get; set; }
         public string ReturnUrl { get; set; }
+
+        public List<Product> Products { get; set; }
     }
 }
