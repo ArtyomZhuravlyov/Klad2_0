@@ -50,7 +50,7 @@
                             new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
 
                         @Html.ActionLink("Просмотр", "Details",
-                            new { id = product.Id }, new { @class = "compItem btn" } )
+                            new { id = product.Id, returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") }, new { @class = "compItem btn" } )
 
                         @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
         new { id = product.Id }, new { @class = "compItem2  btn" } )

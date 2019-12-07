@@ -33,9 +33,39 @@
                 </a>
             </div>
         }
-        <div class="DescriptionModal textModal">
-            <a>@Html.Raw(Model.Description) </a>
-        </div>
+            <div class="DescriptionModal textModal">
+                <a>@Html.Raw(Model.Description) </a>
+                <div class="btnAddToCartFromDetail">
+                    @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
+               new { id = Model.Id }, new { @class = "compItem2  btn btnOrange" } )
+                </div>
+                <div id="DisplayHide" class="DisplayHide goToCart" style="text-align:center !important; white-space: initial">
+                    <div style="color:black !important">Товар добавлен в корзину</div>
+                    @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
+        new { @class = "btn btnOrange"}  )
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $.ajaxSetup({ cache: false });
+                        $(".compItem2").click(function (e) {
+                            e.preventDefault();
+                            //$(this).closest().find(".DisplayHide").addClass("DisplayShow");
+                            // $(this).closest().next().addClass("DisplayShow");//показываем кнопку перейти в корзину //Этот скрипт немного отличается от других
+                            $("#DisplayHide").addClass("DisplayShow");
+                            $(this).addClass("DisplayHide");
+                            $(this).closest('div').addClass("white-spaceInitial")
+                            //.addClass("DisplayHide");//скрываем кнопку добавить в корзину
+                            //  $(this).next().addClass("DisplayShow");//показываем кнопку перейти в корзину
+
+                            $.get(this.href, function (data) {//увеличиваем число товаров
+                                $.get("/Cart/GetQuantity", function (data) {//пишем на корзине число товаров
+                                    $('.countDigit').text(data);
+                                })
+                            });
+                        });
+                    })
+                </script>
+            </div>
     </div>
     @if (Model.IndicationsForUse != null || Model.Composition != null)
     {

@@ -44,11 +44,16 @@
     padding: 0 20px;
 }
 
+.btnAddToCartFromDetail{
+    text-align:center;
+}
+
 .textModal {
     font-size: 18px;
     color: black;
     text-align: justify;
-    white-space: pre-wrap;
+    /*white-space: pre-wrap;*/
+    white-space: pre-line;
 }
 
 .list6a {

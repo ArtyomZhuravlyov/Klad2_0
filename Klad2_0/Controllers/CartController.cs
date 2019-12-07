@@ -190,12 +190,13 @@ namespace Klad.Controllers
                     return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetFavoutiteProducts() });
                 else
                 {
-                  
+
                     if (string.IsNullOrEmpty(returnUrl)) //если мы добавили товар находясь в корзине то забываем где находились ранее и берём категорию последнего товара (только добавленгго из корзины)
                         returnUrl = HttpContext.Session.GetString("ReturnUrl");
-                    else
+                    else                   
                         HttpContext.Session.SetString("ReturnUrl", returnUrl);
 
+                
                     string Category = cart.Lines.Last().productCart.Category2;
                     
                     //{

@@ -127,9 +127,12 @@ namespace Klad.Controllers
             return Json(models);
         }
 
-        public ActionResult Details(int id, int l = 50)
+        public ActionResult Details(int id, string returnUrl=null)
         {
             Product product = db.Products.FirstOrDefault(x => x.Id == id);
+            if(!string.IsNullOrEmpty(returnUrl))
+                HttpContext.Session.SetString("ReturnUrl", returnUrl);
+
             return PartialView(product);
         }
 
