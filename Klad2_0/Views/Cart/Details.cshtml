@@ -47,27 +47,7 @@
                     <div style="color:black !important">Товар добавлен в корзину</div>
                     @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new { returnUrl = "" }, new { @class = "btn btnOrange btnViewProd" })
                 </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $.ajaxSetup({ cache: false });
-                        $(".compItem2").click(function (e) {
-                            e.preventDefault();
-                            //$(this).closest().find(".DisplayHide").addClass("DisplayShow");
-                            // $(this).closest().next().addClass("DisplayShow");//показываем кнопку перейти в корзину //Этот скрипт немного отличается от других
-                            $("#DisplayHide").addClass("DisplayShow");
-                            $(this).addClass("DisplayHide");
-                            $(this).closest('div').addClass("white-spaceInitial")
-                            //.addClass("DisplayHide");//скрываем кнопку добавить в корзину
-                            //  $(this).next().addClass("DisplayShow");//показываем кнопку перейти в корзину
-
-                            $.get(this.href, function (data) {//увеличиваем число товаров
-                                $.get("/Cart/GetQuantity", function (data) {//пишем на корзине число товаров
-                                    $('.countDigit').text(data);
-                                })
-                            });
-                        });
-                    })
-                </script>
+                
             </div>
 
     </div>

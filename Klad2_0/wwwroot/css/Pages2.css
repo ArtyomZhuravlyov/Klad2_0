@@ -84,7 +84,7 @@
     }
 
     .modal-1 a.active, .modal-1 a:active {
-        border-color: #4285F4;
-        background: #4285F4;
+        border-color: #ffffff;
+        background: #ff7400;
         color: #fff;
     }

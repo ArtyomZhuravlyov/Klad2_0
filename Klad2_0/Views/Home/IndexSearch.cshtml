@@ -55,9 +55,7 @@
 
                 <div class="product-info">
                     @Html.ActionLink(product.Name, "ViewProduct",
-                            new { id = product.Id }, new { @class = "product-title ColourChangeModal" } )
-                    @*<h3 class="product-title">@product.Name</h3>*@
-                    @*<div class="price">&#8381; @product.Price </div>*@
+                            new { id = product.Id, returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") }, new { @class = "product-title ColourChangeModal" } )
                 </div>
 
 

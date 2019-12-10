@@ -4,24 +4,26 @@
     ViewData["Title"] = "Edit Админ панель: редактирование товара   ";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<head>
+    <link rel="stylesheet" href="~/css/Admin.css" />
+</head>
 @*<h2>Редактирование игры «@Model.Name»</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.EditorForModel()
-    <input type="submit" value="Сохранить" />
-    @Html.ActionLink("Отменить изменения и вернуться к списку", "Index")
-}*@
+    @using (Html.BeginForm())
+    {
+        @Html.EditorForModel()
+        <input type="submit" value="Сохранить" />
+        @Html.ActionLink("Отменить изменения и вернуться к списку", "Index")
+    }*@
 
 <div class="panel">
     <div class="panel-heading">
         <h3>Редактирование товара «@Model.Name»</h3>
     </div>
 
-
+    <div class="ImageEditAdmin"> <img class="ImageEditAdmin" src="~/images/Каталог товаров/@Model.Address" /> </div>
     @using (Html.BeginForm("Edit", "Admin",
-  FormMethod.Post, new { enctype = "multipart/form-data" }))
+FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="panel-footer">
             <input type="submit" value="Сохранить" class="btn btn-primary" />

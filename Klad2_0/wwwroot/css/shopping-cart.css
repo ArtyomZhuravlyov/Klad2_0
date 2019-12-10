@@ -99,7 +99,7 @@
 
 .description span {
     display: block;
-    font-size: 15px;
+    font-size: 16px;
     color: #43484D;
     font-weight: 400;
 }
@@ -157,13 +157,38 @@
     cursor: pointer;
     margin-top: 22px;
 }*/
+
+.ContinueOrder {
+    float: right;
+    margin-right: 14px;
+    background-color: white;
+    border-color: #fd8b2b;
+    border-radius: 50px;
+    color: #ca8b57;
+    width: 140px;
+}
+
+
+
+    .ContinueOrder:hover {
+        background-color: #FF7400;
+        border-color: #FF7400;
+        border-radius: 100px;
+        color: white;
+    }
+
+    .ContinueOrder:active {
+        background-color: #FF7400;
+    }
+
 .buttonOrder {
     float: right;
-    margin-right: 64px;
-    background-color: #fd8b2b;
+    margin-right: 14px;
+    background-color: #FF7400;
     border-color: #fd8b2b;
     border-radius: 50px;
     color: white;
+    width: 140px;
 }
     .buttonOrder:hover {
         background-color: #ef7c0bc7;
@@ -173,7 +198,7 @@
     }
 
     .buttonOrder:active {
-        background-color: #ef7c0bc7;
+        background-color: #FF7400;
     }
     .buttonStyleCart {
     background-color: #E1E8EE;
@@ -229,25 +254,62 @@ input:focus {
 }
 
 .ContainerTotal-total-price {
-    width: 100%;
-    float: right;
     color: #5E6977;
     font-size: 18px;
     font-weight: 400;
     margin-right: 60px;
     margin-top: 5px;
-}
-
-.Total {
-    margin-right: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    width: 450px;
+    margin-right: 25%;
     margin-left: auto;
+    width: 200px;
+    margin-bottom: 15px;
 }
 
-.price {
+.bottons {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+    .Total {
+    display: flex;
+    flex-direction:row-reverse;
+    /*border-top: 1px solid #E1E8EE;*/
+}
+
+.cond {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 50%;
+    border-right: 1px solid #E1E8EE;
+}
+ .cond_title
+{
+    color: #43484D;
+    padding: 10px;
+    padding-top:0px;
+    font-size: 16px;
+    text-align: center;
+}
+.cond_text {
+    text-align: center;
+    color: #43484D;
+    font-size: 16px;
+    padding: 5px 40px;
+}
+
+.colorGrey {
+     color: #86939E; 
+}
+.box {
+    padding-top: 25px;
+    padding-bottom: 30px;
+    margin: auto;
+    width: 50%;
+}
+
+    .price {
     width: 100px;
     padding-top: 48px;
     text-align: center;
@@ -322,7 +384,7 @@ input:focus {
 
         .buttonOrder{
         margin: auto;
-        width: 100px;
+        /*width: 100px;*/
         float: initial;
         
     }
@@ -337,7 +399,7 @@ input:focus {
         margin-top: initial;
         text-align: center;
         margin-bottom: 10px;
-
+        width:100%;
     }
 
     .total-price {
@@ -372,5 +434,16 @@ input:focus {
 
     .buttons {
         margin-right: 20px;
+        display: initial;
+    }
+
+    .box {
+        width: 100%;
+    }
+
+    .cond {
+        width: 100%;
+        border-top: 1px solid #E1E8EE;
+        border-right: initial;
     }
 }

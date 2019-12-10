@@ -84,7 +84,7 @@
             травяные фитосборы ачинск масла травяной чай Ачинск
         </span>*@
     @*<div class="ConteinerMainPicture">
-    </div>*@
+        </div>*@
 
     <div class="form-inner decor startTextMain">
         trrrrrrr
@@ -102,8 +102,8 @@
 
                             <div class="wrap">
                                 @*<div class="stickers">
-                                <div class="sticker_khit">Хит</div>
-                            </div>*@
+                                        <div class="sticker_khit">Хит</div>
+                                    </div>*@
                                 <div class="product-wrap">
                                     <a href=""><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
                                 </div>
@@ -117,13 +117,13 @@
                                         @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
                           new { @class = "btn btnOrange"} )
                                     </div>
-                                   
+
                                 </div>
                             </div>
 
                             <div class="product-info">
                                 @Html.ActionLink(product.Name, "ViewProduct",
-                                        new { id = product.Id }, new { @class = "product-title ColourChangeModal" } )
+                                        new { id = product.Id, returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") }, new { @class = "product-title ColourChangeModal" } )
                                 @*<h3 class="product-title">@product.Name</h3>*@
                                 @*<div class="price">&#8381; @product.Price </div>*@
                             </div>
@@ -133,10 +133,19 @@
                 }
 
             </div>
-            
+
         </div>
     </section>
-    <script type="text/javascript">
+    <section style="margin-top: 0px" class="section">
+        <div class="section_header">
+            <h2 class="section_title">О нас</h2>
+        </div>
+        <div class="parent">
+            Цель Кладовая Алтая – сохранять и восстанавливать здоровье людей. Ассортимент Кладовая Алтая всегда ориентирована на нужды потребителей: Кладовая Алтая стремится дать как здоровым, так и больным людям лечебные препараты, способствующие самоисцелению и поддержанию здоровья.
+            Weleda производит сотни косметических продуктов и тысячи фармацевтических препаратов
+        </div>
+    </section>
+        <script type="text/javascript">
         if (innerWidth > 768) {
             $(".autoplaySlick").slick(
                 {
@@ -157,18 +166,18 @@
                     variableHeight: true,
                 });
         }
-    </script>
+        </script>
 
-    <div id="modDialog" class="modal fade">
-        <div id="dialogContent" class="modal-dialog"></div>
-    </div>
+        <div id="modDialog" class="modal fade">
+            <div id="dialogContent" class="modal-dialog"></div>
+        </div>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 
-    <script src="~/lib/bootstrap/dist/js/index.js"></script>
+        <script src="~/lib/bootstrap/dist/js/index.js"></script>
 
-    @*для модального окна*@
-    <script type="text/javascript">
+        @*для модального окна*@
+        <script type="text/javascript">
         $(function () {
             $.ajaxSetup({ cache: false });
             $(".compItem").click(function (e) {
@@ -189,9 +198,9 @@
         $('#results').load('@Url.Action("AddToCart", "Home")')
         });
         });*@
-    </script>
+        </script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
         $(function () {
             $.ajaxSetup({ cache: false });
             $(".compItem2").click(function (e) {
@@ -207,7 +216,7 @@
                 });
             });
         })
-    </script>
+        </script>
 
 
 </body>

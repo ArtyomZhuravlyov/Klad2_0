@@ -179,6 +179,15 @@ namespace Klad.Controllers
             return cart;
         }
 
+        public ActionResult Details(int id, string returnUrl = null)
+        {
+            Product product = db.Products.FirstOrDefault(x => x.Id == id);
+            if (!string.IsNullOrEmpty(returnUrl))
+                HttpContext.Session.SetString("ReturnUrl", returnUrl);
+
+            return PartialView(product);
+        }
+
         public ViewResult/*PartialViewResult*/ Summary(string returnUrl="")
         {
             
@@ -198,15 +207,12 @@ namespace Klad.Controllers
 
                 
                     string Category = cart.Lines.Last().productCart.Category2;
-                    
+
+                    //if (string.IsNullOrEmpty(Category)) //если товар по категории Дети, онкология
                     //{
-                    //    returnUrl = $"https://kladovayaltay.ru/{cartLine.productCart.Category2}";
+                    //    Category = cart.GetCartLine(0).productCart.Category;
+                    //    return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetCategory1Products(Category) });
                     //}
-                    if (string.IsNullOrEmpty(Category)) //если товар по категории Дети, онкология
-                    {
-                        Category = cart.GetCartLine(0).productCart.Category;
-                        return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetCategory1Products(Category) });
-                    }
                     return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetCategory2Products(Category) }); 
                 }
             }

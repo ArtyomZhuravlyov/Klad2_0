@@ -4,9 +4,13 @@
     display: flex;
     
 }
+.btnViewProd {
+    border-radius: 50px;
+    /*margin-top: -50px;*/
+}
 
-.imgHeight{
-    max-height:450px;
+.imgHeight {
+    max-height: 450px;
     max-width: 450px;
 }
 
@@ -111,7 +115,6 @@
 }
 
 .ColourChangeModal {
-    
     transition: 0.1s linear;
 }
 

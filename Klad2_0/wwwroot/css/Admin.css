@@ -1,0 +1,13 @@
+﻿.ImageEditAdmin{
+    height:50px; width:35px;
+}
+
+.ImageEditAdmin:hover {
+    height:initial; width:initial;
+}
+
+.BigImage:hover {
+    height: initial;
+    width: initial;
+    max-height:4p00px;
+}

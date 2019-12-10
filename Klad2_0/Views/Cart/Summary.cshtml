@@ -36,9 +36,9 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center">
-                <a class="btn btn-primary" href="@Model.ReturnUrl">Продолжить покупки</a>
-            </div>
+
+
+
             @foreach (CartLine cartLine in Model.Cart.Lines)
             {
                 <!-- Товар #1 -->
@@ -55,9 +55,12 @@
                     </div>
 
                     <div class="description">
-                        <span>@cartLine.productCart.Name</span>
+                        <span>
+                            @Html.ActionLink(cartLine.productCart.Name, "Details", "Cart",
+                            new { id = cartLine.productCart.Id, returnUrl = "" }, new { @class = "compItem ColourChangeModal colorGrey" } )
+                        </span>
                         @*<span>Bball High</span>
-                            <span>White</span>*@
+                        <span>White</span>*@
                     </div>
 
                     <div class="quantity">
@@ -76,43 +79,66 @@
                     </div>
                 </div>
             }
-            <div class="Containerdelivery-price">
-                Доставка:
-                @if (Model.Cart.Delivery == 0)
-                {
-                    <a class="delivery-price">БЕСПЛАТНО</a>
-                }
-                else
-                {<a class="delivery-price">@Model.Cart.Delivery руб</a>}
-            </div>
-            <div class="Total">
+                <div class="Total">
+                    <div class="box">
+                        <div class="ContainerTotal-total-price">
+                            Доставка:
+                            @if (Model.Cart.Delivery == 0)
+                            {
+                                <a class="delivery-price">БЕСПЛАТНО</a>
+                            }
+                            else
+                            {<a class="delivery-price">@Model.Cart.Delivery руб</a>}
 
-                <div class="ContainerTotal-total-price">
-                    Итого к оплате:
-                    <a class="total-total-price">@Model.Cart.ComputeTotalValueWithDelivery() руб</a>
+                        </div>
+                        <div class="ContainerTotal-total-price">
+                            Итого к оплате:
+                            <a class="total-total-price">@Model.Cart.ComputeTotalValueWithDelivery() руб</a>
+                        </div>
+                        <div class="bottons">
+                            <a class="btn ContinueOrder btn-return" href="@Model.ReturnUrl">Продолжить покупки</a>
+                            @Html.ActionLink("Оформить заказ", "Checkout", "Cart", null, new { @class = "btn buttonOrder" })
+                            
+                        </div>
+
+                    </div>
+                    <div class="cond">
+                        <div class="cond_title">
+                            УСЛОВИЯ
+                        </div>
+                        <div class="cond_text">
+                            При покупке свыше 3000 руб доставка бесплатно!
+                        </div>
+                        <div class="cond_text">
+                            <div class="deliveryСontraction">
+                                Покупка осуществляется от 500 руб
+                            </div>
+                        </div>
+                        <div class="cond_text">
+                            <div class="deliveryСontraction">
+                                Оплата осуществляется банковской картой <img height="27" width="49" src="~/images/mastercard.png">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                @Html.ActionLink("Оформить заказ", "Checkout", "Cart", null, new { @class = "btn buttonOrder" })
-            </div>
-            <div class="deliveryText">
-                При покупке свыше 3000 руб доставка бесплатно!
-            </div>
-            <div class="deliveryСontraction">
-                Покупка осуществляется от 500 руб
-            </div>
         }
         else
         {
             <div class="title">
                 Ваша корзина пуста
             </div>
-
-
-
         }
     </div>
-    <section class="section">
+    <section class="section" style="margin-top: 100px  !important">
         <div class="section_header">
-            <h2 class="section_title">Хиты продаж</h2>
+            @if (Model.Cart.Lines.Count() != 0)
+            {
+                <h2 class="section_title">Возможно, вас заинтересуют</h2>
+            }
+            else
+            {
+                <h2 class="section_title">Хиты продаж</h2>
+            }
         </div>
         <div class="parent">
             <div class="autoplaySlick">
@@ -120,16 +146,12 @@
                 {
                     <div>
                         <div class="border borderSlider">
-
                             <div class="wrap">
-                                @*<div class="stickers">
-                                        <div class="sticker_khit">Хит</div>
-                                    </div>*@
                                 <div class="product-wrap">
                                     <a href=""><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
                                 </div>
                                 <div class="loop-action">
-                                    @Html.ActionLink("Просмотр", "Details","Home",
+                                    @Html.ActionLink("Просмотр", "Details","Cart",
                                         new { id = product.Id }, new { @class = "compItem btn" } )
                                     @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
         new { id = product.Id }, new { @class = "compItem2  btn" } )
@@ -143,8 +165,8 @@
                             </div>
 
                             <div class="product-info">
-                                @Html.ActionLink(product.Name, "ViewProduct",
-                                        new { id = product.Id }, new { @class = "product-title ColourChangeModal" } )
+                                @Html.ActionLink(product.Name, "ViewProduct", "Home",
+                                        new { id = product.Id, returnUrl = "" }, new { @class = "product-title ColourChangeModal" } )
                                 @*<h3 class="product-title">@product.Name</h3>*@
                                 @*<div class="price">&#8381; @product.Price </div>*@
                             </div>

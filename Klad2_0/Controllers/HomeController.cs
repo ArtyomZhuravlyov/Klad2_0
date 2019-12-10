@@ -35,7 +35,7 @@ namespace Klad.Controllers
             int pageSize;
             IQueryable<Product> source;
           //  IQueryable<Product> source2;
-            pageSize = 18; 
+            pageSize = 21; 
 
                 // несколько категорий
             source = db.Products.Where(x => x.Category == category || x.Category2 == category || x.Category3 == category || x.Category4 == category || x.Category5 == category || x.Category6 == category);
@@ -72,7 +72,7 @@ namespace Klad.Controllers
             int pageSize;
             IQueryable<Product> source;
             //  IQueryable<Product> source2;
-            pageSize = 18;
+            pageSize = 21;
             //source = db.Products.Where(x => x.Name.Contains(search)).Distinct().ToList();
             //потом обязательно переделать
             source = db.Products.Where(x => x.Name.Contains(search));
@@ -157,21 +157,28 @@ namespace Klad.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IActionResult ViewProduct(int id)
+        public IActionResult ViewProduct(int id, string returnUrl)
         {
-
-          //  IQueryable<Product> source;
-            // source = db.Products.Where(x => x.Id == id);
-            Product product = (Product)db.Products.FirstOrDefault(x => x.Id == id);
-          //  var items = source.ToList(); //возможно потом переделать в асинх как в примерах выше
+            if(!string.IsNullOrEmpty(returnUrl))
+                HttpContext.Session.SetString("ReturnUrl", returnUrl);
+            Product product = db.Products.FirstOrDefault(x => x.Id == id);
+            //  var items = source.ToList(); //возможно потом переделать в асинх как в примерах выше
 
             //IndexViewModel viewModel = new IndexViewModel
             //{
             //    Products = items,
             //};
 
-           // ViewBag.ProductId = id;
-            return View(product);
+            // ViewBag.ProductId = id;
+            string category = product.Category2;
+            List<Product> RecomendProducts = db.GetCategory2Products(category);
+
+            return View(new ViewProductViewModel { product = product, RecomendProducts = RecomendProducts });
+        }
+
+        public RedirectResult ReturnUrl()
+        {
+            return Redirect(HttpContext.Session.GetString("ReturnUrl"));
         }
 
 

@@ -27,6 +27,9 @@
     <Content Update="Views\Admin\Message.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Cart\Details.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Cart\Summary.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

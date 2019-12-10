@@ -195,6 +195,7 @@
 
 .product-info {
     /*padding-top: 15px;*/
+    min-height: 60px;
     margin-top: 10px;
     text-align: center;
 }
@@ -244,9 +245,20 @@
 
     /* для главной */
 .section {
-    margin-top:450px;
+    margin-top: 250px;
     background-color: white;
     padding-top: 35px;
+}
+
+.priceInCatalog {
+    font-weight: 600;
+    /*color: #543019;
+    color: #4a713a;*/
+    color: #df873e;
+    text-align: center;
+    padding-top: 3px;
+    font-size: 17px;
+    font-family: sans-serif;
 }
 
 h2{
@@ -319,7 +331,8 @@ h2{
         padding: 10px;
         border: 1px solid #F1E7E8;
         margin: 1px;
-        max-height: 270px;
+        max-height: 320px;
+        height:320px;
         /*height: 500px;*/
     }
 
@@ -329,8 +342,9 @@ h2{
     }
 
     .wrap {
-        height: 180px;
+        height: 250px;
         position: relative;
+
     }
 
     .product-title {
@@ -350,7 +364,10 @@ h2{
 
     .loop-action {
         opacity: 1;
-        top:100%;
+        top:80%;
+        left: initial;
+        width:100%;
+        transform: initial;
     }
 
     .autoplaySlick{
