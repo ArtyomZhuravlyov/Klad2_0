@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using Klad2_0.Models;
 using Klad.Models;
 using Domain.Concrete;
+using WCF_Sber;
 
 namespace Klad.Controllers
 {
@@ -68,7 +69,8 @@ namespace Klad.Controllers
                 cart.AddItem(product, 1);
                 HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
                 cart = GetCart();
- 
+                
+                 
                 return RedirectToAction("Summary","Cart");
           
         }
@@ -224,27 +226,50 @@ namespace Klad.Controllers
             return View(new ShippingDetails());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shippingDetails"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ViewResult Checkout( ShippingDetails shippingDetails)
+        public RedirectResult Checkout( ShippingDetails shippingDetails)
         {
+            
+            string value = HttpContext.Session.GetString("Cart");
+            Cart cart = JsonConvert.DeserializeObject<Cart>(value);
 
-            if (GetCart().Lines.Count() == 0)
-            {
-                ModelState.AddModelError("", "Извините, ваша корзина пуста!");
-            }
+            var testThemDel = cart.GetXmlLineCollection();
+            //   db.Orders.LastOrDefault().TimeOrder = DateTime.Now.ToUniversalTime();
+            
+            WcfSberbank wcfSberbank = new WcfSberbank();
+            //получаем адрес для перехода на оплату
+            string formUrl = wcfSberbank.SendOrder(cart, shippingDetails, db.Orders);
+            return Redirect(formUrl);
+            //if (!string.IsNullOrEmpty(formUrl))
+            //    return View("CompletedOrder");
+            //else
 
-            if (ModelState.IsValid)
-            {
-                //orderProcessor.ProcessOrder(cart, shippingDetails);
-                //cart.Clear();
-                //to do wcf 
+            //    return View("");
 
-                return View("CompletedOrder");
-            }
-            else
-            {
-                return View(shippingDetails);
-            }
+
+            //  RedirectToAction("","Order", shippingDetails);
+            //if (GetCart().Lines.Count() == 0)
+            //{
+            //    ModelState.AddModelError("", "Извините, ваша корзина пуста!");
+            //}
+
+            //if (ModelState.IsValid)
+            //{
+            //    //orderProcessor.ProcessOrder(cart, shippingDetails);
+            //    //cart.Clear();
+            //    //to do wcf 
+
+            //    return View("CompletedOrder");
+            //}
+            //else
+            //{
+            //    return View(shippingDetails);
+            //}
         }
 
     }

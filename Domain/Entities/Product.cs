@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
+    [Serializable]
     public class Product
     {
         [HiddenInput(DisplayValue = false)]

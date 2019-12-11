@@ -192,14 +192,14 @@ namespace Klad.Controllers
 
         }
 
-        [HttpPost]
-        public string Buy(Order order)
-        {
-            db.Orders.Add(order);
-            // сохраняем в бд все изменения
-            db.SaveChanges();
-            return "Спасибо, " + order.User + ", за покупку!";
-        }
+        //[HttpPost]
+        //public string Buy(Order order)
+        //{
+        //    db.Orders.Add(order);
+        //    // сохраняем в бд все изменения
+        //    db.SaveChanges();
+        //    return "Спасибо, " + order.User + ", за покупку!";
+        //}
 
 
 

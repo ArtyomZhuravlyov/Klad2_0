@@ -83,12 +83,12 @@
                     <div class="box">
                         <div class="ContainerTotal-total-price">
                             Доставка:
-                            @if (Model.Cart.Delivery == 0)
+                            @if (Model.Cart.DeliveryPrice == 0)
                             {
                                 <a class="delivery-price">БЕСПЛАТНО</a>
                             }
                             else
-                            {<a class="delivery-price">@Model.Cart.Delivery руб</a>}
+                            {<a class="delivery-price">@Model.Cart.DeliveryPrice руб</a>}
 
                         </div>
                         <div class="ContainerTotal-total-price">
@@ -286,8 +286,8 @@
                             $('.delivery-price').text("БЕСПЛАТНО");
                         }
                         else {
-                            $('.total-total-price').text(value + @Cart.DELIVERY + " руб");
-                            $('.delivery-price').text(@Cart.DELIVERY + " руб");
+                            $('.total-total-price').text(value + @Cart.DELIVERY_PRICE + " руб");
+                            $('.delivery-price').text(@Cart.DELIVERY_PRICE + " руб");
                         }
 
                     });
@@ -330,8 +330,8 @@
                             $('.delivery-price').text("БЕСПЛАТНО");
                         }
                         else {
-                            $('.total-total-price').text(value + @Cart.DELIVERY + " руб");
-                            $('.delivery-price').text(@Cart.DELIVERY + " руб");
+                            $('.total-total-price').text(value + @Cart.DELIVERY_PRICE + " руб");
+                            $('.delivery-price').text(@Cart.DELIVERY_PRICE + " руб");
                         }
                     });
     </script>
