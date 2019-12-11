@@ -43,7 +43,7 @@
             <div class="wrap">
                 <div class="product-wrap">
                     @*<a href=""><img src="~/images/@product.Category/@product.Category2/@product.Address"></a> изменилась в корне вся система из-за ручного мега меню*@
-                    <a href=""><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
+                    <a><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
                 </div>
                 <div class="loop-action">
                     @*<a href=" @Html.ActionLink(c.Name, "Details",
@@ -116,9 +116,10 @@
     </div>
 
     <div id="results"></div>
+   
     @*//описание категорий внизу*@
     <div class="DescriptionParentCatalog">
-
+        
         @foreach (var DicCatalogKey in Model.DiscriptionCatalog.Keys)
         {
             if (DicCatalogKey == Model.CurrentCategory)

@@ -37,8 +37,9 @@
         }
             <div class="DescriptionModal textModal">
                 @Html.Raw(Model.Description)
-                @*если запускаем просмотре в 
-                @if(($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}").IndexOf("/Cart/Summary")>-1)*@
+                <div class="priceInCatalog priceViewProduct">@Model.Price.00₽</div>
+                @*если запускаем просмотре в
+        @if(($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}").IndexOf("/Cart/Summary")>-1)*@
                 <div class="btnAddToCartFromDetail">
                     @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
                new { id = Model.Id }, new { @class = "compItem2  btn btnOrange btnViewProd" } )
