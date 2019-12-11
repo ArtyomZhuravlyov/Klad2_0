@@ -70,10 +70,16 @@
 }
 
     .textModal li:before {
-        padding-right: 10px;
+        /*padding-right: 10px;
         font-weight: bold;
         color: #f69a73;
-        content: "\2606";
+        content: "\2606";*/
+        content: "\2022";
+        color: orange;
+        font-weight: bold;
+        font-size: 24px;
+        display: inline-block;
+        width: 1em;
     }
 
         .textHeadModal {
@@ -115,6 +121,7 @@
 }
 
 .ColourChangeModal {
+    outline: 0 !important;
     transition: 0.1s linear;
 }
 

@@ -1,3 +1,20 @@
-﻿.startTextMain{
-    margin-left:10%;
+﻿.startTextMain {
+    position: relative;
+    max-width: 200px;
+    margin: 50px 10% 0;
+    background: white;
+    border-radius: 30px;
+    color: #7f7f7f;
+    font-size: 21px;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 150px;
+    padding: 15px;
+}
+
+.richText {
+    color: #7f7f7f;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom:150px;
 }
