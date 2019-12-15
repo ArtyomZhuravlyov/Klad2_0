@@ -97,7 +97,7 @@ namespace Domain.Entities
 
         }
 
-        public decimal ComputeTotalValueWithDelivery()
+        public int ComputeTotalValueWithDelivery()
         {
             return lineCollection.Sum(e => e.productCart.Price * e.Quantity) + DeliveryPrice;
 
@@ -148,6 +148,25 @@ namespace Domain.Entities
             }
             return xml;
         }
+
+
+        /// <summary>
+        /// Переводим из базы xml формат в обычный класс
+        /// </summary>
+        /// <param name="xmlCartLines">берём строку хмл формата из базы</param>
+        /// <returns></returns>
+        static public List<XmlCartLine> GetLineCollecionFromXML(string xmlCartLines)
+        {
+            // передаем в конструктор тип класса
+            XmlSerializer formatter = new XmlSerializer(typeof(List<XmlCartLine>));
+
+            using (MemoryStream sw = new MemoryStream())
+            {
+                List<XmlCartLine> XmlCartLines = (List<XmlCartLine>)formatter.Deserialize(sw);
+                return XmlCartLines;// xml = sw.ToString();
+            }
+        }
+
     }
 
 
@@ -176,6 +195,9 @@ namespace Domain.Entities
 
         public int Price { get; set; }
 
+        /// <summary>
+        /// Всего по одному типутоваров
+        /// </summary>
         public int PriceTotal { get { return Quantity * Price; } }
 
         public string PictureAddress { get; set; }

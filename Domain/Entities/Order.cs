@@ -21,14 +21,20 @@ namespace Domain.Entities
         [Display(Name = "Доставлено")]
         public bool Delivered { get; set; }
 
+        /// <summary>
+        /// Итоговая сумма с доставкой
+        /// </summary>
+        [Display(Name = "Итоговая сумма с доставкой")]
+        public int TotalPrice { get; set; }
 
-        [Display(Name = "Опплачено")]
+
+        [Display(Name = "Оплачено")]
         public bool Paid { get; set; }
 
         /// <summary>
         /// Включает товары и их количество
         /// </summary>
-        public string OrdersQuantity { get; set; }
+        public string OrdersAndQuantity { get; set; }
         // public List<CartLine> aasd;
 
         [Display(Name = "Дата и время")]
@@ -66,6 +72,7 @@ namespace Domain.Entities
 
         [HiddenInput(DisplayValue = false)]
         public string Delivery { get; set; }
+
 
     }
 }

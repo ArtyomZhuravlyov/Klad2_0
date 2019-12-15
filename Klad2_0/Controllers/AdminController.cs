@@ -53,6 +53,22 @@ namespace Klad.Controllers
             return View(db.WordsSearch);
         }
 
+        public ActionResult IndexOrder()
+        {
+            return View(db.Orders.ToList());
+        }
+
+        public ActionResult EditOrder(int Id)
+        {
+            Order Order = db.Orders.Where(x => x.Id == Id).FirstOrDefault();
+            OrderEditViewModal orderEditViewModal = new OrderEditViewModal()
+            {
+                order = Order,
+                XmlCartLineList = Cart.GetLineCollecionFromXML(Order.OrdersAndQuantity)
+            };
+            return View(orderEditViewModal);
+        }
+
         public IActionResult PriceAdmin()
         {
             //return View(db.Products);
