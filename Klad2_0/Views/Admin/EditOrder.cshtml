@@ -39,7 +39,7 @@
 
 
         @*@foreach (CartLine cartLine in Model.Cart.Lines)*@
-        @foreach(var cartLine in Model.XmlCartLineList.ToList() )
+        @foreach (var cartLine in Model.XmlCartLineList.ToList())
         {
             <!-- Товар #1 -->
             <div class="item">
@@ -78,4 +78,5 @@
         </div>
         }
     </div>
+
 </body>

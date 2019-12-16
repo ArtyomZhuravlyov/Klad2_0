@@ -61,7 +61,7 @@
                     <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
                     <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
                     <a href="~/Home/Feedback" class="ColourChange poseContact underline">ОТЗЫВЫ</a>
-
+                    
                     <div class="divSearch">
                         <form asp-controller="Home" asp-action="IndexSearch" class="formSearch" method="get">
 
@@ -256,22 +256,23 @@
 
                     </ul>
                 </nav>
+                <div class="ColourChange poseContact underline" style="color: #ff0000 !important;  background: white !important;">Внимание Сайт находится на тестировании, все платежи недействительны</div>
                 @*<nav class="positionNav">
-                        <ul class="topmenu">
-                            @foreach (var _category in Category.category)
+            <ul class="topmenu">
+                @foreach (var _category in Category.category)
+                {
+                    <li>
+                        <a href="/@_category.Key">@_category.Key</a>
+                        <ul class="submenu">
+                            @foreach (var _category2 in _category.Value)
                             {
-                                <li>
-                                    <a href="/@_category.Key">@_category.Key</a>
-                                    <ul class="submenu">
-                                        @foreach (var _category2 in _category.Value)
-                                        {
-                                            <li>  <a href="/@_category2 ">@_category2</a></li>
-                                        }
-                                    </ul>
-                                </li>
+                                <li>  <a href="/@_category2 ">@_category2</a></li>
                             }
                         </ul>
-                    </nav>*@
+                    </li>
+                }
+            </ul>
+        </nav>*@
             </div>
         </div>
         @*<div class="navbar navbar-inverse" role="navigation">

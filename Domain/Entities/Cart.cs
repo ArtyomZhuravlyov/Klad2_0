@@ -30,6 +30,9 @@ namespace Domain.Entities
 
         public const int DELIVERY_PRICE = 350;//000;
 
+        /// <summary>
+        /// Стоимость доствкпи (зависит от общей стоимости)
+        /// </summary>
         public int DeliveryPrice
         {
             get

@@ -374,7 +374,10 @@ h2{
         transform: initial;
     }
 
-    .autoplaySlick{
+    .product-wrap:after {
+         background: initial; /*убирает синий цвет на картинке*/
+    }
+        .autoplaySlick{
         width: 70%;
     }
 
