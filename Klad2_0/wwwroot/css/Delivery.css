@@ -1,0 +1,27 @@
+﻿.containerDelivery {
+    border-radius: 25px;
+    max-width: 850px;
+    margin: 0px auto 0;
+    margin-bottom: 50px;
+    background-color: white;
+    color: #333333;
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 19px;
+    margin-top: 50px;
+}
+    .headDelivery
+{
+    padding: 10px 0;
+    text-align: center;
+    font-size: 40px;
+    font-style: initial;
+}
+    .elem{
+        padding: 9px 0;
+    }
+
+    .dil{
+        list-style: initial;
+        padding:10px 45px 20px;
+    }

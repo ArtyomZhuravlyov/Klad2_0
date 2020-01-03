@@ -117,6 +117,11 @@ namespace Klad.Controllers
 
         }
 
+        public ViewResult Delivery()
+        {
+            return View();
+        }
+
         [HttpGet("search")]
         public ActionResult AutocompleteSearch(string term)
         {

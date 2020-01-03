@@ -1,0 +1,108 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mer="http://engine.paymentgate.ru/webservices/merchant">
+<soapenv:Header>
+<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-%20wssecurity-utility-1.0.xsd">
+    <wsse:UsernameToken wsu:Id="UsernameToken-87">
+         <wsse:Username>kladovayaltay-api</wsse:Username>
+         <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">kladovayaltay</wsse:Password>
+    </wsse:UsernameToken>
+ </wsse:Security>
+</soapenv:Header>
+   <soapenv:Body>
+      <mer:registerOrder> 
+         <order merchantOrderNumber="1210214" amount="24000" sessionTimeoutSecs="5400">
+            <returnUrl>https://testshop.ru</returnUrl>
+            <params name="param1" value="valueParam1"/>
+            <params name="param2" value="valueParam2"/>
+            <clientId>666</clientId>
+            <merchantLogin>kladovayaltay</merchantLogin>
+             <orderBundle>
+ 				<orderCreationDate>2013-07-12T13:51:00</orderCreationDate>
+               <customerDetails>
+                  <email>johnsmith@mail.ru</email>
+                  <phone>79851231234</phone>
+                  <contact>Mega Tester</contact>
+                  <deliveryInfo>
+                     <deliveryType>courier</deliveryType>
+                     <country>RU</country>
+                     <city>Moscow</city>
+                     <postAddress>Земляной Вал 50А стр.2</postAddress>
+                  </deliveryInfo>
+               </customerDetails>
+               <cartItems>
+                  <items positionId="1">
+                     <name>Metzeler Enduro 3 Sahara</name>
+                     <itemDetails>
+                        <itemDetailsParams name="brand">Metzeler</itemDetailsParams>
+                        <itemDetailsParams name="radius">17inch</itemDetailsParams>
+                     </itemDetails>
+                     <quantity measure="штук">1</quantity>
+                     <itemAmount>8000</itemAmount>
+                     <itemCurrency>643</itemCurrency>
+                     <itemCode>T-M-14</itemCode>
+                     <discount>
+                        <discountType>percent</discountType>
+                        <discountValue>5</discountValue>
+                     </discount>
+                     <agentInterest>
+                        <interestType>agentPercent</interestType>
+                        <interestValue>7</interestValue>
+                     </agentInterest>
+                     <tax>
+                        <taxType>1</taxType>
+                        <taxSum>111</taxSum>
+                     </tax>
+                     <itemPrice>8000</itemPrice>
+                  </items>
+                 <items positionId="2">
+                     <name>Universal Mirror Enduro</name>
+                     <itemDetails>
+                        <itemDetailsParams name="brand">Noname</itemDetailsParams>
+                        <itemDetailsParams name="diameter">12mm</itemDetailsParams>
+                     </itemDetails>
+                     <quantity measure="штук">1</quantity>
+                     <itemAmount>8000</itemAmount>
+                     <itemCurrency>643</itemCurrency>
+                     <itemCode>NM-15</itemCode>
+                     <discount>
+                        <discountType>percent</discountType>
+                        <discountValue>5</discountValue>
+                     </discount>
+                     <agentInterest>
+                        <interestType>agentPercent</interestType>
+                        <interestValue>7</interestValue>
+                     </agentInterest>
+                     <tax>
+                        <taxType>1</taxType>
+                        <taxSum>111</taxSum>
+                     </tax>
+                     <itemPrice>8000</itemPrice>
+                  </items>
+                  <items positionId="3">
+                     <name>Warm Grips</name>
+                     <itemDetails>
+                        <itemDetailsParams name="brand">Noname</itemDetailsParams>
+                     </itemDetails>
+                     <quantity measure="штук">1</quantity>
+                     <itemAmount>8000</itemAmount>
+                     <itemCurrency>643</itemCurrency>
+                     <itemCode>G-16</itemCode>
+                     <discount>
+                        <discountType>percent</discountType>
+                        <discountValue>5</discountValue>
+                     </discount>
+                     <agentInterest>
+                        <interestType>agentPercent</interestType>
+                        <interestValue>7</interestValue>
+                     </agentInterest>
+                     <tax>
+                        <taxType>1</taxType>
+                        <taxSum>111</taxSum>
+                     </tax>
+                     <itemPrice>8000</itemPrice>
+                  </items>
+               </cartItems>
+            </orderBundle>
+         </order>
+      </mer:registerOrder>
+   </soapenv:Body>
+</soapenv:Envelope>

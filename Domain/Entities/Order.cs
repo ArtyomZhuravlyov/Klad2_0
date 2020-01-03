@@ -25,7 +25,7 @@ namespace Domain.Entities
         /// Итоговая сумма с доставкой
         /// </summary>
         [Display(Name = "Итоговая сумма с доставкой")]
-        public int TotalPrice { get; set; }
+        public int Amount { get; set; }
 
 
         [Display(Name = "Оплачено")]
@@ -70,8 +70,8 @@ namespace Domain.Entities
 
         public string Comment { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        public string Delivery { get; set; }
+        //[HiddenInput(DisplayValue = false)]
+        //public string Delivery { get; set; }
 
 
     }

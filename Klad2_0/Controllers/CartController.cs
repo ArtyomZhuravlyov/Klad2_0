@@ -22,6 +22,7 @@ using Klad.Models;
 using Domain.Concrete;
 using WCF_Sber;
 
+
 namespace Klad.Controllers
 {
     public class CartController : Controller
@@ -223,8 +224,19 @@ namespace Klad.Controllers
 
         public ViewResult Checkout()
         {
-            return View(new ShippingDetails());
+            ShippingDetails shippingDetails = new ShippingDetails();
+            if (HttpContext.Session.Keys.Contains("shippingDetails"))
+            {
+                string value = HttpContext.Session.GetString("shippingDetails");
+                shippingDetails = JsonConvert.DeserializeObject<ShippingDetails>(value);
+            }
+            return View(shippingDetails/*new ShippingDetails()*/);
         }
+
+        //public ViewResult FillCheckout(ShippingDetails shippingDetails)
+        //{
+        //    return View(shippingDetails);
+        //}
 
         /// <summary>
         /// 
@@ -232,19 +244,53 @@ namespace Klad.Controllers
         /// <param name="shippingDetails"></param>
         /// <returns></returns>
         [HttpPost]
-        public RedirectResult Checkout( ShippingDetails shippingDetails)
+        public ActionResult Checkout( ShippingDetails shippingDetails)
         {
-            
-            string value = HttpContext.Session.GetString("Cart");
-            Cart cart = JsonConvert.DeserializeObject<Cart>(value);
+            if (ModelState.IsValid && shippingDetails.UserAccess)
+            {
 
-            var testThemDel = cart.GetXmlLineCollection();
-            //   db.Orders.LastOrDefault().TimeOrder = DateTime.Now.ToUniversalTime();
-            
-            WcfSberbank wcfSberbank = new WcfSberbank();
-            //получаем адрес для перехода на оплату
-            string formUrl = wcfSberbank.SendOrder(cart, shippingDetails, db.Orders);
-            return Redirect(formUrl);
+                //orderProcessor.ProcessOrder(cart, shippingDetails);
+                //cart.Clear();
+                //to do wcf 
+                string value = HttpContext.Session.GetString("Cart");
+                Cart cart = JsonConvert.DeserializeObject<Cart>(value);
+                try
+                {
+                   var order =  CreateAndFillOrder(shippingDetails, cart);
+                    WcfSberbank wcfSberbank = new WcfSberbank((order.Id).ToString() + "a", cart, shippingDetails);
+                    string url = wcfSberbank.GetResponseSoap();
+                    return Redirect(url);
+                }
+                catch(Exception ex)
+                {
+                    //to do
+                    return Redirect("");
+                }
+                
+                
+            }
+            else
+            {
+                if (!shippingDetails.UserAccess)                    
+                        ModelState.AddModelError("UserAccess", "Примите пользовательское соглашение");                                  
+                HttpContext.Session.SetString("shippingDetails", JsonConvert.SerializeObject(shippingDetails));
+                return View(shippingDetails);
+            }
+
+
+          
+
+          //  var testThemDel = cart.GetXmlLineCollection();
+          //  //   db.Orders.LastOrDefault().TimeOrder = DateTime.Now.ToUniversalTime();
+
+          
+          //  // WcfSberbank.TestJson();
+
+          //  //  var ttt = await WcfSberbank.Test();
+          //
+          //  //получаем адрес для перехода на оплату
+          //  //  string formUrl = wcfSberbank.SendOrder(cart, shippingDetails, db.Orders);
+          //  return Redirect(url);
             //if (!string.IsNullOrEmpty(formUrl))
             //    return View("CompletedOrder");
             //else
@@ -258,18 +304,32 @@ namespace Klad.Controllers
             //    ModelState.AddModelError("", "Извините, ваша корзина пуста!");
             //}
 
-            //if (ModelState.IsValid)
-            //{
-            //    //orderProcessor.ProcessOrder(cart, shippingDetails);
-            //    //cart.Clear();
-            //    //to do wcf 
+            
+        }
 
-            //    return View("CompletedOrder");
-            //}
-            //else
-            //{
-            //    return View(shippingDetails);
-            //}
+        public Order CreateAndFillOrder(ShippingDetails shippingDetails, Cart cart)
+        {
+            Order order = new Order()
+            {
+                Received = false,
+                Delivered = false,
+                Shipped = false,
+                Adress = shippingDetails.Adress,
+                Name = shippingDetails.Name,
+                Mail = shippingDetails.Mail,
+                City = shippingDetails.City,
+                MiddleName = shippingDetails.MiddleName,
+                Surname = shippingDetails.Surname,
+                TimeOrder = DateTime.Now.ToUniversalTime(),
+                Phone = shippingDetails.Phone,
+                Comment = shippingDetails.Comment,
+                OrdersAndQuantity = cart.GetXmlLineCollection(),
+                Amount = cart.ComputeTotalValueWithDelivery()
+                //to do
+            };
+            db.Orders.Add(order);
+            db.SaveChanges();
+            return order;
         }
 
     }

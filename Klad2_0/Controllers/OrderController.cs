@@ -34,22 +34,23 @@ namespace Klad2_0.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult GetFormBuy(string returnUrl, string merchantOrderNumber, long amount, string description = null)
+        public async Task<IActionResult> GetFormBuy(string returnUrl, string merchantOrderNumber, long amount, string description = null)
         {
             
             string value = HttpContext.Session.GetString("Cart");
             Cart cart = JsonConvert.DeserializeObject<Cart>(value);
 
             var testThemDel = cart.GetXmlLineCollection();
-         //   db.Orders.LastOrDefault().TimeOrder = DateTime.Now.ToUniversalTime();
+            //   db.Orders.LastOrDefault().TimeOrder = DateTime.Now.ToUniversalTime();
 
-            WcfSberbank wcfSberbank = new WcfSberbank();
+       //     WcfSberbank wcfSberbank = new WcfSberbank((db.Orders.LastOrDefault()?.Id + 1).ToString());
+            var task =  await WcfSberbank.Test();
           // string formUrl = wcfSberbank.SendOrder(returnUrl, merchantOrderNumber, amount, cart, description );
             //if(!string.IsNullOrEmpty(formUrl))
             //    return View();
             //else
 
-            return View();
+            return View(task);
         }
     }
 }

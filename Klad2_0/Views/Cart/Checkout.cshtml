@@ -28,7 +28,7 @@
             }
             else
             {
-                @if (property.DisplayName == "Доставка")
+                @if (property.DisplayName == "Доставка" || property.Name == "UserAccess")
                 {
                     continue;
                     @*<label>Доставка</label>*@
@@ -47,37 +47,46 @@
         </div>
 
     }
-    @*<div class="form-group">
-            <label>Ваше имя:</label>
-            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-        </div>
-
-        <h3>Адрес доставки</h3>
         <div class="form-group">
-            @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            <label>Город:</label>
-            @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
-        </div>*@
-
-    @*<h3>Опции</h3>
-        <div class="checkbox">
-            <label>
-                @Html.EditorFor(x => x.GiftWrap)
-                Использовать подарочную упаковку?
-            </label>
-        </div>*@
-
-    @*предыдущая версия@Html.ActionLink("Обработать заказ", "Checkout", "Cart", null, new { @class = "btn buttonOrder" })*@
-
-        @*<label class="containerCheck">
+            <div class="checkbox">
+                <label>
+                    @Html.EditorFor(x => x.UserAccess)
+                    Использовать подарочную упаковку?
+                </label>
+            </div>
+            @*<label class="containerCheck">
             Один
-            <input type="checkbox" checked="checked">
+            <input type="checkbox"  name="UserAccess">
             <span class="checkmark"></span>
         </label>*@
-    <div class="text-center">
-        <input class="btn buttonOrder outline" style="height: 36px;width: 180px; float: initial;    margin-bottom: -18px;font-size: 17px !important; margin-right: -25px;" type="submit" value="Обработать заказ" />
+        </div>
+        @*<div class="form-group">
+                <label>Ваше имя:</label>
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            </div>
+
+            <h3>Адрес доставки</h3>
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Город:</label>
+                @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+            </div>*@
+
+        @*<h3>Опции</h3>
+            <div class="checkbox">
+                <label>
+                    @Html.EditorFor(x => x.GiftWrap)
+                    Использовать подарочную упаковку?
+                </label>
+            </div>*@
+
+        @*предыдущая версия@Html.ActionLink("Обработать заказ", "Checkout", "Cart", null, new { @class = "btn buttonOrder" })*@
+
+
+        <div class="text-center">
+            <input class="btn buttonOrder outline" style="height: 36px;width: 180px; float: initial;    margin-bottom: -18px;font-size: 17px !important; margin-right: -25px;" type="submit" value="Обработать заказ" />
+        </div>
     </div>
-</div>
-}
+    }

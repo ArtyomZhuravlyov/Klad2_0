@@ -40,6 +40,7 @@ namespace Klad
             services.Configure<FormOptions>(options =>
             {
                 options.ValueCountLimit = int.MaxValue;
+               
             });
 
             services.AddCors(options =>
@@ -87,7 +88,7 @@ namespace Klad
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseStaticFiles();
-
+           
             app.UseAuthentication();
 
             app.UseMvc(routes =>

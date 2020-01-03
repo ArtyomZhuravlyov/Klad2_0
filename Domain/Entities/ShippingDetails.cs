@@ -44,7 +44,8 @@ namespace Domain.Entities
         [HiddenInput(DisplayValue = false)]
         public string Delivery { get; set; }
 
-        //public bool GiftWrap { get; set; }
+        [Required(ErrorMessage = "Примите пользовательское соглашение")]
+        public bool UserAccess { get; set; } = true;
 
     }
 }
