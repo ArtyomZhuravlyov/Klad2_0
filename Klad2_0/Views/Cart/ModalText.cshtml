@@ -1,0 +1,36 @@
+﻿@model string
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" />
+    <link rel="stylesheet" href="~/css/Pages2.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,700" rel="stylesheet">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">*@
+
+    @*бутстрап*@
+    @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    @*http://localhost:44338/ЗДОРОВЬЕ/lib/bootstrap/dist/js/bootstrap.js*@
+    @*<link rel="stylesheet" href="~/css/Catalog.css" />*@
+    @*<link rel="stylesheet" href="~/css/ModalWindow.css" />*@
+</head>
+<div class="modal-content MyTop minWidthModal TextModalForm" >
+    <div class="modal-header textHeadModal TextModalHeadForm">
+
+        <button class="close buttonModal" data-dismiss="modal" area-hidden="true">X</button>
+        @if (string.IsNullOrEmpty(@Model))
+        {
+            <div class="textHeadInputModal textHeadHeadModal " >Покупка осуществляется от 500 руб</div>
+        }
+        else
+        {
+            <div class="textHeadInputModal textHeadHeadModal">@Model</div>
+        }
+    </div>
+    @*<div class="modal-body flexModal">
+        <div class="DescriptionModal textModal">
+            @Html.Raw(Model)
+        </div>
+    </div>*@
+    
+</div>

@@ -69,7 +69,7 @@ namespace Klad.Controllers
                 Cart cart = GetCart();
                 cart.AddItem(product, 1);
                 HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
-                cart = GetCart();
+                //cart = GetCart();
                 
                  
                 return RedirectToAction("Summary","Cart");
@@ -103,6 +103,12 @@ namespace Klad.Controllers
             //    Cart cart = GetCart();
             //    return Redirect("/Home/AddToCart/-1");
             //}
+        }
+
+       
+        public ActionResult ModalText(string text)
+        {
+            return PartialView(text);
         }
 
         public ActionResult /*PartialViewResult*/ SummaryPart(Cart cart)
@@ -249,15 +255,12 @@ namespace Klad.Controllers
             if (ModelState.IsValid && shippingDetails.UserAccess)
             {
 
-                //orderProcessor.ProcessOrder(cart, shippingDetails);
-                //cart.Clear();
-                //to do wcf 
                 string value = HttpContext.Session.GetString("Cart");
                 Cart cart = JsonConvert.DeserializeObject<Cart>(value);
                 try
                 {
-                   var order =  CreateAndFillOrder(shippingDetails, cart);
-                    WcfSberbank wcfSberbank = new WcfSberbank((order.Id).ToString() + "a", cart, shippingDetails);
+                    var order =  CreateAndFillOrder(shippingDetails, cart); //добавляем в базу заказ
+                    WcfSberbank wcfSberbank = new WcfSberbank((order.Id).ToString() + "test", cart, shippingDetails);
                     string url = wcfSberbank.GetResponseSoap();
                     return Redirect(url);
                 }

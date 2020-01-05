@@ -35,7 +35,12 @@ namespace Klad
             //    options.MinimumSameSitePolicy = SameSiteMode.None;
             //});
             services.AddDistributedMemoryCache();
-            services.AddSession();
+            services.AddSession(options =>
+            {
+                //options.Cookie.Name = ".MyApp.Session";
+                options.IdleTimeout = TimeSpan.FromDays(1);
+                //options.Cookie.IsEssential = true;
+            });
 
             services.Configure<FormOptions>(options =>
             {

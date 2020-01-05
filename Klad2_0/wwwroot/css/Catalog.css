@@ -253,13 +253,26 @@
     padding-top: 35px;
 }
 
+img.PictureSuccess {
+    height: 600px;
+    width: 800px;
+}
+
+.modalSuccess {
+    margin: 0 auto !important;
+    height: 650px !important;
+    width: 800px !important;
+}
+
 .priceInCatalog {
+    width: 100%;
     font-weight: 600;
     /*color: #543019;
     color: #4a713a;*/
     color: #df873e;
     text-align: center;
-    padding-top: 3px;
+    padding-top: 25px;
+    padding-bottom: 10px;
     font-size: 17px;
     font-family: sans-serif;
 }
@@ -312,6 +325,26 @@ h2{
     height: 330px;
 }
 
+.TextThanks {
+    height: 150px;
+    width: 100%;
+    text-align: center;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+}
+
+.WordThanks {
+    padding-bottom: 10px;
+    color: #2fb580;
+    font-size: 40px;
+    padding-top: 5px;
+}
+
+.SmallText {
+    color: #575757;
+    font-size: 22px;
+}
 
 @media(max-width:768px) {
     .parent {
@@ -330,25 +363,27 @@ h2{
         max-height: 200px;
     }
 
+    .product-info {
+        min-height: 90px;
+    }
+
     .border {
         width: 42%;
         padding: 10px;
         border: 1px solid #F1E7E8;
         margin: 1px;
-        max-height: 320px;
-        height:320px;
-        /*height: 500px;*/
+        /*max-height: 320px;
+        height:320px;*/
     }
 
     .borderSlider {
-        margin:0 auto; 
-        width:70%;
+        margin: 0 auto;
+        width: 70%;
     }
 
     .wrap {
-        height: 250px;
+        height: 270px;
         position: relative;
-
     }
 
     .product-title {
@@ -356,30 +391,62 @@ h2{
     }
 
     .loop-action a {
-        font-size: 7px;
+        font-size: 12px;
         line-height: 1.1;
         min-width: 80px;
         border-width: 1px;
         /*color: darkgray;
         border-color: darkgrey;*/
+        padding: 7px;
         color: #8b4300;
         border-color: #8b4300 /*#008a77*/;
     }
 
     .loop-action {
         opacity: 1;
-        top:80%;
+        top: 75%;
         left: initial;
-        width:100%;
+        width: 100%;
         transform: initial;
     }
 
     .product-wrap:after {
-         background: initial; /*убирает синий цвет на картинке*/
+        background: initial; /*убирает синий цвет на картинке*/
     }
-        .autoplaySlick{
+
+    .autoplaySlick {
         width: 70%;
     }
 
-   
+    img.PictureSuccess {
+        height: 200px;
+        width: 300px;
+    }
+
+    .modalSuccess {
+        margin: 0 auto !important;
+        height: 230px !important;
+        width: 300px !important;
+    }
+
+    .Thanks {
+        position: relative;
+    }
+    .TextThanks {
+        text-align: center;
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+    }
+
+    .WordThanks {
+        padding-bottom: 5px;
+        color: #2fb580;
+        font-size: 25px;
+        padding-top: 5px;
+    }
+    .SmallText{
+    color: #575757;
+    font-size: 15px;
+    }
 }

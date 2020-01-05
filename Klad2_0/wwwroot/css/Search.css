@@ -88,12 +88,12 @@
     /*padding: 30px 0;*/
     .divSearch {
         float: none;
-        margin-right: 0px;
-        /*margin-bottom:20px;*/
-        margin-top: -15px;
+        margin-right: 20px;
+        margin-bottom:20px;
+        margin-top: 10px;
         display: flex;
         justify-content: center;
-        padding-bottom: 10px;
+        /*padding-bottom: 10px;*/
     }
 
     .ui-menu .ui-menu-item-wrapper {

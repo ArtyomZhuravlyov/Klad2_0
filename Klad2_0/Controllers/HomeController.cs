@@ -157,6 +157,28 @@ namespace Klad.Controllers
             return View(viewModel);
         }
 
+        public ActionResult SuccessOrder()
+        {
+            var items = db.GetFavoutiteProducts();
+            
+            ////чистим корзину после успешной оплаты
+            //Cart cart = new Cart();
+            //HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+
+
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                Products = items,
+            };
+
+            return View(viewModel);
+        }
+
+        public ActionResult SuccessDetail()
+        {
+            return PartialView();
+        }
+
         /// <summary>
         /// Подробный просмотр товара //почти тот же метод Detail
         /// </summary>

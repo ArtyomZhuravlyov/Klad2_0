@@ -59,21 +59,21 @@ width:50px;
 }
 
 @media(max-width:768px) {
-    .positionICart{
-width: 52px;
-    height: 52px;
-    margin: 0 auto;
-     float: initial; 
-     margin-bottom: 2se0px; 
-     margin-top: 0px; 
+    .PositionCart {
+        width: 52px;
+        height: 52px;
+        margin: 0 auto;
+        float: initial;
+        /*margin-bottom: 2se0px;*/
+        margin-right: initial;
     }
     .CartOnLayout {
-        margin-top: 20px;
+        margin-top: 8px;
         /* padding-top: 300px; */
         margin-bottom: 10px;
-        display: inline-block;
-        margin-right: 14%;
-        margin-left: 14%;
+        display: block;
+        /*margin-right: 14%;
+        margin-left: 14%;*/
     }
 
     .textSummaryCart p {

@@ -11,6 +11,7 @@ using System.Xml.Serialization;
 
 namespace Domain.Entities
 {
+
     public class Cart
     {
         
@@ -28,7 +29,15 @@ namespace Domain.Entities
         /// </summary>
         public const int SUMM_FOR_SALE = 3;//000;
 
+        /// <summary>
+        /// Изначальная Цена доставки
+        /// </summary>
         public const int DELIVERY_PRICE = 350;//000;
+
+        /// <summary>
+        /// Минимальная сумма для покупки
+        /// </summary>
+        public const int LIMIT_AMOUNT = 3;//000;
 
         /// <summary>
         /// Стоимость доствкпи (зависит от общей стоимости)

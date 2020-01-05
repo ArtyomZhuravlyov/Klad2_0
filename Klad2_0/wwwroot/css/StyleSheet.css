@@ -174,3 +174,11 @@ nav a {
     text-align: center;
     text-transform: uppercase;
 }*/
+
+@media(max-width:768px) {
+    .test_color {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

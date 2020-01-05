@@ -22,101 +22,106 @@
         <div class="textHeadInputModal textHeadHeadModal">@Model.Name</div>
     </div>
     <div class="modal-body flexModal">
-        @if (!string.IsNullOrEmpty(Model.Address))
-        {
-            <div class="photo">
-                <img src="~/images/Каталог товаров/@Model.Address" class="imgHeight">
-            </div>
-        }
-        else
-        {
-            <div class="photo">
-                <img src="@Url.Action("GetImage", "Home",
+        <div class="PicturePlusPrice">
+            @if (!string.IsNullOrEmpty(Model.Address))
+            {
+                <div class="photo">
+                    <img src="~/images/Каталог товаров/@Model.Address" class="imgHeight">
+                </div>
+            }
+            else
+            {
+                <div class="photo">
+                    <img src="@Url.Action("GetImage", "Home",
                     new { Model.Id })" class="imgHeight">
+                </div>
+            }
+                <div class="BlockPrice">
+                    <div class="priceInCatalog priceViewProduct">@Model.Price.00₽</div>
+                    @*если запускаем просмотре в
+        @if(($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}").IndexOf("/Cart/Summary")>-1)*@
+                    <div class="btnAddToCartFromDetail">
+                        @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
+                   new { id = Model.Id }, new { @class = "compItem2  btn btnOrange btnViewProd" } )
+                    </div>
+                    <div id="DisplayHide" class="DisplayHide goToCart" style="text-align:center !important; white-space: initial">
+                        <div style="color:black !important">Товар добавлен в корзину</div>
+                        @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new { returnUrl = "" }, new { @class = "btn btnOrange btnViewProd" })
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $.ajaxSetup({ cache: false });
+                            $(".compItem2").click(function (e) {
+                                e.preventDefault();
+                                //$(this).closest().find(".DisplayHide").addClass("DisplayShow");
+                                // $(this).closest().next().addClass("DisplayShow");//показываем кнопку перейти в корзину //Этот скрипт немного отличается от других
+                                $("#DisplayHide").addClass("DisplayShow");
+                                $(this).addClass("DisplayHide");
+                                $(this).closest('div').addClass("white-spaceInitial")
+                                //.addClass("DisplayHide");//скрываем кнопку добавить в корзину
+                                //  $(this).next().addClass("DisplayShow");//показываем кнопку перейти в корзину
+
+                                $.get(this.href, function (data) {//увеличиваем число товаров
+                                    $.get("/Cart/GetQuantity", function (data) {//пишем на корзине число товаров
+                                        $('.countDigit').text(data);
+                                    })
+                                });
+                            });
+                        })
+                    </script>
+                </div>
             </div>
-        }
             <div class="DescriptionModal textModal">
                 @Html.Raw(Model.Description)
-                <div class="priceInCatalog priceViewProduct">@Model.Price.00₽</div>
-                @*если запускаем просмотре в
-        @if(($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}").IndexOf("/Cart/Summary")>-1)*@
-                <div class="btnAddToCartFromDetail">
-                    @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
-               new { id = Model.Id }, new { @class = "compItem2  btn btnOrange btnViewProd" } )
-                </div>
-                <div id="DisplayHide" class="DisplayHide goToCart" style="text-align:center !important; white-space: initial">
-                    <div style="color:black !important">Товар добавлен в корзину</div>
-                    @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new { returnUrl = "" }, new { @class = "btn btnOrange btnViewProd" })
-                </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $.ajaxSetup({ cache: false });
-                        $(".compItem2").click(function (e) {
-                            e.preventDefault();
-                            //$(this).closest().find(".DisplayHide").addClass("DisplayShow");
-                            // $(this).closest().next().addClass("DisplayShow");//показываем кнопку перейти в корзину //Этот скрипт немного отличается от других
-                            $("#DisplayHide").addClass("DisplayShow");
-                            $(this).addClass("DisplayHide");
-                            $(this).closest('div').addClass("white-spaceInitial")
-                            //.addClass("DisplayHide");//скрываем кнопку добавить в корзину
-                            //  $(this).next().addClass("DisplayShow");//показываем кнопку перейти в корзину
-
-                            $.get(this.href, function (data) {//увеличиваем число товаров
-                                $.get("/Cart/GetQuantity", function (data) {//пишем на корзине число товаров
-                                    $('.countDigit').text(data);
-                                })
-                            });
-                        });
-                    })
-                </script>
+                
             </div>
 
-    </div>
-    @if (Model.IndicationsForUse != null || Model.Composition != null)
-    {
-        <div class="modal-body DescriptionModal topBorderModal ">
-            @if (!string.IsNullOrEmpty(Model.FullDescription))
-            {
-                <div class="textMarginModal textModal">
-                    @Html.Raw(Model.FullDescription)
-                </div>
-            }
-            @if (!string.IsNullOrEmpty(Model.IndicationsForUse))
-            {
-                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Показания к применению: </span>@Html.Raw(Model.IndicationsForUse)</div>
-
-            }
-            @if (!string.IsNullOrEmpty(Model.Composition))
-            {
-                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Состав: </span>@Html.Raw(Model.Composition)</div>
-
-            }
-            else if (!string.IsNullOrEmpty(Model.CompositionMorning))
-            {
-                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Утренный состав: </span>@Html.Raw(Model.CompositionMorning)</div>
-                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Вечерний состав: </span>@Html.Raw(Model.CompositionEvening)</div>
-            }
-            @if (!string.IsNullOrEmpty(Model.MethodOfUse))
-            {
-                <div class="textMarginModal textModal"> <span class="textHeadInputModal">Способ применения: </span>@Html.Raw(Model.MethodOfUse) </div>
-            }
-
-            @if (!string.IsNullOrEmpty(Model.Contraindications))
-            {
-                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Противопоказания: </span>@Html.Raw(Model.Contraindications)</div>
-            }
-            @if (!string.IsNullOrEmpty(Model.FormRelease))
-            {
-                <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Форма выпуска: </span>@Html.Raw(Model.FormRelease)</div>
-            }
-            @if (!string.IsNullOrEmpty(Model.ShelfLife))
-            {
-                <div class="textMarginModal   textModal"> <span class="textHeadInputModal ">Срок годности: </span>@Html.Raw(Model.ShelfLife) </div>
-            }
-            @if (!string.IsNullOrEmpty(Model.StorageConditions))
-            {
-                <div class="textMarginModal   textModal"> <span class="textHeadInputModal">Условия хранения: </span>@Html.Raw(Model.StorageConditions) </div>
-            }
         </div>
-    }
-</div>
+        @if (Model.IndicationsForUse != null || Model.Composition != null)
+        {
+            <div class="modal-body DescriptionModal topBorderModal ">
+                @if (!string.IsNullOrEmpty(Model.FullDescription))
+                {
+                    <div class="textMarginModal textModal">
+                        @Html.Raw(Model.FullDescription)
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.IndicationsForUse))
+                {
+                    <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Показания к применению: </span>@Html.Raw(Model.IndicationsForUse)</div>
+
+                }
+                @if (!string.IsNullOrEmpty(Model.Composition))
+                {
+                    <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Состав: </span>@Html.Raw(Model.Composition)</div>
+
+                }
+                else if (!string.IsNullOrEmpty(Model.CompositionMorning))
+                {
+                    <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Утренный состав: </span>@Html.Raw(Model.CompositionMorning)</div>
+                    <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Вечерний состав: </span>@Html.Raw(Model.CompositionEvening)</div>
+                }
+                @if (!string.IsNullOrEmpty(Model.MethodOfUse))
+                {
+                    <div class="textMarginModal textModal"> <span class="textHeadInputModal">Способ применения: </span>@Html.Raw(Model.MethodOfUse) </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Contraindications))
+                {
+                    <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Противопоказания: </span>@Html.Raw(Model.Contraindications)</div>
+                }
+                @if (!string.IsNullOrEmpty(Model.FormRelease))
+                {
+                    <div class="textMarginModal textModal"> <span class="textHeadInputModal  ">Форма выпуска: </span>@Html.Raw(Model.FormRelease)</div>
+                }
+                @if (!string.IsNullOrEmpty(Model.ShelfLife))
+                {
+                    <div class="textMarginModal   textModal"> <span class="textHeadInputModal ">Срок годности: </span>@Html.Raw(Model.ShelfLife) </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.StorageConditions))
+                {
+                    <div class="textMarginModal   textModal"> <span class="textHeadInputModal">Условия хранения: </span>@Html.Raw(Model.StorageConditions) </div>
+                }
+            </div>
+        }
+    </div>

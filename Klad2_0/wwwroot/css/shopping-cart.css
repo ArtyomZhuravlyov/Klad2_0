@@ -62,6 +62,10 @@
     background-repeat: no-repeat;
 }
 
+.OrangeColorText {
+    color: #FF7400;
+}
+
 .is-active {
     animation-name: animate;
     animation-duration: .8s;

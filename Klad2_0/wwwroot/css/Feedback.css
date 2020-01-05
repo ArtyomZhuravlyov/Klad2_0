@@ -169,3 +169,12 @@
         color: #707981;
         box-sizing: border-box;
     }
+
+
+@media(max-width:768px) {
+
+    .form-left-decoration,
+    .form-right-decoration {
+        display: none;
+    }
+}

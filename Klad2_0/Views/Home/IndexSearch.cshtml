@@ -38,28 +38,47 @@
     <div class="parent">
         @foreach (var product in Model.Products)
         {
-            <div class="border">
-                <div class="wrap">
-                    <div class="product-wrap">
-                        @*<a href=""><img src="~/images/@product.Category/@product.Category2/@product.Address"></a> изменилась в корне вся система из-за ручного мега меню*@
-                        <a><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
-                    </div>
-                    <div class="loop-action">
-                      
-                        @Html.ActionLink("Просмотр", "Details",
-                            new { id = product.Id }, new { @class = "compItem btn " } )
-                        @Html.ActionLink("Добавить в корзину", "AddToCart",
-            new { id = product.Id }, new { @class = "compItem2  btn" } )
-                    </div>
+        <div class="border">
+            <div class="wrap">
+                <div class="product-wrap">
+                    @*<a href=""><img src="~/images/@product.Category/@product.Category2/@product.Address"></a> изменилась в корне вся система из-за ручного мега меню*@
+                    <a><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
                 </div>
+                <div class="loop-action">
+                    @*<a href=" @Html.ActionLink(c.Name, "Details",
+            new { id = c.Id }, new { @class = "compItem" })" class="add-to-cart btn open-modal" data-modal="#modal1">Быстрый просмотр</a>*@
 
-                <div class="product-info">
-                    @Html.ActionLink(product.Name, "ViewProduct",
-                            new { id = product.Id, returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") }, new { @class = "product-title ColourChangeModal" } )
+                    @Html.ActionLink("Просмотр", "Details",
+                        new { id = product.Id, returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") }, new { @class = "compItem btn" } )
+
+                    @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
+    new { id = product.Id }, new { @class = "compItem2  btn" } )
+                    <div class="DisplayHide goToCart">
+                        <div style="height:0;">Товар добавлен в корзину</div>
+                        @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
+          new { @class = "btn btnOrange"} )
+                    </div>
+                    @*<a class="loop-add-to-cart">В корзину</a>*@
+
+                    @*@using (Html.BeginForm("AddToCart", "HOME"))
+            {
+                <div class="pull-right">
+                    @Html.Hidden("productId", product.Id)
+                    @Html.Hidden("returnUrl", ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}"))
+                    <input type="submit" class="btn btn-success" value="Добавить в корзину" />
                 </div>
+            }*@
 
-
+                </div>
             </div>
+
+            <div class="product-info">
+                @Html.ActionLink(product.Name, "ViewProduct",
+                        new { id = product.Id, returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") }, new { @class = "product-title ColourChangeModal" } )
+            </div>
+            <div class="priceInCatalog">@product.Price.00₽</div>
+
+        </div>
 
         }
     </div>
@@ -169,10 +188,17 @@
         $(function () {
             $.ajaxSetup({ cache: false });
             $(".compItem2").click(function (e) {
-
                 e.preventDefault();
-                $.get(this.href, function (data) {
-                    $('#Cart').html(data);
+                //$(this).closest().find(".DisplayHide").addClass("DisplayShow");
+                $(this).addClass("DisplayHide");
+                //.addClass("DisplayHide");//скрываем кнопку добавить в корзину
+                $(this).next().addClass("DisplayShow");//показываем кнопку перейти в корзину
+                $.get(this.href, function (data) {//увеличиваем число товаров
+                    $.get("/Cart/GetQuantity", function (data) {//пишем на корзине число товаров
+                        $('.countDigit').text(data);
+                    })
+
+                    //  $('#Cart').html(data);
                     //$('#modDialog').modal('show');
                 });
             });

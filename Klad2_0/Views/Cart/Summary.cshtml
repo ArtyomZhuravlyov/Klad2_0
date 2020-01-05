@@ -60,7 +60,7 @@
                             new { id = cartLine.productCart.Id, returnUrl = "" }, new { @class = "compItem ColourChangeModal colorGrey" } )
                         </span>
                         @*<span>Bball High</span>
-                        <span>White</span>*@
+                            <span>White</span>*@
                     </div>
 
                     <div class="quantity">
@@ -79,48 +79,53 @@
                     </div>
                 </div>
             }
-                <div class="Total">
-                    <div class="box">
-                        <div class="ContainerTotal-total-price">
-                            Доставка:
-                            @if (Model.Cart.DeliveryPrice == 0)
-                            {
-                                <a class="delivery-price">БЕСПЛАТНО</a>
-                            }
-                            else
-                            {<a class="delivery-price">@Model.Cart.DeliveryPrice руб</a>}
-
-                        </div>
-                        <div class="ContainerTotal-total-price">
-                            Итого к оплате:
-                            <a class="total-total-price">@Model.Cart.ComputeTotalValueWithDelivery() руб</a>
-                        </div>
-                        <div class="bottons">
-                            <a class="btn ContinueOrder btn-return" href="@Model.ReturnUrl">Продолжить покупки</a>
-                            @Html.ActionLink("Оформить заказ", "Checkout", "Cart", null, new { @class = "btn buttonOrder" })
-                            
-                        </div>
+            <div class="Total">
+                <div class="box">
+                    <div class="ContainerTotal-total-price">
+                        Доставка:
+                        @if (Model.Cart.DeliveryPrice == 0)
+                        {
+                            <a class="delivery-price">БЕСПЛАТНО</a>
+                        }
+                        else
+                        {<a class="delivery-price">@Model.Cart.DeliveryPrice руб</a>}
 
                     </div>
-                    <div class="cond">
-                        <div class="cond_title">
-                            УСЛОВИЯ
+                    <div class="ContainerTotal-total-price">
+                        Итого к оплате:
+                        <a class="total-total-price">@Model.Cart.ComputeTotalValueWithDelivery() руб</a>
+                    </div>
+                    <div class="bottons">
+                        <a class="btn ContinueOrder btn-return" href="@Model.ReturnUrl">Продолжить покупки</a>
+                        @Html.ActionLink("Оформить заказ", "Checkout", "Cart", null, new { @class = "btn buttonOrder OrderID" })
+
+                    </div>
+
+                </div>
+                <div class="cond">
+                    <div class="cond_title">
+                        УСЛОВИЯ
+                    </div>
+                    <div class="cond_text">
+                        При покупке свыше 3000 руб доставка бесплатно!
+                    </div>
+                    <div class="cond_text">
+                        <div id="Limit" class="deliveryСontraction">
+                            Покупка осуществляется от 500 руб
                         </div>
-                        <div class="cond_text">
-                            При покупке свыше 3000 руб доставка бесплатно!
+                    </div>
+                    <div class="cond_text">
+                        <div class="deliveryСontraction">
+                            Оплата осуществляется банковской картой @*<img height="27" width="49" src="~/images/mastercard.png">*@
                         </div>
-                        <div class="cond_text">
-                            <div class="deliveryСontraction">
-                                Покупка осуществляется от 500 руб
-                            </div>
-                        </div>
-                        <div class="cond_text">
-                            <div class="deliveryСontraction">
-                                Оплата осуществляется банковской картой <img height="27" width="49" src="~/images/mastercard.png">
-                            </div>
+                    </div>
+                    <div class="cond_text">
+                        <div class="deliveryСontraction">
+                            <img height="27" width="200" src="~/images/pay_logos2.png">
                         </div>
                     </div>
                 </div>
+            </div>
         }
         else
         {
@@ -156,10 +161,10 @@
                                     @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
         new { id = product.Id }, new { @class = "compItem2  btn" } )
                                     @*<div class="DisplayHide goToCart">
-                                        <div>Товар добавлен в корзину</div>
-                                        @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
-                          new { @class = "btn btnOrange"} )
-                                    </div>*@
+                                                      <div>Товар добавлен в корзину</div>
+                                                      @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
+                                        new { @class = "btn btnOrange"} )
+                                                  </div>*@
 
                                 </div>
                             </div>
@@ -225,22 +230,22 @@
         })
     </script>
     @*<script type="text/javascript">
-        $(function () {
-            $.ajaxSetup({ cache: false });
-            $(".compItem2").click(function (e) {
-                e.preventDefault();
-                //$(this).closest().find(".DisplayHide").addClass("DisplayShow");
-                $(this).addClass("DisplayHide");
-                //.addClass("DisplayHide");//скрываем кнопку добавить в корзину
-                $(this).next().addClass("DisplayShow");//показываем кнопку перейти в корзину
-                $.get(this.href, function (data) {//увеличиваем число товаров
-                    $.get("/Cart/GetQuantity", function (data) {//пишем на корзине число товаров
-                        $('.countDigit').text(data);
-                    })
+            $(function () {
+                $.ajaxSetup({ cache: false });
+                $(".compItem2").click(function (e) {
+                    e.preventDefault();
+                    //$(this).closest().find(".DisplayHide").addClass("DisplayShow");
+                    $(this).addClass("DisplayHide");
+                    //.addClass("DisplayHide");//скрываем кнопку добавить в корзину
+                    $(this).next().addClass("DisplayShow");//показываем кнопку перейти в корзину
+                    $.get(this.href, function (data) {//увеличиваем число товаров
+                        $.get("/Cart/GetQuantity", function (data) {//пишем на корзине число товаров
+                            $('.countDigit').text(data);
+                        })
+                    });
                 });
-            });
-        })
-    </script>*@
+            })
+        </script>*@
 
 
     <script type="text/javascript">
@@ -273,7 +278,7 @@
                             value = parseInt(($this.closest('div').next().children('.price')).text()) * value;
                             ($this.closest('div').next().next().children('.total-price')).text(value + " руб"); //общий счёт для одного товара
 
-                            //Скидка для одного товара
+
                             //value =
                             value = 0;
                             $(".total-price").each(function () {
@@ -316,7 +321,7 @@
                         value = parseInt(($this.closest('div').next().children('.price')).text()) * value;
                         ($this.closest('div').next().next().children('.total-price')).text(value + " руб"); //общий счёт для одного товара
 
-                        //Скидка для одного товара
+
                         //value =
                         value = 0;
                         $(".total-price").each(function () {
@@ -334,5 +339,23 @@
                             $('.delivery-price').text(@Cart.DELIVERY_PRICE + " руб");
                         }
                     });
+    </script>
+
+
+    @*лбработка клика оформления и проверка на сумму от 500 рублей*@
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".OrderID").click(function (e) {
+                if (parseInt($('.total-total-price').text()) < 300) {  
+                    e.preventDefault();
+                    $.get("/Cart/ModalText/", function (data) {
+                        $('#dialogContent').html(data);
+                        $('#modDialog').modal('show');
+                    });
+                  //  $("#Limit").addClass("OrangeColorText");
+                } 
+            });
+        })
     </script>
 </body>

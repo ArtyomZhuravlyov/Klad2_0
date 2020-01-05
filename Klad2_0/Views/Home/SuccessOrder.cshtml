@@ -1,0 +1,237 @@
+﻿@*@model IEnumerable<Klad.Models.Product>*@
+@*@using Klad.Models
+    @model IndexViewModel*@
+@using Klad.Models
+@model IndexViewModel
+@*подключаем все tag-хелперы*@
+@addTagHelper "*, Klad"
+
+@{
+    ViewData["Title"] = "Главная";
+    // Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" />
+    <link rel="stylesheet" href="~/css/Pages2.css" />
+    <link rel="stylesheet" href="~/css/Footer.css" />
+    <link rel="stylesheet" href="~/css/Feedback.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/ModalWindow.css">
+    <link rel="stylesheet" href="~/css/Main.css" /> 
+
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick-1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick-1.8.1/slick/slick-theme.css" />
+    <script type="text/javascript" src="~/lib/slick-1.8.1/slick-1.8.1/slick/slick.min.js"></script>
+    @*<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>*@
+    
+
+</head>
+<body>
+
+    @*<div class="parentCaruselMain">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="~/images/Рисунок9.png" class="img-responsive" />
+                    </div>
+                    <div class="item">
+                        <img src="~/images/Кладовая Алтая в Ачинске.png" class="img-responsive" />
+                    </div>
+                    <div class="item">
+                        <img src="~/images/Second Кладовая Алтая Ачинск.jpg" class="img-responsive" />
+                    </div>
+                    <div class="item">
+                        <img src="~/images/third пантопроект.png" class="img-responsive" />
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>*@
+
+
+
+
+    @*<span style="position: relative; z-index: -2;">
+            правильное питание  похудение питание диета похудение здоровое питание
+            продукты Алтая семена льняное масло натуральные продукты косметика
+            фито-продукты фито натуральная косметика здоровый образ жизни Алтайский мёд
+            алтайское масло алтайская для кожи для зрения поднять иммунитет ребёнку
+            укрепить иммунитет ребёнка продукция для здоровья Ачинск Абакан товары из белокурихи белокуриха
+            кладовая алтая ачинск травы алтая ачинск эко маркет Лекарь
+            Кладовая Алтая Ачинск сайт Кладовая Алтая Абакан сайт
+            Кладовая Алтая Ачинск каталог Кладовая Алтая Абакан каталог
+            Для сердца Для суставов укрепление иммунитета от простатита
+            от геморроя от аллергии для рук для сердца
+            от гайморита от насморка вылечить гайморит капли от насморка
+            капли от гайморита мумиё сиропы фитосборы травяные чаи Ачинск
+            травяные фитосборы ачинск масла травяной чай Ачинск
+        </span>*@
+    @*<div class="ConteinerMainPicture">
+        </div>*@
+
+    <div class=" startTextMain">
+        Я выбираю здоровье!
+    </div>
+    <section class="section">
+        <div class="section_header">
+            <h2 class="section_title">Хиты продаж</h2>
+        </div>
+        <div class="parent">
+            <div class="autoplaySlick">
+                @foreach (var product in Model.Products)
+                {
+                    <div>
+                        <div class="border borderSlider">
+
+                            <div class="wrap">
+                                @*<div class="stickers">
+                                        <div class="sticker_khit">Хит</div>
+                                    </div>*@
+                                <div class="product-wrap">
+                                    <a><img src="~/images/Каталог товаров/@product.Address" class="imgCatalog"></a>
+                                </div>
+                                <div class="loop-action">
+                                    @Html.ActionLink("Просмотр", "Details",
+                                        new { id = product.Id }, new { @class = "compItem btn" } )
+                                    @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
+        new { id = product.Id }, new { @class = "compItem2  btn" } )
+                                    <div class="DisplayHide goToCart">
+                                        <div>Товар добавлен в корзину</div>
+                                        @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
+                          new { @class = "btn btnOrange"} )
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="product-info">
+                                @Html.ActionLink(product.Name, "ViewProduct",
+                                        new { id = product.Id, returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") }, new { @class = "product-title ColourChangeModal" } )
+                                @*<h3 class="product-title">@product.Name</h3>*@
+                                @*<div class="price">&#8381; @product.Price </div>*@
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </section>
+    <section style="margin-top: 0px" class="section">
+        <div class="section_header">
+            <h2 class="section_title">О нас</h2>
+        </div>
+        <div class="parent">
+            <div class="richText">
+                Цель Кладовой Алтая – сохранять и восстанавливать здоровье людей. Ассортимент Кладовой Алтая всегда ориентирован на нужды потребителей: Кладовая Алтая стремится дать как здоровым, так и больным людям лечебные препараты, способствующие улучшению и поддержанию здоровья.
+                У нас широкий выбор высококачественных товаров по доступным ценам: натуральная и лечебная косметика, витамины, эфирные масла, диетическое питание, биологически активные добавки, фиточаи, травяные, лечебные сборы и мн. другое.
+                Все товары имеют документы, подтверждающие качество, и проходят строгий контроль.
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        if (innerWidth > 768) {
+            $(".autoplaySlick").slick(
+                {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2500,
+                    variableHeight: true,
+                });
+        }
+        else {
+            $(".autoplaySlick").slick(
+                {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2500,
+                    variableHeight: true,
+                });
+        }
+    </script>
+
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+    <script src="~/lib/bootstrap/dist/js/index.js"></script>
+
+    @*для модального окна*@
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".compItem").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+            });
+        })
+
+        //preventDefault(): отменяет все действия, которые по умолчанию производит данное событие.
+        //    Например, при нажатии на ссылку мы можем с помощью данного метода запретить переход по этой ссылке.
+        @*$(document).ready(function () {
+        $('#submit1').click(function (e) {
+        e.preventDefault();
+        $('#results').load('@Url.Action("AddToCart", "Home")')
+        });
+        });*@
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".compItem2").click(function (e) {
+                e.preventDefault();
+                //$(this).closest().find(".DisplayHide").addClass("DisplayShow");
+                $(this).addClass("DisplayHide");
+                //.addClass("DisplayHide");//скрываем кнопку добавить в корзину
+                $(this).next().addClass("DisplayShow");//показываем кнопку перейти в корзину
+                $.get(this.href, function (data) {//увеличиваем число товаров
+                    $.get("/Cart/GetQuantity", function (data) {//пишем на корзине число товаров
+                        $('.countDigit').text(data);
+                    })
+                });
+            });
+        })
+    </script>
+
+
+    @*для модального окна успешной оплаты*@
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+                $.get("/Home/SuccessDetail/", function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+        })
+    </script>
+
+</body >
+</html >

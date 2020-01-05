@@ -22,24 +22,25 @@
         <div class="textHeadInputModal textHeadHeadModal">@Model.Name</div>
     </div>
     <div class="modal-body flexModal">
-        @if (!string.IsNullOrEmpty(Model.Address))
-        {
-            <div class="photo">
-                <img src="~/images/Каталог товаров/@Model.Address" class="imgHeight">
-            </div>
-        }
-        else
-        {
-            <div class="photo">
-                <img src="@Url.Action("GetImage", "Home",
+        <div class="PicturePlusPrice">
+            @if (!string.IsNullOrEmpty(Model.Address))
+            {
+                <div class="photo">
+                    <img src="~/images/Каталог товаров/@Model.Address" class="imgHeight">
+                </div>
+            }
+            else
+            {
+                <div class="photo">
+                    <img src="@Url.Action("GetImage", "Home",
                     new { Model.Id })" class="imgHeight">
-            </div>
-        }
-            <div class="DescriptionModal textModal">
-                @Html.Raw(Model.Description)
+                </div>
+            }
+            <div class="BlockPrice">
+
                 <div class="priceInCatalog priceViewProduct">@Model.Price.00₽</div>
                 @*если запускаем просмотре в
-        @if(($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}").IndexOf("/Cart/Summary")>-1)*@
+            @if(($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}").IndexOf("/Cart/Summary")>-1)*@
                 <div class="btnAddToCartFromDetail">
                     @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
                new { id = Model.Id }, new { @class = "compItem2  btn btnOrange btnViewProd " } )
@@ -48,7 +49,11 @@
                     <div style="color:black !important">Товар добавлен в корзину</div>
                     @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new { returnUrl = "" }, new { @class = "btn btnOrange btnViewProd" })
                 </div>
-
+            </div>
+        </div>
+            <div class="DescriptionModal textModal">
+                @Html.Raw(Model.Description)
+            
             </div>
 
     </div>

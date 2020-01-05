@@ -22,9 +22,14 @@
     </div>
 
     <div class="ImageEditAdmin"> <img class="ImageEditAdmin" src="~/images/Каталог товаров/@Model.Address" /> </div>
+    @Html.ActionLink("Отменить изменения и вернуться к списку", "Index", null, new
+         {
+             @class = "btn btn-default"
+         })
     @using (Html.BeginForm("Edit", "Admin",
 FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
+
         <div class="panel-footer">
             <input type="submit" value="Сохранить" class="btn btn-primary" />
         </div>
