@@ -54,7 +54,7 @@
                     @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
     new { id = product.Id }, new { @class = "compItem2  btn" } )
                     <div class="DisplayHide goToCart">
-                        <div style="height:0;">Товар добавлен в корзину</div>
+                        <div style="text-align:center;">Товар добавлен в корзину</div>
                         @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
           new { @class = "btn btnOrange"} )
                     </div>

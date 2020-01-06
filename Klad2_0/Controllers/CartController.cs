@@ -140,22 +140,6 @@ namespace Klad.Controllers
             return RedirectToAction("Summary","Cart", new { returnUrl});
         }
 
-
-        //public/* void *//*RedirectToActionResult*/ RedirectResult AddToCart(int productId, string returnUrl)
-        //{
-        //    Product product = db.Products
-        //        .FirstOrDefault(g => g.Id == productId);
-
-        //    if (product != null)
-        //    {
-        //        Cart cart = GetCart();
-        //        cart.AddItem(product, 1);
-        //        HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
-        //    }
-        //    return Redirect(returnUrl);
-        //    //return RedirectToAction("Index", new { returnUrl });
-        //}
-
         public RedirectToActionResult RemoveFromCart(int productId, string returnUrl)
         {
             Product product = db.Products
@@ -280,34 +264,6 @@ namespace Klad.Controllers
                 return View(shippingDetails);
             }
 
-
-          
-
-          //  var testThemDel = cart.GetXmlLineCollection();
-          //  //   db.Orders.LastOrDefault().TimeOrder = DateTime.Now.ToUniversalTime();
-
-          
-          //  // WcfSberbank.TestJson();
-
-          //  //  var ttt = await WcfSberbank.Test();
-          //
-          //  //получаем адрес для перехода на оплату
-          //  //  string formUrl = wcfSberbank.SendOrder(cart, shippingDetails, db.Orders);
-          //  return Redirect(url);
-            //if (!string.IsNullOrEmpty(formUrl))
-            //    return View("CompletedOrder");
-            //else
-
-            //    return View("");
-
-
-            //  RedirectToAction("","Order", shippingDetails);
-            //if (GetCart().Lines.Count() == 0)
-            //{
-            //    ModelState.AddModelError("", "Извините, ваша корзина пуста!");
-            //}
-
-            
         }
 
         public Order CreateAndFillOrder(ShippingDetails shippingDetails, Cart cart)

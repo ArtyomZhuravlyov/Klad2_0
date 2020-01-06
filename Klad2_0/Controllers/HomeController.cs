@@ -157,6 +157,11 @@ namespace Klad.Controllers
             return View(viewModel);
         }
 
+
+        /// <summary>
+        /// Дублирование Main с успешной оплатой
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SuccessOrder()
         {
             var items = db.GetFavoutiteProducts();
