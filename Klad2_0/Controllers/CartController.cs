@@ -244,7 +244,11 @@ namespace Klad.Controllers
                 try
                 {
                     var order =  CreateAndFillOrder(shippingDetails, cart); //добавляем в базу заказ
-                    WcfSberbank wcfSberbank = new WcfSberbank((order.Id).ToString() + "test", cart, shippingDetails);
+#if DEBUG
+                    WcfSberbank wcfSberbank = new WcfSberbank((order.Id).ToString() + "testLocal", cart, shippingDetails);
+#else
+                    WcfSberbank wcfSberbank = new WcfSberbank((order.Id).ToString() + "testProd", cart, shippingDetails);
+#endif
                     string url = wcfSberbank.GetResponseSoap();
                     return Redirect(url);
                 }

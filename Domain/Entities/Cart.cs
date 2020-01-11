@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace Domain.Entities
 {
-
+    [Serializable]
     public class Cart
     {
         
@@ -27,7 +27,7 @@ namespace Domain.Entities
         /// <summary>
         /// Значение суммы товаров, после которой доставка будет бесплатной
         /// </summary>
-        public const int SUMM_FOR_SALE = 3;//000;
+        public const int SUMM_FOR_SALE = 3000;//000;
 
         /// <summary>
         /// Изначальная Цена доставки
@@ -37,7 +37,7 @@ namespace Domain.Entities
         /// <summary>
         /// Минимальная сумма для покупки
         /// </summary>
-        public const int LIMIT_AMOUNT = 3;//000;
+        public const int LIMIT_AMOUNT = 500;//000;
 
         /// <summary>
         /// Стоимость доствкпи (зависит от общей стоимости)
@@ -149,6 +149,16 @@ namespace Domain.Entities
                     PictureAddress = Line.productCart.Address
                 });
             }
+
+            xmlCartLines.Add(new XmlCartLine()
+            {
+                ProductName = "Доставка",
+                Quantity = 1,
+                Price = DeliveryPrice,
+                Id = 0001,
+                PictureAddress = "/images/cart.png"
+            });
+            
             // передаем в конструктор тип класса
             XmlSerializer formatter = new XmlSerializer(typeof(List<XmlCartLine>));
 
@@ -158,6 +168,15 @@ namespace Domain.Entities
                 formatter.Serialize(sw, xmlCartLines);
                 xml = sw.ToString();
             }
+#if DEBUG
+            XmlSerializer formatter2 = new XmlSerializer(typeof(List<XmlCartLine>));
+            byte[] s = System.Text.Encoding.Unicode.GetBytes(xml);
+            using (MemoryStream sw = new MemoryStream(s))
+            { 
+                List<XmlCartLine> XmlCartLines = (List<XmlCartLine>)formatter2.Deserialize(sw);
+                var test = XmlCartLines;// xml = sw.ToString();
+            }
+#endif
             return xml;
         }
 
@@ -171,8 +190,8 @@ namespace Domain.Entities
         {
             // передаем в конструктор тип класса
             XmlSerializer formatter = new XmlSerializer(typeof(List<XmlCartLine>));
-
-            using (MemoryStream sw = new MemoryStream())
+            byte[] s = System.Text.Encoding.Unicode.GetBytes(xmlCartLines);
+            using (MemoryStream sw = new MemoryStream(s))
             {
                 List<XmlCartLine> XmlCartLines = (List<XmlCartLine>)formatter.Deserialize(sw);
                 return XmlCartLines;// xml = sw.ToString();
@@ -182,7 +201,7 @@ namespace Domain.Entities
     }
 
 
-
+    [Serializable]
     public class CartLine
     {
         public Product productCart { get; set; }

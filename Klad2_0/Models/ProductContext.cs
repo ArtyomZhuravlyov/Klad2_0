@@ -32,7 +32,7 @@ namespace Klad.Models
         /// <returns></returns>
         public List<Product> GetCategory2Products(string category2)
         {
-            List<Product> items = Products.Where(x => x.Category2 == category2).Take(10).ToList();
+            List<Product> items = Products.Where(x => x.Category2 == category2 && x.Price > 5).Take(10).ToList();
             if (items.Count == 0)
                 return GetCategory1Products(category2);
             return items;
@@ -45,7 +45,7 @@ namespace Klad.Models
         /// <returns></returns>
         public List<Product> GetCategory1Products(string category1)
         {
-            List<Product> items = Products.Where(x => x.Category == category1).Take(10).ToList();
+            List<Product> items = Products.Where(x => x.Category == category1 && x.Price > 5).Take(10).ToList();
             return items;
         }
 

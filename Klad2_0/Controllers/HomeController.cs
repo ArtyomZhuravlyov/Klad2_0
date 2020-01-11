@@ -38,7 +38,7 @@ namespace Klad.Controllers
             pageSize = 21; 
 
                 // несколько категорий
-            source = db.Products.Where(x => x.Category == category || x.Category2 == category || x.Category3 == category || x.Category4 == category || x.Category5 == category || x.Category6 == category);
+            source = db.Products.Where(x => (x.Category == category || x.Category2 == category || x.Category3 == category || x.Category4 == category || x.Category5 == category || x.Category6 == category) && x.Price>5);
 
                 var count =  source.Count();
             //var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
@@ -75,7 +75,7 @@ namespace Klad.Controllers
             pageSize = 21;
             //source = db.Products.Where(x => x.Name.Contains(search)).Distinct().ToList();
             //потом обязательно переделать
-            source = db.Products.Where(x => x.Name.Contains(search));
+            source = db.Products.Where(x => x.Name.Contains(search) && x.Price > 5);
 
             var source2 = source.Select(m => new { m.Name }).Distinct();
 

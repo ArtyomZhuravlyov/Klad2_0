@@ -22,9 +22,11 @@
 
 .item {
     padding: 10px 30px;
-    height: 120px;
+    /*height: 120px;*/
+    height:100%;
     display: flex;
      border-bottom: 1px solid #E1E8EE; 
+
 }
 
     /*.item:nth-child(3) {
@@ -426,6 +428,7 @@ input:focus {
 
     .image img {
         width: 50%;
+        height: auto;
     }
 
     .image,
