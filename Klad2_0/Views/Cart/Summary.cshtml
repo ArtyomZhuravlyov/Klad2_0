@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="shopping-cart">
-        @if (Model.Cart.Lines.Count() != 0)
+        @if (Model.Cart != null || Model.Cart.Lines != null || Model.Cart.Lines.Count() != 0)
         {<!-- Title -->
             <div class="title">
                 <p>Ваша корзина</p>
@@ -81,6 +81,10 @@
             }
             <div class="Total">
                 <div class="box">
+                    <div class="ContainerTotal-total-price" >
+                        Товаров на:
+                        <a class="total-product-price">@Model.Cart.ComputeTotalValue() руб</a>
+                    </div>
                     <div class="ContainerTotal-total-price">
                         Доставка:
                         @if (Model.Cart.DeliveryPrice == 0)
@@ -91,9 +95,10 @@
                         {<a class="delivery-price">@Model.Cart.DeliveryPrice руб</a>}
 
                     </div>
-                    <div class="ContainerTotal-total-price">
+                    <hr style="width: 400px; margin: 10px auto;">
+                    <div class="ContainerTotal-total-price" style="font-size: 20px">
                         Итого к оплате:
-                        <a class="total-total-price">@Model.Cart.ComputeTotalValueWithDelivery() руб</a>
+                        <a class="total-total-price" style="font-size: 25px;">@Model.Cart.ComputeTotalValueWithDelivery() руб</a>
                     </div>
                     <div class="bottons">
                         <a class="btn ContinueOrder btn-return" href="@Model.ReturnUrl">Продолжить покупки</a>
@@ -161,10 +166,10 @@
                                     @Html.ActionLink("Добавить в корзину", "AddToCart","Cart",
         new { id = product.Id }, new { @class = "compItem2  btn" } )
                                     @*<div class="DisplayHide goToCart">
-                                                      <div>Товар добавлен в корзину</div>
-                                                      @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
-                                        new { @class = "btn btnOrange"} )
-                                                  </div>*@
+                              <div>Товар добавлен в корзину</div>
+                              @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new {returnUrl = ($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}") },
+                new { @class = "btn btnOrange"} )
+                          </div>*@
 
                                 </div>
                             </div>
@@ -175,6 +180,7 @@
                                 @*<h3 class="product-title">@product.Name</h3>*@
                                 @*<div class="price">&#8381; @product.Price </div>*@
                             </div>
+                            <div class="priceInCatalog">@product.Price.00₽</div>
 
                         </div>
                     </div>
@@ -294,7 +300,7 @@
                             $('.total-total-price').text(value + @Cart.DELIVERY_PRICE + " руб");
                             $('.delivery-price').text(@Cart.DELIVERY_PRICE + " руб");
                         }
-
+                        $('.total-product-price').text(value + " руб"); /*это товаров на сумму*/
                     });
     </script>
 
@@ -338,6 +344,7 @@
                             $('.total-total-price').text(value + @Cart.DELIVERY_PRICE + " руб");
                             $('.delivery-price').text(@Cart.DELIVERY_PRICE + " руб");
                         }
+                        $('.total-product-price').text(value + " руб"); /*это товаров на сумму*/
                     });
     </script>
 

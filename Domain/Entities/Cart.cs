@@ -156,7 +156,7 @@ namespace Domain.Entities
                 Quantity = 1,
                 Price = DeliveryPrice,
                 Id = 0001,
-                PictureAddress = "/images/cart.png"
+                PictureAddress = "cart.png"
             });
             
             // передаем в конструктор тип класса

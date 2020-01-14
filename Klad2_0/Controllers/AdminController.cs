@@ -92,13 +92,14 @@ namespace Klad.Controllers
         [HttpPost]
         public/* PartialViewResult*/IActionResult PriceAdmin(List<Product> products) /*Так и не удалось передать product2*/
         {
-            foreach(var product in products)
+            foreach (var product in products)
             {
                 Product productNew = db.Products.Where(x => x.Id == product.Id).FirstOrDefault();
                 productNew.Price = product.Price;
                 productNew.Weight = product.Weight;
-                db.SaveProduct(productNew);
+              // db.SaveProduct(productNew);
             }
+            db.SaveChanges();
             //Product product = db.Products.Where(x => x.Id == id).FirstOrDefault();
             //product.Price = Price;
             //product.Weight = Weight;

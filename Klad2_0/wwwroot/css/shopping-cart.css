@@ -265,9 +265,8 @@ input:focus {
     font-weight: 400;
     margin-right: 60px;
     margin-top: 5px;
-    margin-right: 25%;
-    margin-left: auto;
-    width: 200px;
+    margin-right: auto;
+    margin-left: 32%;
     margin-bottom: 15px;
 }
 

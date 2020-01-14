@@ -40,8 +40,11 @@ namespace Klad
             services.AddSession(options =>
             {
                 //options.Cookie.Name = ".MyApp.Session";
-                options.IdleTimeout = TimeSpan.FromDays(1);
-                //options.Cookie.IsEssential = true;
+                //options.Cookie.Expiration = TimeSpan.FromHours(6);
+                //   options.IdleTimeout = TimeSpan.FromMinutes(59);
+                options.IdleTimeout = TimeSpan.FromHours(6);
+                options.Cookie.IsEssential = true;
+                
             });
 
             services.Configure<FormOptions>(options =>
@@ -70,7 +73,12 @@ namespace Klad
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
+                    options.SlidingExpiration = true;
+                    //options.ExpireTimeSpan = TimeSpan.FromMinutes(59);
+                    options.ExpireTimeSpan = TimeSpan.FromHours(6);
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    //куки - файлы действительны как минимум в течение 59 минутoptions.ExpireTimeSpan = TimeSpan.FromMinutes(59);
+                    //, но могут быть продлены, options.SlidingExpiration = true; если страница обновляется или перемещается.
                 });
             //services.AddScoped<IRepository, MemoryRepository>();
             services.AddMvc();

@@ -14,6 +14,7 @@
             <th class="text-center">Дата</th>
             <th>Имя</th>
             <th>Фамилия</th>
+            <th>Отчество</th>
             <th class="text-right">Город</th>
             <th class="text-center">Телефон</th>
             <th class="text-right">Адрес</th>
@@ -29,6 +30,7 @@
             <td class="text-right">@Model[i].TimeOrder.ToString()</td>
             <td>@Html.ActionLink(Model[i].Name, "EditOrder", new { Model[i].Id })</td>
             <td class="text-right">@Model[i].Surname</td>
+            <td class="text-right">@Model[i].MiddleName</td>
             <td class="text-right">@Model[i].City</td>
             <td class="text-right">@Model[i].Phone</td>
             <td class="text-right">@Model[i].Adress</td>

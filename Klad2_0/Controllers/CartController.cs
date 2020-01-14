@@ -70,8 +70,7 @@ namespace Klad.Controllers
                 cart.AddItem(product, 1);
                 HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
                 //cart = GetCart();
-                
-                 
+
                 return RedirectToAction("Summary","Cart");
           
         }
@@ -108,7 +107,7 @@ namespace Klad.Controllers
        
         public ActionResult ModalText(string text)
         {
-            return PartialView(text);
+            return PartialView("ModalText", text);
         }
 
         public ActionResult /*PartialViewResult*/ SummaryPart(Cart cart)
@@ -188,7 +187,7 @@ namespace Klad.Controllers
             if (!string.IsNullOrEmpty(value))
             {
                 Cart cart = JsonConvert.DeserializeObject<Cart>(value);
-                if (cart.Lines.Count() == 0)
+                if (cart.Lines ==null || cart.Lines.Count() == 0)
                     return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetFavoutiteProducts() });
                 else
                 {
@@ -209,7 +208,7 @@ namespace Klad.Controllers
                     return View(new CartIndexViewModel { Cart = cart, ReturnUrl = returnUrl, Products = db.GetCategory2Products(Category) }); 
                 }
             }
-            else return View(null);
+            else return View(new CartIndexViewModel { Cart = null, ReturnUrl = returnUrl, Products = db.GetFavoutiteProducts() });
         }
 
         public ViewResult Checkout()
@@ -236,11 +235,14 @@ namespace Klad.Controllers
         [HttpPost]
         public ActionResult Checkout( ShippingDetails shippingDetails)
         {
+            string value = HttpContext.Session.GetString("Cart");
+            Cart cart = JsonConvert.DeserializeObject<Cart>(value);
+
+            if (cart==null || cart.Lines==null)
+                return RedirectToAction("Cart","Summary");
+
             if (ModelState.IsValid && shippingDetails.UserAccess)
             {
-
-                string value = HttpContext.Session.GetString("Cart");
-                Cart cart = JsonConvert.DeserializeObject<Cart>(value);
                 try
                 {
                     var order =  CreateAndFillOrder(shippingDetails, cart); //добавляем в базу заказ
