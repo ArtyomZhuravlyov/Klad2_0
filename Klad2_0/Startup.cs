@@ -36,15 +36,26 @@ namespace Klad
             //    options.MinimumSameSitePolicy = SameSiteMode.None;
             //});
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "CookieName";
+                options.Cookie.Expiration = TimeSpan.FromDays(6);
+            });
+
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
+                //options.Cookie.Name = ".MyApp.Session";
+                //options.IdleTimeout = TimeSpan.FromSeconds(3600);
+                //options.Cookie.IsEssential = true;
+                //options.Cookie.Expiration = TimeSpan.FromHours(6);
+
                 //options.Cookie.Name = ".MyApp.Session";
                 //options.Cookie.Expiration = TimeSpan.FromHours(6);
                 //   options.IdleTimeout = TimeSpan.FromMinutes(59);
                 options.IdleTimeout = TimeSpan.FromHours(6);
                 options.Cookie.IsEssential = true;
-                
+
             });
 
             services.Configure<FormOptions>(options =>

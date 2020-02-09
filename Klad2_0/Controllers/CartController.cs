@@ -21,7 +21,8 @@ using Klad2_0.Models;
 using Klad.Models;
 using Domain.Concrete;
 using WCF_Sber;
-
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Klad.Controllers
 {
@@ -240,27 +241,39 @@ namespace Klad.Controllers
 
             if (cart==null || cart.Lines==null)
                 return RedirectToAction("Cart","Summary");
+            if(!IsValidEmail(shippingDetails.Mail))
+                ModelState.AddModelError("Mail", " указана некорректно почта"); ;
 
-            if (ModelState.IsValid && shippingDetails.UserAccess)
+            if(CheckPhone(shippingDetails.Phone, out string Phone)) 
+                shippingDetails.Phone = Phone;
+
+            if (ModelState.IsValid && shippingDetails.UserAccess /*&& CheckPhone(shippingDetails.Phone)*/)
             {
-                try
-                {
-                    var order =  CreateAndFillOrder(shippingDetails, cart); //добавляем в базу заказ
+                //try
+                //{
+                var order = CreateAndFillOrder(shippingDetails, cart); //добавляем в базу заказ
 #if DEBUG
-                    WcfSberbank wcfSberbank = new WcfSberbank((order.Id).ToString() + "testLocal", cart, shippingDetails);
+                WcfSberbank wcfSberbank = new WcfSberbank((order.Id).ToString() + "testLocal", cart, shippingDetails);
 #else
-                    WcfSberbank wcfSberbank = new WcfSberbank((order.Id).ToString() + "testProd", cart, shippingDetails);
+                WcfSberbank wcfSberbank = new WcfSberbank("Order" + (order.Id).ToString(), cart, shippingDetails);
 #endif
-                    string url = wcfSberbank.GetResponseSoap();
+                string url = wcfSberbank.GetResponseSoap();
+
+                if (!string.IsNullOrEmpty(url))
                     return Redirect(url);
-                }
-                catch(Exception ex)
+                else
                 {
-                    //to do
-                    return Redirect("");
+                    ModelState.AddModelError("Mail", "Проверьте правильность введённых данных");
+                    return View(shippingDetails);
                 }
-                
-                
+                //}
+                //catch(Exception ex)
+                //{
+                //    //to do
+                //    return Redirect("");
+                //}
+
+
             }
             else
             {
@@ -270,6 +283,65 @@ namespace Klad.Controllers
                 return View(shippingDetails);
             }
 
+        }
+
+        private bool CheckPhone(string Phone, out string phone)
+        {
+            phone = Phone;
+            //if(Phone.Length!=11 || !long.TryParse(Phone, out long empty))
+            if(!Regex.IsMatch(phone,@"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"))
+            {
+                ModelState.AddModelError("Phone", "Неверный формат номера телефона");
+                return false;
+            }
+            phone = phone.Replace(" ", "").Replace("(", "").Replace(")", "");
+            return true;
+                
+        }
+
+        public static bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                // Normalize the domain
+                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
+                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+
+                // Examines the domain part of the email and normalizes it.
+                string DomainMapper(Match match)
+                {
+                    // Use IdnMapping class to convert Unicode domain names.
+                    var idn = new IdnMapping();
+
+                    // Pull out and process domain name (throws ArgumentException on invalid)
+                    var domainName = idn.GetAscii(match.Groups[2].Value);
+
+                    return match.Groups[1].Value + domainName;
+                }
+            }
+            catch (RegexMatchTimeoutException e)
+            {
+                return false;
+            }
+            catch (ArgumentException e)
+            {
+                return false;
+            }
+
+            try
+            {
+                return Regex.IsMatch(email,
+                    @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                    @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
         }
 
         public Order CreateAndFillOrder(ShippingDetails shippingDetails, Cart cart)

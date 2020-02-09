@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="shopping-cart">
-        @if (Model.Cart != null || Model.Cart.Lines != null || Model.Cart.Lines.Count() != 0)
+        @if (Model.Cart != null && Model.Cart?.Lines?.Count() != 0)
         {<!-- Title -->
             <div class="title">
                 <p>Ваша корзина</p>
@@ -141,7 +141,7 @@
     </div>
     <section class="section" style="margin-top: 100px  !important">
         <div class="section_header">
-            @if (Model.Cart.Lines.Count() != 0)
+            @if (Model.Cart?.Lines.Count() != 0)
             {
                 <h2 class="section_title">Возможно, вас заинтересуют</h2>
             }
@@ -354,7 +354,7 @@
         $(function () {
             $.ajaxSetup({ cache: false });
             $(".OrderID").click(function (e) {
-                if (parseInt($('.total-total-price').text()) < 300) {  
+                if (parseInt($('.total-product-price').text()) < 500) {  
                     e.preventDefault();
                     $.get("/Cart/ModalText/", function (data) {
                         $('#dialogContent').html(data);

@@ -116,8 +116,7 @@ namespace Klad.Models
 
         public int FindNextId(int Id)
         {
-            try
-            {
+          
                 int LastId = this.Products.Last().Id;
                for (int i=Id+1;i<= LastId; i++)
                 {
@@ -125,11 +124,8 @@ namespace Klad.Models
                         return i;
                 }
                 return 0;
-            }
-            catch(Exception ex)
-            {
-                return 0;
-            }
+            
+          
         }
 
         /// <summary>

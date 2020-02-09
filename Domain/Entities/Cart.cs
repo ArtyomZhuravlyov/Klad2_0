@@ -27,8 +27,11 @@ namespace Domain.Entities
         /// <summary>
         /// Значение суммы товаров, после которой доставка будет бесплатной
         /// </summary>
+#if DEBUG
+        public const int SUMM_FOR_SALE = 10;//000;
+#else
         public const int SUMM_FOR_SALE = 3000;//000;
-
+#endif
         /// <summary>
         /// Изначальная Цена доставки
         /// </summary>

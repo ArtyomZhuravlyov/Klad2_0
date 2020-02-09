@@ -52,8 +52,8 @@
                new { id = Model.product.Id }, new { @class = "compItem2  btn btnOrange btnViewProd" } )
                 </div>
                 <div id="DisplayHide" class="DisplayHide goToCart" style="text-align:center !important; white-space: initial">
-                    <div style="color:black !important">Товар добавлен в корзину</div>
                     @Html.ActionLink("Перейти в корзину", "Summary", "Cart", new { returnURL = "" }, new { @class = "btn btnOrange btnViewProd" })
+                    <div style="color:black !important">Товар добавлен в корзину</div>
                 </div>
                 <div class="btnAddToCartFromDetail">
                     <a class="btn ContinueOrder btn-return btnViewProd" style="float:initial; margin-right:initial; width: 124px;" href="/Home/ReturnUrl">Вернуться в каталог</a>
