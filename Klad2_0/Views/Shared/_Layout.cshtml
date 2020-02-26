@@ -53,47 +53,56 @@
         <div class="GeneralHeader">
             <div class="ColorHeader posHeader">
                 <div class="test_color">
-                    <div class="logotip">
-                        <img src="~/images/TitleKladovaya.png">
-                        @*< https://online-letters.ru/letters/cyrillic/script/create.html*@
-                    </div>
-
-                    <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
-                    <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
-                    <a href="~/Home/Feedback" class="ColourChange poseContact underline">ОТЗЫВЫ</a>
-                    <a href="~/Home/Delivery" class="ColourChange poseContact underline">ДОСТАВКА</a>
-
-                    <div class="divSearch">
-                        <form asp-controller="Home" asp-action="IndexSearch" class="formSearch" method="get">
-
-                            <input id="inputSearch" type="text" placeholder="Искать здесь..." data-autocomplete-source='@Url.Action("AutocompleteSearch", "Home")' name="search">
-                            <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-                            <script src="~/lib/jquery/dist/jquery.js"></script>
-                            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-                            <script>
-                                $("[data-autocomplete-source]").each(function () {
-                                    var target = $(this);
-                                    target.autocomplete({ source: target.attr("data-autocomplete-source") });
-                                });
-                            </script>
-                            <button class="buttonSearch" type="submit"></button>
-                        </form>
-                    </div>
-                    <div class="CartOnLayout">
-                        <div class="PositionCart">
-                            <a href="/Cart/Summary/">
-                                <img src="~/images/cart.png" class="imgCart" alt="Пример">
-                            </a>
-                            <div class="count">
-                                <div class="countDigit"></div>
-                            </div>
-                            @*<ul class="count">
-                    <li>0</li>
-                </ul*@
+                    <div class="Head23">
+                        <div class="logotip">
+                            <img src="~/images/TitleKladovaya.png">
+                            @*< https://online-letters.ru/letters/cyrillic/script/create.html*@
                         </div>
-                        @*<div class="textSummaryCart" id="Cart">
-                <p>Ваша корзина:</p>
-            </div>*@
+                        <div class="CartAndSearch">
+                            <div class="CartOnLayout">
+                                <div class="PositionCart">
+                                    <a href="/Cart/Summary/">
+                                        <img src="~/images/cart.png" class="imgCart" alt="Пример">
+                                    </a>
+                                    <div class="count">
+                                        <div class="countDigit"></div>
+                                    </div>
+                                    @*<ul class="count">
+                                            <li>0</li>
+                                        </ul*@
+                                </div>
+                                @*<div class="textSummaryCart" id="Cart">
+                                        <p>Ваша корзина:</p>
+                                    </div>*@
+                            </div>
+                            <div class="divSearch">
+                                <form asp-controller="Home" asp-action="IndexSearch" class="formSearch" method="get">
+
+                                    <input id="inputSearch" type="text" placeholder="Искать здесь..." data-autocomplete-source='@Url.Action("AutocompleteSearch", "Home")' name="search">
+                                    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                                    <script src="~/lib/jquery/dist/jquery.js"></script>
+                                    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                                    <script>
+                                        $("[data-autocomplete-source]").each(function () {
+                                            var target = $(this);
+                                            target.autocomplete({ source: target.attr("data-autocomplete-source") });
+                                        });
+                                    </script>
+                                    <button class="buttonSearch" type="submit"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Menu23">
+                        <div class="nav3">
+                            <a href="~/Home/Main" class="ColourChange poseMain underline">ГЛАВНАЯ</a>
+                            <a href="~/Home/Contact" class="ColourChange poseContact underline">КОНТАКТЫ</a>
+                            <a href="~/Home/Feedback" class="ColourChange poseContact underline">ОТЗЫВЫ</a>
+                            <a href="~/Home/Delivery" class="ColourChange poseContact underline">ДОСТАВКА</a>
+                        </div>
+                        <div class="burgerBtn">
+                            <img class="burgerImg" src="~/images/menubtn.png" />
+                        </div>
                     </div>
                 </div>
 
@@ -104,7 +113,8 @@
             <div class="line_2">
 
             </div>
-            <div>
+
+            <div class="nav23">
                 <nav>
                     @*class="container"*@
                     <ul class="top-menu">
@@ -260,7 +270,7 @@
                     </ul>
                 </nav>
                 @*<div class="ColourChange poseContact underline" style="color: #ff0000 !important;  background: white !important;">Внимание Сайт находится на тестировании, все платежи недействительны</div>*@
-          
+
             </div>
         </div>
         @*<div class="navbar navbar-inverse" role="navigation">
@@ -309,28 +319,31 @@
             }
         });
     </script>
-    @*<script type="text/javascript">
-            $(function () {
-                $.ajaxSetup({ cache: false });
-                //если отрицательное значение (-1), то нужно просто получить Корзину
-                    $.get("/Home/AddToCart/-1", function (data) {
-                        $('#Cart').html(data);
-                        //$('#Cart').addClass("textSummaryCart");
-                    });
-            })
-        </script>*@
+    <script>
+        $(function () {
+            $('.burgerImg').on('click', function (e) {
+                e.preventDefault();
+                $(".nav23").toggleClass("nav23Show");//.addClass("nav23Show");
+                    //$(this).next().slideToggle(300, function () {
+                    //    if ($(this).css('display') === 'none') {
+                    //        $(this).removeAttr('style');
+                    //    }
+                    //});
+                });
+        });
+    </script>
     <script type="text/javascript">
-            $(function () {
-                $.ajaxSetup({ cache: false });
-                //если отрицательное значение (-1), то нужно просто получить Корзину
-                //console.log(parseInt($('.countDigit').text()));
-                //if (parseInt($('.countDigit').text()) > 0) {
-                    $.get("/Cart/GetQuantity", function (data) {
-                        $('.countDigit').text(data);
-                        //$('#Cart').addClass("textSummaryCart");
-                    });
-                //}
-            })
-        </script>
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            //если отрицательное значение (-1), то нужно просто получить Корзину
+            //console.log(parseInt($('.countDigit').text()));
+            //if (parseInt($('.countDigit').text()) > 0) {
+            $.get("/Cart/GetQuantity", function (data) {
+                $('.countDigit').text(data);
+                //$('#Cart').addClass("textSummaryCart");
+            });
+            //}
+        })
+    </script>
 </body>
 </html>

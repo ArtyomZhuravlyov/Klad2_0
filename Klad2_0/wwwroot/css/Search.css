@@ -1,10 +1,8 @@
 ﻿.divSearch {
-    /*padding: 30px 0;*/
-    float: right;
+    margin-right:30px;
+    /*float: right;
     margin-right: 30px;
-    /*margin-bottom:20px;*/
-    margin-top: -12px;
-    /*width: 300px;*/
+    margin-top: -12px;*/
 }
 
 .formSearch {
@@ -87,9 +85,10 @@
 @media(max-width:768px) {
     /*padding: 30px 0;*/
     .divSearch {
+        margin-right: initial;
         float: none;
-        margin-right: 20px;
-        margin-bottom:20px;
+        margin-left: 20px;
+        margin-bottom: 20px;
         margin-top: 10px;
         display: flex;
         justify-content: center;

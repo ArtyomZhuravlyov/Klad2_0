@@ -5,20 +5,39 @@
  
 }
 
+.burgerBtn{
+    display:none;
+}
 
+.nav23 {
+    display: block;
+    /*opacity: 1;*/
+}
 /*html {
     background: #f0f0f0;
 }*/
+.Head23 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
+.nav3{
+  padding:13px 0;
+}
+
+.CartAndSearch{
+    display:flex;
+}
 
 .posHeader {
     /*float: right;
     width: 200px;*/
     /* margin-right: 20px;*/
-    padding-top: 30px;
+    padding-top: 20px;
     /*background: #ffffff;*/
     background: #2f241e; /* #402a1f  #2D2B41 #29b297  #32bce9*/
-    height: 46px;
+    /*height: 46px;*/
 }
 
 .poseContact {
@@ -49,7 +68,7 @@
     font-weight: bold;
     letter-spacing: 1px;
     font-family: 'Exo 2', sans-serif;
-    margin-left: 100px;
+    /*margin-left: 100px;*/
     /*margin-left: 50px;*/
 }
 
@@ -96,7 +115,7 @@
     /*color: #ffffff;*/ /* Цвет текста */
     color: #988D93;
     /* background: #ffc;  Цвет фона */
-    padding: 2px; /* Поля вокруг текста */
+    padding: 10px 12px; /* Поля вокруг текста */
     transition: 0.1s linear;
      /*/Время изменения  line-height: 1;
     display: inline-block;
@@ -154,6 +173,29 @@
 
 
 @media(max-width:768px) {
+
+    .nav23{
+        /*opacity:1;*/
+        display:none;
+    }
+
+    .nav23Show{
+        display: block;
+    }
+
+    .Menu23 {
+        display: flex;
+    }
+
+    .burgerBtn {
+        display: initial;
+        margin: auto;
+        margin-right: 25px;
+    }
+
+    .Head23 {
+        justify-content: center;
+    }
 
 .posHeader{
     height:100%;

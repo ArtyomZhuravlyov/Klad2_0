@@ -346,6 +346,113 @@ h2{
     font-size: 22px;
 }
 
+@media(max-width:1050px) {
+    .parent {
+        width: 100%;
+        padding-top: 15px;
+        padding-left: 0px;
+        justify-content: center;
+    }
+
+    .imgCatalog {
+        /*height: auto;*/
+        width: 100%;
+        /* еще больше контроля с max-width */
+        /*max-width: 140px;*/
+        min-height: 160px;
+        max-height: 200px;
+    }
+
+    .product-info {
+        min-height: 90px;
+    }
+
+    .border {
+        width: 35%;
+        padding: 10px;
+        border: 1px solid #F1E7E8;
+        margin: 1px;
+        /*max-height: 320px;
+        height:320px;*/
+    }
+
+    .borderSlider {
+        margin: 0 auto;
+        width: 70%;
+    }
+
+    .wrap {
+        height: 270px;
+        position: relative;
+    }
+
+    .product-title {
+        font-size: 14px;
+    }
+
+    .loop-action a {
+        font-size: 12px;
+        line-height: 1.1;
+        min-width: 80px;
+        border-width: 1px;
+        /*color: darkgray;
+        border-color: darkgrey;*/
+        padding: 7px;
+        color: #8b4300;
+        border-color: #8b4300 /*#008a77*/;
+    }
+
+    .loop-action {
+        opacity: 1;
+        top: 75%;
+        left: initial;
+        width: 100%;
+        transform: initial;
+    }
+
+    .product-wrap:after {
+        background: initial; /*убирает синий цвет на картинке*/
+    }
+
+    .autoplaySlick {
+        width: 70%;
+    }
+
+    img.PictureSuccess {
+        height: 200px;
+        width: 300px;
+    }
+
+    .modalSuccess {
+        margin: 0 auto !important;
+        height: 230px !important;
+        width: 300px !important;
+    }
+
+    .Thanks {
+        position: relative;
+    }
+
+    .TextThanks {
+        text-align: center;
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+    }
+
+    .WordThanks {
+        padding-bottom: 5px;
+        color: #2fb580;
+        font-size: 25px;
+        padding-top: 5px;
+    }
+
+    .SmallText {
+        color: #575757;
+        font-size: 15px;
+    }
+}
+
 @media(max-width:768px) {
     .parent {
         width: 100%;
